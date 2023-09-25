@@ -1,0 +1,26 @@
+<%=form_for message, remote: true,authenticity_token: true, :html => { :id => "chat_form", :class => "position-relative"} do |f|%>
+	<div class="position-relative message-input"
+		 id="contenteditableMessageBox"
+		 contenteditable="true"
+		 style="min-height: 43px">
+	</div>
+
+	<a class="message-send-btn"
+	   id="message-send-btn" 
+	   href="javascript:$('#chat_form').submit();" contenteditable="false">
+    	<i class="material-icons message-send-icon align-middle">send</i>
+  	</a>
+
+	<div class="form-group mb-0 mt-4 position-relative d-none">
+	  <%= f.text_area :content,
+	  	  data: {textarea: "message"},
+	  	  :placeholder => 'Type a message...',
+	  	  :autocomplete => "off",
+		  :id => "message_content",
+	  	  :class => 'form-control message-input' %>
+	</div>
+<!-- this hidden field is for the MessagesController and Action Cable to keep track of what chat this message belongs to -->
+<%= f.hidden_field :chat_id, value: chat.id %>
+<%= f.hidden_field :other_user, value: other_user %>
+<%end%>
+<%= render "chats/dialog_message_not_sent"%>

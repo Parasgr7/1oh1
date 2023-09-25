@@ -1,0 +1,32 @@
+<div class="site-section block-13 border-bottom" id="section-guides">
+
+  <div class="container" style="margin-top: 25px">
+    <div class="text-left pb-1 mb-4">
+      <h2 class="text-secondary">Top Guides</h2>
+    </div>
+
+    <div class="slide-one-item home-slider owl-carousel nonloop-block-13">
+      <% if @top_guides.empty? %>
+      No Guides Available
+      <%else%>
+        <% @top_guides.each do |guide|%>
+          <div>
+            <a href="#" class="unit-1 text-center">
+              <%= guide.guide_id %>
+              <%= link_to guide_path(guide.guide_id) do %>
+              <img src="<%= category_path(guide.explore.category) %>" alt="Image" class="img-fluid">
+              <%end%>
+            </a>
+            <img src="<%= image_path('eng.jpeg') %>" alt="Image" class="fix-flag rounded">
+            <img src="<%= profile_photo(guide.profile) %>" alt="Image" class="fix-guide rounded">
+            <div class="unit-1-text text-right">
+              <h5 class="unit-1-heading"><%= guide.profile.user.full_name %></h5>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+
+    </div>
+  </div>
+
+</div>

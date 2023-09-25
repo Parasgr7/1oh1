@@ -1,0 +1,106 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="container">
+  <h1 class="contact-us-title mt-5 pt-5">
+    Contact Us
+  </h1>
+  <p class="contact-us-description">Get in touch with the right people at 1oh1. Email a member of our <br>
+    customer care team, marketing team, technical team or HR team.</p>
+  <div class="row mt-4">
+    <div class="col-4 mb-4">
+      <%path = request.url + '/customer-support'%>
+      <div class="contact-card" onclick="window.location='<%=path%>'">
+        <div class="content">
+          <img src="<%=image_path('Icons/contacts/customer care.png')%>" alt="">
+          <div class="title">
+            Customer Care
+          </div>
+          <div class="description">
+            Could not find a solution in the <a class="fz-14 c-blue" href="/helps">Quick Help</a> guide? That's okay, we're here for you.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 mb-4">
+      <%=link_to security_path do%>
+        <div class="contact-card">
+          <div class="content">
+            <img src="<%=image_path('Icons/contacts/Security.png')%>" alt="">
+            <div class="title">
+              Security Escalations
+            </div>
+            <div class="description">
+              We are committed to maintaining a safe environment. Please let us know if any vulnerability is discovered.
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+
+    <div class="col-4 mb-4">
+      <%=link_to technical_path do%>
+        <div class="contact-card">
+          <div class="content">
+            <img src="<%=image_path('Icons/contacts/technical.png')%>" alt="">
+            <div class="title">
+              Technical Issues
+            </div>
+            <div class="description">
+              Bugs are cool, we just don't want any in our website.
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <div class="col-4 mb-4">
+      <%=link_to hr_path do%>
+        <div class="contact-card">
+          <div class="content">
+            <img src="<%=image_path('Icons/contacts/HR.png')%>" alt="">
+            <div class="title">
+              HR Inquiries
+            </div>
+            <div class="description">
+              Passionate about education? Want to help others learn, earn and grow? Lets get in touch.
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+
+    <div class="col-4 mb-4">
+      <%=link_to investor_path do%>
+        <div class="contact-card">
+          <div class="content">
+            <img src="<%=image_path('Icons/contacts/Investor.png')%>" alt="">
+            <div class="title">
+              Investor Opportunities
+            </div>
+            <div class="description">
+              We love working with people. Obviously.
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+
+    <div class="col-4 mb-4">
+      <%=link_to pr_path do%>
+        <div class="contact-card">
+          <div class="content">
+            <img src="<%=image_path('Icons/contacts/PR.png')%>" alt="">
+            <div class="title">
+              PR and Communications
+            </div>
+            <div class="description">
+              Let's get in touch.
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<% if booking.guide.profile_id == profile_id %>
+	<% @companion = booking.explore.profile %>
+	<%coins = -@booking.coins%>
+<% elsif booking.explore.profile_id == profile_id %>
+	<% @companion = booking.guide.profile %>
+	<%coins = +@booking.coins%>
+<%end%>
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content medium-size">
+		<div class="modal-header px-0">
+	        <div class="modal-title fsz-16 ff-ssp font-weight-bold c-black">
+				Are you sure you want to cancel?
+			</div>
+
+	        <button type="button" class="close mt-0" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	    </div>
+
+		<div class="fsz-13 ff-os font-weight-bolder c-black mt-4">
+			You are about to cancel your <b><%= booking.title.camelize %></b> session with <b><%=@companion.user.full_name%></b> you may be subjected to cancellation fees.
+		</div>
+
+		<div class="border-bottom">
+			<div class="mt-3 pb-3" style="max-width: 200px">
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Cancellation Fee:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black reservation-cost">	<%=@extra_fee_detail[:cancellation_fee].to_i == 0 ? 0 : -@extra_fee_detail[:cancellation_fee].to_i%>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Late Cancellation Fee:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="chest-container">
+							<%=@extra_fee_detail[:late_fee].to_i == 0 ? 0 : -@extra_fee_detail[:late_fee].to_i%>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						New Balance:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="remaining-container"><%=(current_user.profile.wallet.coins + coins - @extra_fee_detail[:total_fee]).to_i%></span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+
+				<a href="/markets" class="fsz-14 c-blue font-weight-bold">Buy more coins</a>
+			</div>
+		</div>
+
+		<%= form_tag(booking_path(booking.id), :method => "delete", remote: true) do %>
+			<input type="hidden" name="booking_id" value="<%=booking.id%>" id="cancel_booking_id">
+			<input type="hidden" name="action_as" value="<%=action%>" id="action">
+			<div class="modal-footer align-items-start px-0 border-0">
+		      <button type="button" class="btn btn-link border rounded-pill" id="cancelDialogBoxBackBtn" data-dismiss="modal">Back</button>
+					<%= submit_tag 'Cancel Session', class:"btn btn-danger rounded-pill c-white btn cancel-session mr-0 font-weight-light",data: { disable_with: "Cancelling..." } %>
+
+		    </div>
+		<%end%>
+	</div>
+</div>

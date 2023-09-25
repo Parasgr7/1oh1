@@ -1,0 +1,82 @@
+.gridBaking{
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+.gridSortBy {
+    display: grid;
+    grid-template-columns:14% 5% 5% 9% 8% 8% 11% 0% 31%;;
+    
+} 
+.gridProjectSearch{
+    display: grid;
+    grid-template-columns: 9% 19% 19% 19% 21fr;;
+    row-gap: 15px;
+    column-gap: 63px;
+    margin-top: 60px;
+}
+.contentProjectSearch {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+    border: 1px solid #d8d2d2;
+    border-radius: 15px;
+    
+}
+.photosSearch {
+    display: grid;
+    grid-template-columns: 10fr 10fr 10fr 10fr 60fr;
+    margin-left: 10px;
+}
+.imgPhotSearch {
+    position: relative;    
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    bottom: 0;
+}
+.btnSoryBt {
+    color: #000000;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif
+}
+.sortyBy {
+    color: #000000;
+    font-size:16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+.titlepSearch{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-left: 10px;
+}
+.subtitlepSearch {
+    font-size: 13px;;
+    color: #000000;
+    margin-left: 10px;
+}
+.imgProjectSearch {
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+}
+.btnSoryBtS {
+    background: #8CC63F;
+    color: #ffffff;
+    padding: 7px 15px;
+    border-radius: 5px;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.tagsearch {
+    margin-left: 10px;
+}
+.topSearch {
+    margin-left: 14%;
+    border-top: 1px solid #cac4c4;
+    margin-top: 10px;
+    width: 67%;    
+}

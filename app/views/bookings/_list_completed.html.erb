@@ -1,0 +1,44 @@
+<div class="bookingInfo" id="infoBooking-<%= booking.id%>" >
+  <div class="date">
+    <%= local_time(booking.start,'%B %e')%>
+  </div>
+  <div class="start_time">
+    <%= local_time(booking.start,'%l:%M %P')%>
+  </div>
+  <div class="end_time">
+    <%= local_time(booking.end,'%l:%M %P')%>
+  </div>
+</div>
+<% if booking.guide.profile_id == @profile_id %>
+  <% @type= "Guide" %>
+  <% @companion= booking.explore.profile %>
+<% else %>
+  <% @type= "Explorer" %>
+  <% @companion= booking.guide.profile %>
+<%end%>
+
+<tr class="previousBookingsItem">
+  <td>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%B %e, %Y')%></p>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%l:%M %P') %> - <%=local_time(booking.end,'%l:%M %P')%></p>
+  </td>
+  <th scope="row"><%=booking.title%></th>
+  <td><%=booking.description.nil? || booking.description.empty?  ? "None" : booking.description%></td>
+  <td>
+    <%= link_to profile_path(@companion) do%>
+      <div class="project-avatar mr-2 d-inline-block align-middle"
+           style="background-image: url('<%= profile_photo(@companion)%>')">
+      </div>
+    <%end%>
+    <span class="whs-nw"><%= @companion.user.full_name %></span>
+  </td>
+  <th>
+    <%= @type.upcase %>
+  </th>
+  <td>
+    <% if booking.explore.profile_id == @profile_id %>
+      <% @type= "Explorer" %>
+      <%= link_to 'Re-Book', booking_subject_path(guide_id: booking.guide.id), class: 'btn btn-link border rounded-pill'%>
+    <%end%>
+  </td>
+</tr>

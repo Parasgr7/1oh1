@@ -1,0 +1,148 @@
+$( "#popular_results" ).remove();
+<% js = escape_javascript(
+  render(partial: 'projects/filter_results', locals: {
+    projects: @results,
+    filter: @filter,
+    idea: @idea,
+    popular_in_country: @popular_in_country,
+    popular_projects: @popular_projects,
+    progress: @progress,
+    completed: @completed,
+    help_needed: @help_needed,
+    most_recent: @most_recent
+})
+) %>
+$("#filter_results_projects").html("<%= js %>");
+
+// tracking clicks on project-cards
+$('div#project-card').on('click', function (event) {
+  ahoy.track("Project",Number($(this).attr('data-id')));
+})
+
+
+var paramsStatusIdea = {
+  idMainDiv: "#mainStatusIdea",
+  idMessage: "#ideaStatusMessage",
+  idShowMore: "#showMoreIdea",
+  idShowLess: "#showLessIdea",
+  classItem: ".ideaStatusItem",
+  name: "ideaStatus"
+};
+
+var paramsStatusProgress = {
+  idMainDiv: "#mainStatusProgress",
+  idMessage: "#progressStatusMessage",
+  idShowMore: "#showMoreProgress",
+  idShowLess: "#showLessProgress",
+  classItem: ".progressStatusItem",
+  name: "progressStatus"
+};
+
+var paramsStatusCompleted = {
+  idMainDiv: "#mainStatusCompleted",
+  idMessage: "#completedStatusMessage",
+  idShowMore: "#showMoreCompleted",
+  idShowLess: "#showLessCompleted",
+  classItem: ".completedStatusItem",
+  name: "completedStatus"
+};
+
+var paramsHelps = {
+  idMainDiv: "#mainHelps",
+  idMessage: "#helpsMessage",
+  idShowMore: "#showMoreHelps",
+  idShowLess: "#showLessHelps",
+  classItem: ".helpsItem",
+  name: "helpsStatus"
+};
+
+var paramsRecent = {
+  idMainDiv: "#mainRecent",
+  idMessage: "#recentMessage",
+  idShowMore: "#showMoreRecent",
+  idShowLess: "#showLessRecent",
+  classItem: ".recentItem",
+  name: "recent"
+};
+
+// for Projects
+var paramsPopularCountryProjects = {
+  idMainDiv: "#mainPopularCountryProjects",
+  idMessage: "#popularCountryProjectMessage",
+  idShowMore: "#showMorePopularCountryProject",
+  idShowLess: "#showLessPopularCountryProject",
+  classItem: ".popularCountryProject",
+  name: "popularCountryProject"
+};
+
+var paramsPopularProjects = {
+  idMainDiv: "#mainPopularProjects",
+  idMessage: "#popularProjectMessage",
+  idShowMore: "#showMorePopularProject",
+  idShowLess: "#showLessPopularProject",
+  classItem: ".popularProject",
+  name: "popularProject"
+};
+
+//CODE FOR SHOW MORE AND LESS FEATURE
+if (!showMoreLessInfo) {
+  var showMoreLessInfo = {};
+}
+
+function showMoreAndLess(params) {
+  showMoreLessInfo[params.name] = {};
+  showMoreLessInfo[params.name].totalItems = $(params.idMainDiv + " " + params.classItem).length;
+  showMoreLessInfo[params.name].showItems = 6;
+  $(params.idShowMore).click(function () {
+    var hiddenItems = showMoreLessInfo[params.name].totalItems - showMoreLessInfo[params.name].showItems;
+    if (hiddenItems > 0) {
+      showMoreLessInfo[params.name].showItems = showMoreLessInfo[params.name].showItems + 9;
+    }
+    updateShowItems(params);
+  });
+
+  $(params.idShowLess).click(function () {
+    showMoreLessInfo[params.name].showItems = Math.max(6, showMoreLessInfo[params.name].showItems - 9);
+    updateShowItems(params);
+  });
+  updateShowItems(params);
+  //function to update which items should be shown
+  function updateShowItems(params) {
+    $(params.idMainDiv + " " + params.classItem).each(function (index) {
+      if (index + 1 <= showMoreLessInfo[params.name].showItems) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+    var itemsShow = Math.min(showMoreLessInfo[params.name].showItems, showMoreLessInfo[params.name].totalItems);
+    $(params.idMessage).html("Showing " + itemsShow + " of " + showMoreLessInfo[params.name].totalItems + " items");
+    updateUIMoreLess(params);
+  }
+  function updateUIMoreLess(params) {
+    if (showMoreLessInfo[params.name].totalItems == 0) {
+      $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      $(params.idMessage).css({ opacity: 0, cursor: "default" });
+    } else {
+      $(params.idShowMore).css({ opacity: 1, cursor: "pointer" });
+      $(params.idShowLess).css({ opacity: 1, cursor: "pointer" });
+      $(params.idMessage).css({ opacity: 1, cursor: "pointer" });
+      if (showMoreLessInfo[params.name].showItems <= 9) {
+        $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      }
+
+      if (showMoreLessInfo[params.name].showItems >= showMoreLessInfo[params.name].totalItems) {
+        $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      }
+    }
+  }
+}
+
+showMoreAndLess(paramsPopularProjects);
+showMoreAndLess(paramsPopularCountryProjects);
+showMoreAndLess(paramsRecent);
+showMoreAndLess(paramsHelps);
+showMoreAndLess(paramsStatusCompleted);
+showMoreAndLess(paramsStatusProgress);
+showMoreAndLess(paramsStatusIdea);

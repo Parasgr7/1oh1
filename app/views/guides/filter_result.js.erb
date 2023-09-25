@@ -1,0 +1,138 @@
+$( "#popular_results" ).remove();
+<% js = escape_javascript(
+  render(partial: 'guides/filter_results', locals: {
+    guides: @results,
+    filter: @filter,
+    top_name:@top_name,
+    top_category:@top_category,
+    popular_incountry: @popular_incountry,
+    world_popular_guide_category: @world_popular_guide_category })
+) %>
+$("#filter_results_guides").html("<%= js %>");
+
+// tracking clicks on category-cards
+$('div#category-card').on('click', function (event) {
+  ahoy.track("Category",Number($(this).attr('data-id')));
+})
+// tracking clicks on user-cards
+$('div#user-card').on('click', function (event) {
+  ahoy.track($(this).attr('data-type'),Number($(this).attr('data-id')));
+})
+
+//CODE FOR SHOW MORE AND LESS FEATURE
+if (!showMoreLessInfo) {
+  var showMoreLessInfo = {};
+}
+
+function showMoreAndLess(params) {
+  showMoreLessInfo[params.name] = {};
+  showMoreLessInfo[params.name].totalItems = $(params.idMainDiv + " " + params.classItem).length;
+  showMoreLessInfo[params.name].showItems = 6;
+  $(params.idShowMore).click(function () {
+    var hiddenItems = showMoreLessInfo[params.name].totalItems - showMoreLessInfo[params.name].showItems;
+    if (hiddenItems > 0) {
+      showMoreLessInfo[params.name].showItems = showMoreLessInfo[params.name].showItems + 9;
+    }
+    updateShowItems(params);
+  });
+
+  $(params.idShowLess).click(function () {
+    showMoreLessInfo[params.name].showItems = Math.max(6, showMoreLessInfo[params.name].showItems - 9);
+    updateShowItems(params);
+  });
+  updateShowItems(params);
+  //function to update which items should be shown
+  function updateShowItems(params) {
+    $(params.idMainDiv + " " + params.classItem).each(function (index) {
+      if (index + 1 <= showMoreLessInfo[params.name].showItems) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+    var itemsShow = Math.min(showMoreLessInfo[params.name].showItems, showMoreLessInfo[params.name].totalItems);
+    $(params.idMessage).html("Showing " + itemsShow + " of " + showMoreLessInfo[params.name].totalItems + " items");
+    updateUIMoreLess(params);
+  }
+  function updateUIMoreLess(params) {
+    if (showMoreLessInfo[params.name].totalItems == 0) {
+      $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      $(params.idMessage).css({ opacity: 0, cursor: "default" });
+    } else {
+      $(params.idShowMore).css({ opacity: 1, cursor: "pointer" });
+      $(params.idShowLess).css({ opacity: 1, cursor: "pointer" });
+      $(params.idMessage).css({ opacity: 1, cursor: "pointer" });
+      if (showMoreLessInfo[params.name].showItems <= 9) {
+        $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      }
+
+      if (showMoreLessInfo[params.name].showItems >= showMoreLessInfo[params.name].totalItems) {
+        $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      }
+    }
+  }
+}
+
+var paramsPopularGuides = {
+  idMainDiv: "#mainPopularGuides",
+  idMessage: "#popularGuidesMessage",
+  idShowMore: "#showMorePopular",
+  idShowLess: "#showLessPopular",
+  classItem: ".popularGuidesItem",
+  name: "popularGuides"
+};
+showMoreAndLess(paramsPopularGuides);
+
+var paramsPopularRol = {
+  idMainDiv: "#mainPopularRol",
+  idMessage: "#popularRolMessage",
+  idShowMore: "#showMoreRol",
+  idShowLess: "#showLessRol",
+  classItem: ".popularRolItem",
+  name: "popularRolGuides"
+};
+showMoreAndLess(paramsPopularRol);
+
+var paramsTopGuides = {
+  idMainDiv: "#mainTopGuides",
+  idMessage: "#topGuidesMessage",
+  idShowMore: "#showMoreTop",
+  idShowLess: "#showLessTop",
+  classItem: ".topGuidesItem",
+  name: "topGuides"
+};
+showMoreAndLess(paramsTopGuides);
+
+var paramsCategorieGuides = {
+  idMainDiv: "#mainCategoryGuides",
+  idMessage: "#categoryGuidesMessage",
+  idShowMore: "#showMoreCategory",
+  idShowLess: "#showLessCategory",
+  classItem: ".categoryGuidesItem",
+  name: "categoryGuides"
+};
+showMoreAndLess(paramsCategorieGuides);
+
+$(".rateYoCustom").each(function(){
+  if ( $(this).attr("rating") != null || $(this).attr("rating") != undefined || $(this).attr("rating") != "" ) {
+    if ($(this).attr("starsSize") == "normal") {
+      $(this).rateYo({
+        rating: $(this).attr("rating"),
+        ratedFill: "#f1c40f",
+        normalFill: "#e4e4e4",
+        readOnly: true,
+        starWidth: "30px"
+      });
+    }
+    if ($(this).attr("starsSize") == "small") {
+      $(this).rateYo({
+        rating: $(this).attr("rating"),
+        ratedFill: "#f1c40f",
+        normalFill: "#e4e4e4",
+        readOnly: true,
+        starWidth: "20px"
+      });
+    }
+  }
+});

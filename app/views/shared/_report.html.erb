@@ -1,0 +1,48 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="report-dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content small-size p-2">
+        <%= form_tag(reports_path, :method => "post",id:"report_form", remote: true) do %>
+          <div class="modal-body pb-0 font-weight-bolder">
+            <div>
+              <p class="c-black f-os font-weight-bolder border-bottom pb-3">
+                Report <%= name %>
+              </p>
+              <p class="c-black f-ssp font-weight-bold">
+                Why are you reporting this?
+              </p>
+
+              <div class="custom-control custom-radio my-3">
+                <input type="radio" id="report_spam" name="report_radio" class="custom-control-input">
+                <label class="custom-control-label" for="report_spam">Spam</label>
+              </div>
+              <div class="custom-control custom-radio my-3">
+                <input type="radio" id="report_mature_content" name="report_radio" class="custom-control-input">
+                <label class="custom-control-label" for="report_mature_content">Mature content</label>
+              </div>
+              <div class="custom-control custom-radio my-3">
+                <input type="radio" id="report_abusive" name="report_radio" class="custom-control-input">
+                <label class="custom-control-label" for="report_abusive">Abusive</label>
+              </div>
+              <%if request.parameters["controller"]=="profiles"%>
+                <input type="hidden" name="report_radio" value="<%= request.parameters["id"]%>">
+              <%else%>
+                <input type="hidden" name="report_radio" value="<%= request.parameters["id"]%>">
+              <%end%>
+              <div class="custom-control custom-radio my-3">
+                <input type="radio" id="report_self_harm" name="report_radio" class="custom-control-input">
+                <label class="custom-control-label" for="report_self_harm">Promotes self-harm/suicide</label>
+              </div>
+              <div class="custom-control custom-radio my-3">
+                <input type="radio" id="report_copyright" name="report_radio" class="custom-control-input">
+                <label class="custom-control-label" for="report_copyright">Infringes upon my copyright</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-start pt-0 mt-3">
+            <%= submit_tag 'Report', class:"btn btn-danger border rounded-pill", id:"report_user",data: { disable_with: "Reporting..." } %>
+            <a class="btn btn-link" data-dismiss="modal">Cancel</a>
+          </div>
+        <%end%>
+      </div>
+  </div>
+</div>

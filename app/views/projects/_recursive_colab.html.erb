@@ -1,0 +1,16 @@
+<div class="project-avatars">
+  <%if list.nil? %>
+   No Collaborators
+  <%else%>
+    <%list.each_with_index do |coloborator,index|%>
+    <% id = User.find(coloborator).profile.nil? ? Profile.first : User.find(coloborator).profile  %>
+        <%= link_to profile_path(id) do%>
+          <div class="project-avatar"
+             style="background-image: url('<%= User.find(coloborator).profile.nil? ? image_path('profile.png') : User.find(coloborator).profile.profile_photo %>');">
+          </div>
+        <% end %>
+        <%list = list.slice!(index+1,list.length)%>
+       <%=  render 'recursive_colab',list:list if !list.empty? %>
+    <%end%>
+  <%end%>
+</div>

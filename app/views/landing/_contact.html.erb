@@ -1,0 +1,45 @@
+<div class="site-section border-bottom bg-light" id="section-info">
+  <div class="container">
+
+    <div class="row mb-5">
+      <div class="col-md-12 order-md-1" data-aos="fade-up">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="text-center pb-1 mb-4">
+
+              <img src="<%= image_path('learn.jpg') %>" alt="Image" class="fix-icon">
+              <h2 class="text-secondary font-weight-bold" id="moto">Learn</h2>
+            </div>
+            <div class="justify-content-center pb-1 mb-4">
+              <p class="text-secondary" id="country">Explore endless skills from experts all over the globe.</p>
+            </div>
+          </div>
+          <div class="col-md-4 ">
+            <div class="text-center pb-1 mb-4">
+              <img src="<%= image_path('earn.jpg') %>" alt="Image" class="fix-icon ">
+              <h2 class="text-secondary font-weight-bold" id="moto">Earn</h2>
+            </div>
+            <div class="justify-content-center pb-1 mb-4">
+              <p class="text-secondary" id="country">Collect tokens by sharing your knowledge with others</p>
+            </div>
+          </div>
+          <div class="col-md-4 ">
+            <div class="text-center pb-1 mb-4">
+              <img src="<%= image_path('grow.png') %>" alt="Image" class="fix-icon ">
+              <h2 class="text-secondary font-weight-bold" id="moto">Grow</h2>
+            </div>
+            <div class="justify-content-center pb-1 mb-4">
+              <p class="text-secondary" id="country">Increase your development with fast tracking your search. Use the time saved to learn a new skill.</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      </div>
+
+  </div>
+</div>
+<script>
+    document.getElementById("country").innerHTML = "Popular in " + geoplugin_countryName();
+</script>

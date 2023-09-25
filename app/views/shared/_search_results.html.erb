@@ -1,0 +1,24 @@
+<section class="my-5">
+    <% if results.empty? %>
+      <%= render partial:'shared/search_no_results' %>
+    <%else%>
+      <h3 class="my-5 c-black">Search Results</h3>
+      <div class="row my-4" id="mainPopularRol">
+          <% results.each do |result|%>
+            <% if result.class.name == "Category" %>
+              <%= render partial: 'shared/category_card.html',locals:{ class_name: "popularRolItem",type:"All", category: result} %>
+            <%else%>
+              <%= render partial: 'shared/user_card.html',locals:{ class_name: "popularRolItem",type:"All", user: result} %>
+            <%end%>
+          <%end%>
+      </div>
+    <%end%>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessRol">Less</a>
+    <div class="showMoreLessMessage" id="popularRolMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreRol">More</a>
+  </div>
+</section>

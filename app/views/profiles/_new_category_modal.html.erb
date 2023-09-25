@@ -1,0 +1,41 @@
+<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" id="category">
+    <div class="modal-content medium-size p-4">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a new category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_tag({:controller => 'categories', :action => :create, :method => :post },remote: true) do %>
+          <div class="modal-body">
+              <div>
+                  <div>
+                    <p class="fw-400 c-black fz-15">Reminder: all categories must follow <a href="/terms/">1oh1's community policy</a> and will be reviewed before being accessible to other users. We will notify you on the status of your submission.
+                    </p>
+                  </div>
+                  <input type="text" hidden class="form-control" name="profile_id" value="<%=current_user.profile.id%>">
+                  <input type="text" hidden class="form-control" id="new_category_modal_type_input" name="type" value="<%=type.nil? ? "" : type%>">
+                  <div class="form-group">
+                    <label for="">Category Name</label>
+                    <input type="text" class="form-control" name="name">
+                    <span class="c-dark-gray fw-400 fz-13">Be specific. For example, use piano instead of music.</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Category Description</label>
+                    <input type="txtArea" rows="3" class="form-control" name="description">
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+
+                    <button type="submit" class="btn btn-success" data-disable-with="Submitting...">Submit</button>
+                </div>
+          </div>
+        <% end %>
+
+    </div>
+  </div>
+</div>

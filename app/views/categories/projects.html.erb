@@ -1,0 +1,19 @@
+<%= render 'shared_components' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div id="filter_category_results_projects">
+      </div>
+      <div id="popular_results_categories">
+        <% if request.parameters[:search]  %>
+          <%= render partial:'shared/search_results',locals:{results: @results}%>
+        <%else%>
+          <%= render partial: 'categories/projects', locals: { projects: @profiles }%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'landing/footer' %>

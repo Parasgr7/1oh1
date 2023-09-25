@@ -1,0 +1,126 @@
+<%= form_tag( update_settings_path,  :method => :post,remote: true) do |f| %>
+	<div class="containerCommunication">
+		<div class="sectionControlEmails">
+			<div class="mt-1">
+				<span class="fsz-18 font-weight-bolder c-black">Too many emails? Control what you receive.</span>
+			</div>
+			<span class="titleSectionsHelp">Messages</span>
+			<div class="sectionReceive">
+				<span class="txtSectionHelp">Receive emails for new messages</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.new_message ? "checked": "")  : ""%> name="new_message" id="newMessageCheckbox">
+				  <label class="custom-control-label" for="newMessageCheckbox"></label>
+				</div>
+			</div>
+		</div>
+		<div class="sectionBooking">
+			<span class="titleSectionsHelp">Booking</span>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Booking request</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.after_booking ? "checked": "")  : ""%> name="after_booking" id="bookingRequestCheckbox">
+				  <label class="custom-control-label" for="bookingRequestCheckbox"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Change request</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.change_request ? "checked": "")  : ""%> name="change_request"  id="changeRequestCheckbox">
+				  <label class="custom-control-label" for="changeRequestCheckbox"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Change in session details</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.change_session_details ? "checked": "")  : ""%> name="change_session_details" id="changeInSessionCheckbox">
+				  <label class="custom-control-label" for="changeInSessionCheckbox"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Booking pending approval</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.booking_pending ? "checked": "")  : ""%> name="booking_pending" id="bookingPendingCheckbox">
+				  <label class="custom-control-label" for="bookingPendingCheckbox"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Request accepted</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.change_request_accepted ? "checked": "")  : ""%> name="change_request_accepted" id="change_request_accepted">
+				  <label class="custom-control-label" for="change_request_accepted"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Booking Declined</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.booking_decline ? "checked": "")  : ""%> name="booking_decline" id="booking_decline">
+				  <label class="custom-control-label" for="booking_decline"></label>
+				</div>
+			</div>
+
+		</div>
+		<div class="sectionSessionsHelp">
+			<div class="">
+				<span class="titleSectionsHelp" >Sessions</span>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Remind me an hour ago</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.hour_reminder ? "checked": "")  : ""%> name="hour_reminder" id="hour_reminder">
+				  <label class="custom-control-label" for="hour_reminder"></label>
+				</div>
+			</div>
+			<div class="optionsBooking">
+				<span class="txtSectionHelp">Sessions</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.coins_purchased ? "checked": "")  : ""%> name="coins_purchased" id="coins_purchased">
+				  <label class="custom-control-label" for="coins_purchased"></label>
+				</div>
+			</div>
+		</div>
+		<div class="sectionRatingHelp">
+			<div class="">
+				<span class="titleSectionsHelp">Rating</span>
+			</div>
+			<div class="helpRating">
+				<span class="txtSectionHelp">New rating</span>
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.new_rating ? "checked": "")  : ""%> name="new_rating" id="newRatingCheckbox">
+				  <label class="custom-control-label" for="newRatingCheckbox"></label>
+				</div>
+			</div>
+		</div>
+		<div class="sectionOtherHelp">
+			<div class="">
+				<span class="titleSectionsHelp">Other</span>
+			</div>
+			<div class="helpOther mb-1">
+				<span class="txtSectionHelp"> News letter</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.news_letter ? "checked": "")  : ""%> name="news_letter" id="newsLetterCheckbox">
+				  <label class="custom-control-label" for="newsLetterCheckbox"></label>
+				</div>
+			</div>
+			<div class="helpOther">
+				<span class="txtSectionHelp">Category and project suggestions</span>
+
+				<div class="custom-control custom-checkbox receivecheck large">
+				  <input type="checkbox" class="custom-control-input" <%=!@personal_settings.nil? ? (@personal_settings.suggestion ? "checked": "")  : ""%> name="suggestion" id="categoryAndProjectSuggestionsCheckbox">
+				  <label class="custom-control-label" for="categoryAndProjectSuggestionsCheckbox"></label>
+				</div>
+			</div>
+		</div>
+		<%= submit_tag("Save my preferences",:class=>'btn btn-success w-100',data: { disable_with: "Updating..." })%>
+
+	</div>
+<%end%>

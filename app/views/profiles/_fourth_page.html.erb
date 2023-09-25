@@ -1,0 +1,11 @@
+<button data-toggle="modal" data-target="#createProjectsModal" type="button" class="btn btn-success mt-3">
+	Add Project
+</button>
+
+<div id="projects-container" class="mb-5 my-3 p-3 border rounded position-relative">
+	<%= render 'projects/list_project'%>
+</div>
+
+<%= render 'create_project' %>
+<div class="modal fade" id="editProjectsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>

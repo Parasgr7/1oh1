@@ -1,0 +1,27 @@
+<h3 class="c-black my-0 d-none d-md-block mb-3"><b>Messages</b></h3>
+
+<div class="row chat-wrap">
+  <!-- conversations -->
+  <div class="col-12 col-lg-auto h-100 d-none d-lg-block" id="conversationColumn">
+    <!-- search bar -->
+      <%= form_for_filterrific @filterrific,
+          html: { id: 'filterrific-no-ajax-auto-submit' }, url: messages_path do |f| %>
+      <div class="form-group mt-2">
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed form-control',
+          placeholder: 'Search'
+        ) %>
+      </div>
+    <% end %>
+
+    <!-- conversations -->
+    <%= render(
+      partial: 'chats/list',
+      locals: { users: @mychats }
+    ) %>
+  </div>
+  <div class="col pl-0 pr-3 h-100 d-lg-block" id="chatColumn">
+    <%= render 'chatting' %>
+  </div>
+</div>

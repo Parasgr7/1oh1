@@ -1,0 +1,93 @@
+<div>
+  <h3 class="c-black my-0"><b>Chest</b></h3>
+
+  <h6 class="c-black mt-4">Your adventures around the world.</h6>
+  <div class="row mt-3">
+    <div class="col-12 order-2 order-lg-1 col-lg-7 my-2">
+      <div class="word-map-marker-wrap border p-4 bg-white rounded">
+        <div id="world-map-marker"></div>
+      </div>
+    </div>
+    <div class="col-12 order-1 order-lg-2 col-lg-5 my-2">
+      <div class="border h-100 rounded">
+        <h6 class="c-black p-4 m-0 fw-500">
+          Sales report:
+          <a href="/markets" class="float-right fz-14 c-blue">
+            Get more G-coins
+          </a>
+        </h6>
+
+        <div class="bgc-light-blue-500 px-4 py-3">
+          <div class="row">
+            <div class="col">
+              <h5 class="c-white mt-2 fsz-18 fw-500 mb-3">
+                Balance
+              </h5>
+
+              <h6 class="c-white mt-2 fsz-14 fw-500">
+                Sales report
+
+              </h6>
+            </div>
+            <div class="col-auto">
+               <span class="c-white fsz-25 fw-500 position-relative sales-report-balance">
+                 <%=@available_balance%>
+               </span>
+               <span class="position-relative sales-report-balance-coin">
+                 <img class="gCoin" src="<%= image_path('coin.png')  %>">
+               </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive p-4">
+          <table>
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Date</th>
+                <th>Cost</th>
+                <th>Closing Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%@wallet_history.each do |history|%>
+              <%next if history.cost.nil?%>
+              <tr>
+                <td><%=history.source%></td>
+                <td><%= local_time(history.created_at,'%e %B')%></td>
+                <% if history.cost < 0 %>
+                  <td class="c-red-500"><%=history.cost%></td>
+                <% else %>
+                  <td class="c-green-500"><%=history.cost%></td>
+                <% end %>
+                <td>+<%=history.new_bal%></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- chart -->
+  <h6 class="c-black mt-4">Your explores and guides stats:</h6>
+
+  <div class="border p-3 mt-3 bg-white rounded">
+    <canvas class="myChart" id="myChart"></canvas>
+
+    <div class="border py-2 mt-3 text-center c-black font-weight-bolder rounded">
+      <span class="mr-4 fz-14">
+        <span>Guided:</span>
+        <span><%=@guide_amount%></span>
+        <img class="gCoin" src="<%= image_path('coin.png')%>">
+      </span>
+      <span class="fz-14">
+        <span>Explorations:</span>
+        <span><%=@explore_amount%></span>
+        <img class="gCoin" src="<%= image_path('coin.png')%>">
+      </span>
+    </div>
+  </div>
+</div>

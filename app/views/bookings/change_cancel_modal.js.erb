@@ -1,0 +1,6 @@
+<% js = escape_javascript(
+  render(partial: 'calendars/changeOrCancelDialogBox', locals: { booking: @booking, profile_id: @profile_id, balance: @balance})
+) %>
+
+$("#chagneOrCancelDialog").html("<%= js %>");
+$("#chagneOrCancelDialog").modal("show")

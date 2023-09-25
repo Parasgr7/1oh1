@@ -1,0 +1,21 @@
+<div id="filter_results_projects">
+  <% if projects.nil? %>
+  <% else %>
+    <%if filter=="popular"%>
+      <%if projects.empty? & defined?(popular_in_country) & defined?(popular_projects) %>
+        <%= render partial:'projects/popular_in_country',locals:{popular_in_country: popular_in_country} %>
+        <%= render partial:'projects/popular_projects',locals:{popular_projects: popular_projects,heading: "Popular"} %>
+      <%else%>
+        <%= render partial:'projects/popular_projects',locals:{popular_projects: projects,heading: "Popular"} %>
+      <%end%>
+    <%elsif filter=="status"%>
+      <%= render partial:'projects/completed_status',locals:{projects: completed} %>
+      <%= render partial:'projects/in_progress_status',locals:{projects: progress} %>
+      <%= render partial:'projects/idea_status',locals:{projects: idea} %>
+    <%elsif filter=="help"%>
+      <%= render partial:'projects/popular_projects',locals:{popular_projects: help_needed,heading: "Help Requested"} %>
+    <%else%>
+      <%= render partial:'projects/popular_projects',locals:{popular_projects: most_recent,heading: "Recent"} %>
+    <%end%>
+  <%end%>
+</div>

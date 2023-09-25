@@ -1,0 +1,80 @@
+<div class="modal fade"
+		id="testDialogBox"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="testDialogBox"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+  <div class="modal-header">
+    <h5 class="modal-title">Edit Event</h5>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+      </div>
+
+      <div class="new-event-date">
+        <span class="new-event-subtext">
+            <i class="material-icons">today</i>
+        </span>
+
+        <input type="text" class="new-event-date-picker" id="newEventDatePicker"/>
+      </div>
+
+      <div class="new-event-date mb-2">
+        <span class="new-event-subtext">
+            <i class="material-icons">access_time</i>
+        </span>
+        <input type="text" class="new-event-time-picker time-picker" id="newEventStartTimepicker"/>
+         to
+        <input type="text" class="new-event-time-picker time-picker" id="newEventEndTimepicker"/>
+         PST
+      </div>
+
+      <div class="new-event-price border-top pt-1">
+        <span class="new-event-subtext">Price:</span>
+        <span class="new-event-main-text" id="newEventPriceText">120 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-chest">
+        <span class="new-event-subtext">Chest:</span>
+        <span class="new-event-main-text" id="newEventChestText">360 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-remaining border-bottom pb-1">
+        <span class="new-event-subtext">Remaining:</span>
+        <span class="new-event-main-text" id="newEventRemainingText">240 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-buy-gcoins">
+        <a href="">Buy more G-Coins</a>
+      </div>
+
+      <div class="form-group mt-1 d-none" id="newEventAddDetails">
+        <label class="fz-14" for="newEventAddDetailsTextArea">Add details about the session</label>
+        <textarea class="form-control fz-14" id="newEventAddDetailsTextArea" rows="3"></textarea>
+      </div>
+
+      <div class="new-event-action mt-1" id="newEventAddDetailsBtn">
+        <span class="new-event-action-subtext">
+            <i class="material-icons">menu_open</i>
+        </span>
+        <span class="new-event-action-main-text">Add details about the session</span>
+      </div>
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bookingEditEventMoreOptionDialog">More options</button>
+
+    <!-- <button type="button" class="btn btn-primary">Edit Booking Request</button> -->
+  </div>
+
+
+</div>
+</div>
+</div>

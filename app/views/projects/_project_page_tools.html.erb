@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col">
+  	  <div class="project-tabs material-tabs">
+        <a id="project-tools-tab1-tab" data-turbolinks="false" class="tab1-tabBooking material-tabs-tab pt-0 pl-0" href="#tab11" class="active">
+        	About the project
+        </a>
+        <a id="project-tools-tab2-tab" data-turbolinks="false" class="tab2-tabBooking material-tabs-tab pt-0" href="#tab12">
+        	Challenges
+        </a>
+        <a id="project-tools-tab3-tab" data-turbolinks="false" class="tab3-tabBooking material-tabs-tab pt-0" href="#tab13">
+        	Tools and Supplies
+        </a>
+        <span class="yellow-bar"></span>
+      </div>
+    </div>
+</div>
+<div class="tab-content custom-table">
+    <div id="tab11">
+        <p class="fsz-12 font-weight-bolder ff-ssp c-black mt-4">
+            Describe what you are trying to do, why you care about it, how you plan to make it happen, and who you are. Your description should tell viewers everything they need to know.
+        </p>
+
+        <div class="form-group custom-from-group mt-3">
+          <label for="projectToolsDescription">DESCRIPTION</label>
+          <textarea class="form-control"
+                    id="projectToolsDescription"
+                    name="description"
+                    value="<%=@project.nil? ? "" : @project["description"]%>"
+                    rows="3"></textarea>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group pl-0">
+            <label>COMPLETION DATE</label>
+            <input type="text" name="completion_date" value="<%=@project.nil? ? "" : @project["completion_date"]%>" id="completion_date" class="form-control date-picker">
+        </div>
+    </div>
+
+    <div id="tab12">
+        <p class="fsz-12 font-weight-bolder ff-ssp c-black mt-4">
+            Communicate your challenges  and knowledge gaps to set proper expectations. You may want to include things such as budget and timelines
+        </p>
+
+        <div class="form-group custom-from-group mt-3">
+          <label for="projectToolsDescription">KNOWLEDGE GAPS</label>
+          <textarea class="form-control"
+                    id="projectGaps"
+                    name="gaps"
+                    value="<%=@project.nil? ? "" : @project["gaps"]%>"
+                    rows="3"></textarea>
+        </div>
+
+        <div class="form-group custom-from-group mt-3">
+          <label for="projectToolsDescription">OTHER CHALLENGES</label>
+          <textarea class="form-control"
+                    id="projectChallenges"
+                    name="challenges"
+                    value="<%=@project.nil? ? "" : @project["challenges"]%>"
+                    rows="3"></textarea>
+        </div>
+    </div>
+
+    <div id="tab13">
+        <p class="fsz-12 font-weight-bolder ff-ssp c-black mt-4">
+            Describe what you will need in order to complete this project.
+        </p>
+
+        <div class="form-group col-md-4 custom-from-group pl-0 mb-2">
+            <label>TOOLS</label>
+            <input type="text" id="project-page-tools-tools" class="form-control" placeholder="add+">
+        </div>
+
+        <div class="page-tools-wrap mb-3 row mx-0">
+        </div>
+
+        <input type="hidden" name="tools" id="api-page-tools">
+
+        <div class="form-group col-md-4 custom-from-group pl-0 mb-3">
+            <label>SUPPLIES</label>
+            <input type="text" name="supplies" id="project-page-tools-supplies" class="form-control" placeholder="add+">
+        </div>
+
+        <div class="page-supplies-wrap mb-3 row mx-0">
+        </div>
+
+        <input type="hidden" name="supplies" id="api-page-supplies">
+    </div>
+</div>

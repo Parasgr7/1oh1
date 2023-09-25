@@ -1,0 +1,47 @@
+<div class="profile-navbar">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="page-wrapper default-theme sidebar-bg bg1 notificationsActive">
+    <%= render 'profiles/side_bar' %>
+    <!-- page-content  -->
+    <main class="page-content h-100">
+        <div id="sidebar-overlay" class="overlay"></div>
+        <div class="mainContent bgc-white pt-5 pb-2" style="min-height: calc(100% - 65px)">
+        	<div class="row mx-0 border-bottom pb-4 px-5">
+        		<div class="col p-0">
+              <h3 class="c-black my-0"><b>Notifications</b></h3>
+        		</div>
+        		<div class="col-auto">
+        			<a href="/helps?section=communication" class="c-blue">
+        				<i class="material-icons">settings</i>
+        			</a>
+        		</div>
+        	</div>
+          <%if @all_notifications.empty? %>
+            <h5 class="c-black mt-4 px-5">No new notifications<h5>
+          <%else%>
+            <% @all_notifications.each do |notification| %>
+              <%if notification.action == "followed"%>
+                <%= render partial: 'notification_message_list',locals:{notification: notification} %>
+              <%elsif notification.action == "booking"%>
+                <%= render partial: 'notification_booking_list',locals:{notification: notification}%>
+              <%elsif notification.action == "message"%>
+                <%= render partial: 'notification_message_list',locals:{notification: notification}%>
+              <%elsif notification.action == "review"%>
+                <%= render partial: 'notification_review_list',locals:{notification: notification}%>
+              <%elsif notification.action == "declined"%>
+                <%= render partial: 'notification_updates_list',locals:{notification: notification}%>
+              <%elsif notification.action == "category_accepted"%>
+                <%= render partial: 'notification_category_list',locals:{notification: notification}%>
+              <%elsif notification.action == "new_category"%>
+                <%= render partial: 'notification_new_category_list',locals:{notification: notification}%>
+              <%end%>
+            <%end%>
+          <%end%>
+        </div>
+
+      <%= render 'landing/footer'%>
+    </main>
+
+</div>

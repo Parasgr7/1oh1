@@ -1,0 +1,37 @@
+<div id="pending_bookings">
+  <div class="session-table-wrap mt-4">
+    <table class="table sortable-table">
+      <% if @pending_bookings.empty? %>
+        No Pending Bookings
+      <%else%>
+        <thead>
+          <tr>
+            <td scope="col"><%= sortable "start" %></td>
+            <td scope="col"><%= sortable "title" %></td>
+            <td scope="col">Description</td>
+            <td scope="col">With</td>
+            <td scope="col">Role</td>
+            <td scope="col"></td>
+          </tr>
+        </thead>
+        <tbody id="mainPendingBookings">
+          <%= render partial: 'bookings/list_pending',collection: @pending_bookings,as: :booking%>
+        </tbody>
+      <%end%>
+    </table>
+    <div class="upcomingBookingsLinks gridLinksShow">
+      <a class="gridLessLink" id="lessPendingBookings">Less</a>
+      <div class="showMoreLessMessage" id="pendingBookingsMessage">
+        Showing x of y items
+      </div>
+      <a class="gridMoreLink" id="morePendingBookings">More</a>
+    </div>
+  </div>
+</div>
+<div class="modal fade"
+  id="bookingConfirmDialogBox"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bookingConfirmDialogBox"
+  aria-hidden="true">
+</div>

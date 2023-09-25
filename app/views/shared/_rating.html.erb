@@ -1,0 +1,29 @@
+<div class="row explores-rating-progrss-wrap">
+	<div class="col pr-0">
+		<% group_rating.to_a.reverse.to_h.each do |k,v| %>
+			<div class="row explores-rating-progress-row">
+				<div class="col-auto pr-0">
+					<div class="fsz-12 font-weight-bold explores-rating-progress-num"><%=k%>
+					</div>
+				</div>
+				<div class="col">
+					<div class="explores-rating-progress-bar">
+						<div class="explores-rating-progress-bar-progress"
+						     style="width: <%=group_rating[k]%>%"></div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-auto">
+		<div class="explores-rating-progress-overall text-center">
+			<%=rating.round(1)%>
+		</div>
+
+		<div class="rateYoCustom d-inline-block mt-2 p-0" starsSize="small" rating="<%=rating%>"></div>
+
+		<div class="explores-rating-progress-reviews font-weight-bolder fsz-13 text-center c-black">
+			<%=count%> reviews
+		</div>
+	</div>
+</div>

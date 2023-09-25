@@ -1,0 +1,43 @@
+<div class="bookings-container px-5 pt-5 pb-2 mt-0">
+  <div class="row mx-0 align-items-center">
+    <div class="col pl-0">
+      <h3 class="c-black my-0"><b>Sessions</b></h3>
+    </div>
+    <div class="col-auto">
+      <a href="" class="c-blue">
+        <i class="material-icons">settings</i>
+      </a>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <header class="bookings-tab">
+        <div class="material-tabs border-bottom-0 whs-nw overflow-auto">
+            <a id="tab1-tab" class="tab1-tabBooking pt-0 pb-2 tt-n px-0 mr-4 active" href="#tab1">
+              <span class="mr-2"><%= @pending_bookings.size %></span>Pending approval</a>
+            <a id="tab2-tab" class="tab2-tabBooking pt-0 pb-2 tt-n px-0 mr-4" href="#tab2">
+              <span class="mr-2"><%= @submitted_bookings.size %></span>Submitted</a>
+            <a id="tab3-tab" class="tab3-tabBooking pt-0 pb-2 tt-n px-0 mr-4" href="#tab3">
+              <span class="mr-2"><%= @upcoming_bookings.size %></span>Upcoming</a>
+            <a id="tab4-tab" class="tab4-tabBooking pt-0 pb-2 tt-n px-0 mr-4" href="#tab4">
+              <span class="mr-2"><%= @completed_bookings.size %></span>Completed</a>
+            <span class="yellow-bar"></span>
+        </div>
+      </header>
+      <div class="tab-content">
+        <div id="tab1">
+          <%= render 'pending_bookings'%>
+        </div>
+        <div id="tab2">
+          <%= render 'submitted_bookings'%>
+        </div>
+        <div id="tab3">
+          <%= render 'upcoming_bookings'%>
+        </div>
+        <div id="tab4">
+          <%= render 'previous_bookings'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

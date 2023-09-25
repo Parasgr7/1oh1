@@ -1,0 +1,124 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.landing-search-wrap {
+  padding: 0 40px;
+
+  .search-container {
+    border-radius: 25px;
+    z-index: 10;
+    position: relative;
+  }
+  
+  .form-group {
+    position: relative;  
+    input {
+      border: none;
+      background-color: #F5F5F5!important;
+      padding-left: 43px;
+      font-size: 19px;
+
+      border-radius: 25px 0 0 25px;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 26px;
+    }
+  }
+  .btn {
+	text-transform: none!important;
+	min-width: 80px;
+	font-size: 13px;
+	letter-spacing: 1px;
+	padding: 6px 13px 6px 12px!important;
+	color: #000;
+	line-height: 16px;
+	border-radius: 25px;
+	&:hover {
+		color: #8bc34a;
+	}
+
+	&.active {
+    	background-color: #78ad39;
+    	color: #fff;
+    	font-weight: 600;
+	}
+  }
+
+  .btn-success {
+    border-radius: 25px;
+    padding: 6px 13px 6px 12px!important;
+    line-height: 16px;
+    font-weight: 600;
+    color: #fff!important;
+    i {
+      max-height: 13px;
+      position: relative;
+      top: -4px;
+      font-size: 20px;
+    }
+    span {
+    	line-height: 13px;
+    	position: relative;
+    	top: -1px;
+    }
+  }
+
+  #filters-wrap {
+  	opacity: 0;
+    &:not(.fadeOutUp) {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+	
+  #toggle-filters, .filters {
+  	margin-top: 7px;
+  }
+  .easy-autocomplete {
+  	width: 100%!important
+  }
+  .easy-autocomplete-container ul {
+  	overflow-y: auto;
+  }
+  .search-select-wrap {
+    max-width: 130px;
+  }
+  .custom-select {
+    background-color: #8bc34a;
+    border-radius: 25px;
+    color: white;
+    height: 30px;
+    line-height: 16px;
+    option {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+  .search-filter-remove {
+    font-size: 16px;
+    position: absolute;
+    top: -15px;
+    right: -6px;
+    background: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    i {
+      font-size: 16px;
+    }
+  }
+  .custom-from-group {
+    display: inline-block;
+  }
+  .custom-select-filters-wrap {
+    display: inline-block;
+    select {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+}

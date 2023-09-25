@@ -1,0 +1,81 @@
+<div class="row justify-content-around">
+	<div class="col-6">
+		<div class="form-group">
+			<label>Do you need help completing this project?</label>
+			<div class="row">
+				<div class="col-auto">
+					<div class="custom-control custom-radio">
+					    <input type="radio"
+					    	   class="custom-control-input"
+					    	   id="radioSupportYes"
+					    	   value="true"
+					    	   name="help">
+					    <label class="custom-control-label"
+					    	   for="radioSupportYes">Yes</label>
+					</div>
+				</div>
+				<div class="col-auto">
+					<div class="custom-control custom-radio mb-3">
+					    <input type="radio"
+					           class="custom-control-input"
+					           id="radioSupportNo"
+					           value="false"
+					           checked 
+					           name="help">
+					    <label class="custom-control-label"
+					    	   for="radioSupportNo">No</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group custom-from-group">
+			<label for="supportNeedHelpWithInput">What do you need help with?</label>
+			<input type="text" name="supportTagsInput" required tags_parent="project_support_tags_wrap" class="form-control categories-auto-complete" id="supportNeedHelpWithInput" placeholder="add+">
+		</div>
+
+		<div class="form-group">
+			<div class="row project-support-tags-wrap mx-0" id="project_support_tags_wrap">
+
+			</div>
+
+        	<input type="hidden" name="help_needed" id="api-support-tags">
+		</div>
+	</div>
+	<% if !isNewProject %>
+		<div class="col-6 border-left">
+			<div class="form-group">
+				<label for="">COLLABORATORS</label>
+
+				<div class="border rounded position-relatvie scrollable" style="height: 250px">
+					<%if collaborators.nil?%>
+						No Collaborators
+					<%else%>
+						<% users = collaborators.map{|x| User.find_by_id(x)}%>
+						<%users.each do |user|%>
+							<div class="row my-2 mx-0 align-items-center">
+									<div class="col-auto px-0">
+										<div class="project-avatar"
+													 style="background-image: url('<%= profile_photo(user.profile) %>')"></div>
+									</div>
+									<div class="col pr-0">
+										<div class="line-height-1">
+											<span class="fsz-15 font-weight-bold c-black"><%=user.full_name%></span>
+										</div>
+										<!-- <div class="fsz-13 font-weight-bolder c-black">
+											Logo Design
+										</div> -->
+									</div>
+									<div class="col-auto">
+										<button class="btn btn-link p-0">
+											<i class="material-icons fsz-18 c-gray">close</i>
+										</button>
+									</div>
+							</div>
+							<%end%>
+					<%end%>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

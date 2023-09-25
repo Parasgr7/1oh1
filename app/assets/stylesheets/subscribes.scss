@@ -1,0 +1,30 @@
+// Place all the styles related to the Subscribes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.icon {
+  height: 150px;
+  width: 150px;
+}
+
+.subscription {
+  .icons-wrap {
+    span {
+      font-size: 36px;
+      color: #2b2b2b;
+    }
+  }
+  .subscription-logo {
+    width: 86px;
+    vertical-align: middle;
+  }
+  .subscription-logo-text {
+    color: #8cc63f;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -2px;
+    vertical-align: middle;
+  }
+  .site-blocks-cover.overlay:before {
+    background-color: #fff!important;
+  }
+}

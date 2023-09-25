@@ -1,0 +1,10 @@
+$( "#popular_results_categories_all" ).remove();
+<% js = escape_javascript(
+  render(partial: 'categories/filter_results', locals: {
+    explores: @results_explores,
+    filter: @filter,
+    guides: @results_guides,
+    category: @category
+    })
+) %>
+$("#filter_results_all").html("<%= js %>");

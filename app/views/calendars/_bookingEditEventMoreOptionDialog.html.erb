@@ -1,0 +1,142 @@
+<!-- new event dialog with more options -->
+<div class="modal fade" id="editEventMoreOptionDialog" tabindex="-1" role="dialog" aria-labelledby="editEventMoreOptionDialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-9 more-option-main-column">
+            <form>
+              <div class="form-group position-relative">
+                <input type="text" class="form-control fz-14" id="newEventSubjectMoreOption" placeholder="Subject">
+
+                <button type="button" class="close input-icon" style="top: 9px" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="position-relative">
+                <input type="text" class="new-event-date-picker gray-input" id="newEventDatePickerMoreOption"/>
+
+                <span class="input-icon">
+                  <i class="material-icons">today</i>
+                </span>
+              </div>
+
+              <div class="position-relative mt-3">
+                <span class="input-icon">
+                  <i class="material-icons">access_time</i>
+                </span>
+
+                <input type="text" class="new-event-time-picker time-picker gray-input" id="newEventStartTimepickerMoreOption"/>
+
+                <span class="mx-2">to</span>
+
+                <input type="text" class="new-event-time-picker time-picker gray-input" id="newEventEndTimepickerMoreOption"/>
+
+                <span class="mx-2">PST</span>
+              </div>
+
+              <div class="material-tabs">
+                <a id="more-options-tab1-tab" href="#tab1" class="active blue">Event Details</a>
+                <a id="more-options-tab2-tab" href="#tab2" class="blue">Find a Time</a>
+                <span class="yellow-bar"></span>
+              </div>
+
+              <div class="tab-content">
+                <div id="tab1" style="overflow-x: visible;">
+                  <div class="position-relative">
+                    <span class="input-icon">
+                        <i class="material-icons">notifications_none</i>
+                    </span>
+                  </div>
+                  <div id="notif-wrap"></div>
+                  <div>
+                    <button type="button" id="addNotifButton" class="d-inline-block btn btn-link mt-2 pl-0">
+                      Add notification
+                    </button>
+                  </div>
+
+                  <div class="position-relative mt-2">
+                    <span class="input-icon" style="top: 0">
+                        <i class="material-icons">menu_open</i>
+                    </span>
+                    <textarea class="form-control gray-input fz-14"
+                              placeholder="Add description"
+                              id="newEventAddDetailsTextAreaMoreOption"
+                              rows="3"></textarea>
+                  </div>
+                </div>
+                <div id="tab2">
+                  <div class="border-bottom py-3">
+                    <button type="button" class="btn btn-outline-dark fz-14" id="newEventMoreOptionTodayBtn">
+                      Today
+                    </button>
+
+                    <button type="button" class="btn btn-link px-1 ml-3" id="newEventMoreOptionPrevDayBtn">
+                      <i class="material-icons">keyboard_arrow_left</i>
+                    </button>
+
+                    <button type="button" class="btn btn-link px-1" id="newEventMoreOptionNextDayBtn">
+                      <i class="material-icons">keyboard_arrow_right</i>
+                    </button>
+
+                    <span class="fz-14">
+                      <b id="newEventMoreOptionsCurrentDate">
+                        Thursday, 4 July 2019
+                      </b>
+                    </span>
+                  </div>
+
+                  <div class="timeline-calendar-wrap">
+                    <div class="personal-timeline-calendar"></div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-3">
+            <div class="p-1 new-event-user-overview-wrap">
+              <div class="border-bottom pb-3 text-center">
+                <img class="new-event-avatar"
+                   height="80px"
+                   width="80px"
+                   src="<%=image_path('People/asian-square.jpg')%>" alt="">
+
+                <span class="fz-13 align-bottom d-block mt-1">Ms.Brown</span>
+              </div>
+              <div>
+                <div class="new-event-price border-top pt-1">
+                  <span class="new-event-subtext">Price:</span>
+                  <span class="new-event-main-text" id="newEventPriceText">
+                    <span class="pricePlaceHolder">120</span>
+                    <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+                </div>
+
+                <div class="new-event-chest">
+                  <span class="new-event-subtext">Chest:</span>
+                  <span class="new-event-main-text" id="newEventChestText"><%=@balance%> <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+                </div>
+
+                <div class="new-event-remaining border-bottom pb-1">
+                  <span class="new-event-subtext">Remaining:</span>
+                  <span class="new-event-main-text" id="newEventRemainingText">
+                    <span class="remainingCoinPlaceHolder">240</span>
+                    <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+                </div>
+
+                <div class="new-event-more-option-buy-gcoins">
+                  <a href="" class="fz-13">Buy more G-Coins</a>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-success mt-3" data-dismiss="modal" id="editEventMoreOptionDialogEditBookingBtn">
+                    Edit Booking Request
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

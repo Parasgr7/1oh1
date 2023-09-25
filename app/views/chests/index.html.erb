@@ -1,0 +1,32 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "chests" %>
+<% end %>
+
+<% content_for :css_includes do %>
+  <%= stylesheet_link_tag "chests" %>
+<% end %>
+
+<div class="profile-navbar">
+    <%= render 'landing/navbar' %>
+</div>
+<%= render 'bookings/times_up'%>
+
+<input type="hidden" value="<%=@booking_id%>" id="booking_id">
+<input type="hidden" value="<%=@peer_user%>" id="peer_user_id">
+<input type="hidden" value="<%=@current_user_id%>" id="current_user_id">
+
+<div class="page-wrapper default-theme sidebar-bg bg1 chestActive">
+
+    <%= render 'profiles/side_bar' %>
+    <!-- page-content  -->
+    <main class="page-content">
+        <div id="sidebar-overlay" class="overlay"></div>
+        <div class="mainContent px-5 pt-5 pb-2">
+            <!-- <i id="responsiveMenu" class="material-icons">more_vert</i> -->
+            <%= render 'chest_profile' %>
+        </div>
+
+        <%= render 'landing/footer'%>
+    </main>
+    <!-- page-content" -->
+</div>

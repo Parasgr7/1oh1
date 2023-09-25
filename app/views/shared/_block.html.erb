@@ -1,0 +1,23 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="block-dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content small-size py-4">
+      <div class="modal-body text-center pb-0 font-weight-bolder">
+        <p class="mb-1"><b class="font-weight-bold">Are you sure</b> you want to block</p>
+        <p class="font-weight-bolder">
+          <span><%= name %></span>
+          ?
+        </p>
+      </div>
+      <%= form_tag(block_path, :method => "post",id:"report_block") do %>
+      <%if request.parameters["controller"]=="profiles"%>
+        <input type="hidden" name="profile_block" value="<%= request.parameters["id"]%>">
+      <%end%>
+      <div class="modal-footer justify-content-center pt-0">
+        <a class="btn btn-link border rounded-pill"
+                data-dismiss="modal">No</a>
+        <%= submit_tag 'Block', class:"btn btn-danger rounded-pill", id:"block_user" %>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>

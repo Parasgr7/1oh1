@@ -1,0 +1,19 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Top Guides</h3>
+
+  <div class="row my-4" id="mainTopGuides">
+    <% if top_guides.empty? %>
+      <h6 class="my-7 c-black">No Guides Available</h6>
+    <% else %>
+      <%= render partial: 'shared/user_card.html', collection: top_guides, as: :user,locals:{ class_name: "topGuidesItem",type:"Guide"} %>
+    <% end %>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessTop">Less</a>
+    <div class="showMoreLessMessage" id="topGuidesMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreTop">More</a>
+  </div>
+</section>

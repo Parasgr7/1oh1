@@ -1,0 +1,495 @@
+// Place all the styles related to the Explores controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.site-blocks-cover.explores{
+  min-height: 500px !important;
+  padding-top: 100px!important;
+}
+
+.schedule{
+  position: absolute;
+  bottom: 185px;
+  left: 20px
+}
+
+.show-more-button {
+	color: rgb(210, 210, 210)!important;
+	font-size: 14px;
+	letter-spacing: 1px;
+	text-transform: none;
+}
+.around-schedule-btn {
+	padding: 0;
+	margin: 0;
+	height: 32px;
+	
+	i {
+		font-size: 44px;
+		position: relative;
+		top: -6px;
+		color: white;
+	}
+}
+.show-more-button-wide {
+	color: white;
+	border-radius: 0;
+	width: 100%;
+	height: 100px;
+	background-color: rgb(186, 221, 140);
+	color: white;
+	display: block;
+	text-transform: none;
+}
+.minimal-card-wrap {
+	cursor: pointer;
+	.animating {
+		-webkit-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+	&:hover {
+		.card-shadow {
+			transform: translate3d(-50%, -40%, -60px) scale(0.8); 
+		}
+
+		.avatar-shadow {
+			transform: translate3d(-50%, -30%, -20px); 
+		}
+	}
+}
+
+.minimal-card {
+	display: inline-block;
+	cursor: pointer;
+	width: 270px;
+	height: 360px;
+	position: relative;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 20px;
+	transform: scale(1);
+	z-index: 2;
+	overflow: hidden;
+	 -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
+	
+	h5 {
+		margin: 70px 0 10px 0;
+		color: #000;
+		font-size: 17px!important;
+	}
+	h6 {
+		font-size: 14px!important;
+		color: #000;
+	}
+	.center {
+		position: absolute;
+		left: 50%;
+		top: 50%;	
+	}
+	.card-shadow {
+		width: 480px;
+		height: 603px;
+		background-size: cover;
+		transform: translate3d(-50%, -40%, -60px) scale(0.75);  
+		z-index: 1;
+	}
+	.card-content {
+		width: 100%;
+		transform: translate(-50%, 188%);
+		z-index: 3
+	}
+	.avatar {
+		width: 140px;
+		height: 140px;
+		border-radius: 70px;
+		background-size: cover;
+		transform: translate3d(-50%, -50%, 10px) scale(0.75);
+		 -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    z-index: 4;
+	}
+	.avatar-shadow {
+		width: 160px;
+		height: 160px;
+		background-size: cover;
+		transform: translate3d(-50%, -30%, -20px);
+		z-index: 3
+	}
+	.cover {
+		width: 100%;
+		height: 50%;
+		background-color: black;
+		background-size: cover;
+		z-index: 2;
+	}
+}
+
+.card-skill {
+	display: inline-block;
+	width: 320px;
+	height: 270px;
+	border-radius: 10px;
+	overflow-x: hidden;
+	&.small {
+		width: 220px;
+    	height: 190px;
+	}
+	.cover {
+		width: 100%;
+		height: 70%;
+		background-color: black;
+		background-size: cover;
+		z-index: 2;
+	}
+	h5 {
+		text-align: left;
+		font-size: 18px;
+		margin-left: 15px;
+		color: #000;
+	    position: absolute;
+	    bottom: 15%;
+	    transform: translateY(50%);
+	}
+}
+
+#arroundScheduleBtn.active{
+	color: #badd8c;
+	i {
+		color: #badd8c;
+		transform: rotate(180deg);
+	}
+}
+.schedule-popup {
+
+	background-color: #fff;
+	max-width: 400px;
+	box-sizing: border-box;
+	padding: 20px;
+	position: absolute;
+	border-radius: 5px;
+	small {
+		color: #000;
+	}
+	select {
+		height: 43px;
+	}
+	input {
+		background-color: #fff!important;
+	}
+	select, input {
+		border-radius: 3px;
+		font-size: 14px;
+		border-color: #000;
+	}
+	.small-group {
+		input, select {
+			max-width: 140px;
+		}
+	}
+	
+	label {
+		font-size: 15px;
+		font-weight: bold;
+		color: #000;
+	}
+	.btn-success {
+		width: 100%;
+		color:white;
+		letter-spacing: 1px;
+		text-transform: none;
+	}
+}
+
+
+
+.explore-container {
+	h1, p {
+		color: #000;
+	}
+	h1 {
+		font-size: 44px;
+		font-weight: 700;
+	}
+
+	p {
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 28px;
+	}
+
+	.explore-guy > div {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	.explore-guy-avatar {
+		border-radius: 50%;
+		background-size: cover;
+		border: 2px solid #ccc;
+		width: 84px;
+		height: 84px;
+	}
+	.explore-guy-name {
+		font-size: 23px;
+		font-weight: 400;
+		color: #000;
+	}
+
+	.explore-guy-book-btn {
+		border-radius: 8px;
+		border: none!important;
+		color: #fff!important;
+		letter-spacing: 1px;
+		text-transform: none!important;
+		margin-left: 100px;
+		padding: 5px 45px;
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.explores-reviews-count {
+		font-weight: 400;
+		position: relative;
+		top: 2px;
+	}
+
+	.explores-review {
+		padding-left: 110px;
+		position: relative;
+		min-height: 84px;
+		.explores-review-profile-pic {
+			border-radius: 50%;
+			background-size: cover;
+			width: 84px;
+			height: 84px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	}
+}
+
+@media (max-width: 1200px)
+{
+	.explore-container-wrap {
+		.page-banner {
+			height: 210px!important;
+			min-height: 210px!important;
+		}
+		.explore-guy-name {
+			color: rgb(107, 209, 249);
+			font-size: 14px;
+			font-weight: 600;
+
+		}
+		h1 {
+			font-size: 20px!important;
+			font-weight: 600px!important;
+		}
+		p, .explores-reviews-count {
+			color: rgb(184, 184, 184)!important;
+			font-size: 14px!important;
+			line-height: 19px!important;
+		}
+
+		.explore-guy-avatar, .explores-review-profile-pic {
+			width: 42px!important;
+			height: 42px!important;
+			border: none!important;
+		}
+		.explore-guy-book-btn {
+			padding: 4px 23px;
+			font-size: 14px;
+		}
+		.explores-review {
+			padding-left: 62px;
+			min-height: 42px;
+		}
+		.explore-guy-book-btn {
+			float: right;
+			margin-left: 0!important;
+			margin-top: 8px;
+		}
+		.yellow-bar {
+			display: none;
+		}
+		.material-tabs {
+			display: flex;
+			justify-content: space-between;
+		}
+		.material-tabs > a, .material-tabs > a.active {
+			font-weight: 500!important;
+		}
+		.material-tabs > a {
+			color: black;
+		}
+	}
+}
+
+.explores-banner {
+	h1 {
+		font-size: 60px;
+		font-family: 'Source Sans Pro', sans-serif;
+		z-index: 2;
+	}
+}
+
+.explores-card {
+	border-radius: 10px;
+	width: 346px;
+	position: relative;
+	top: -197px;
+	margin: 0 auto;
+}
+.explores-card-image {
+	width: 100%;
+	height: 289px;
+	background-size: cover;
+	color: #000;
+	border-radius: 10px;
+	max-width: 300px;
+    margin: 0 auto;
+}
+.explores-card-content-wrap {
+	padding: 30px;
+}
+.explores-card-title {
+	font-size: 24px;
+	font-weight: bolder;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #000;
+}
+.expores-card-description {
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 10px;
+	color: #000;
+  	font-family: 'Open Sans', sans-serif;
+}
+.explores-card-location {
+	font-size: 10px;
+	font-weight: normal;
+	color: #000;
+	margin-top: 10px;
+}
+.explores-card-stars {
+	margin-top: 15px;
+}
+.explores-card-book-btn {
+	font-weight: 600;
+	font-size: 18px!important;
+	position: absolute;
+    top: -21px;
+    z-index: 20;
+    right: 50%;
+    transform: translateX(50%);
+    background: white;
+    min-width: 100px;
+
+    &:hover {
+    	background-color: #69c90a!important;
+    	color: white!important;
+    	text-decoration: none!important;
+    }
+}
+.explores-card-section {
+	font-size: 12px;
+	font-weight: bolder;
+	color: #73857c;
+}
+.explores-card-section-count {
+}
+
+.explores-material-tabs {
+	a {
+		padding-bottom: 5px!important;
+	}
+}
+
+#explores-tab1-tab.active ~ span.yellow-bar {
+	left: 0;
+    width: 69px;
+}
+
+#explores-tab2-tab.active ~ span.yellow-bar {
+	left: 73px;
+    width: 122px;
+}
+
+#explores-tab3-tab.active ~ span.yellow-bar {
+	left: 199px;
+    width: 94px;
+}
+#explores-tab4-tab.active ~ span.yellow-bar {
+	left: 296px;
+    width: 111px;
+}
+
+.explores-rating-progrss-wrap {
+	width: 350px;
+}
+.explores-rating-progress-bar {
+	background-color: #e7e9ec;
+	height: 8px;
+	border-radius: 25px;
+	position: relative;
+
+	.explores-rating-progress-bar-progress {
+		background-color: #fbbc04;
+		border-radius: 25px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 8px;
+	}
+}
+
+.explores-rating-progress-num {
+	line-height: 7px;
+}
+.explores-rating-progress-overall {
+	font-weight: bolder;
+	color: #000;
+	font-size: 35px;
+	line-height: 34px;
+}
+.explores-rating-progress-row {
+	margin-bottom: 11px;
+}
+.explores-review {
+
+}
+.explores-review-avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-size: cover;
+}
+.explores-review-title {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 11px;
+	line-height: 15px;
+	color: #000;
+	font-weight: bolder;
+	margin-top: 3px;
+}
+.explores-review-main-text {
+	font-size: 11px;
+	line-height: 15px;
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	font-weight: normal;
+}
+.explores-review-sub-text {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 11px;
+	line-height: 15px;
+	font-weight: bolder;
+	color: #cbcbcb;
+}
+.explores-review-filter {
+	width: 100px;
+	max-width: 100px;
+    border-radius: 250px;
+}

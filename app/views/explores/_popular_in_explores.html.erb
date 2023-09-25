@@ -1,0 +1,19 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Recent Categories With Explores</h3>
+
+  <div class="row my-4" id="mainPopularRolExplore">
+    <% if world_popular_explore_category.empty? %>
+      No Popular Explorers
+      <%else%>
+        <%= render partial: 'shared/category_card.html', collection: world_popular_explore_category, as: :category, locals:{class_name: "popularRolExploreItem",type: "Explorer"} %>
+    <%end%>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessRolExplore">Less</a>
+    <div class="showMoreLessMessage" id="popularRolExploreMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreRolExplore">More</a>
+  </div>
+</section>

@@ -1,0 +1,273 @@
+.booking-overview {
+	position: relative;
+	margin-top: 30px;
+}
+.booking-overview-avatar {
+	border-radius: 50%;
+	position: absolute;
+	right: 0;
+	top: -16px;
+}
+.booking-container {
+	padding-top: 104px;
+	.border-left, .border-top, .border-bottom, .border-right, .border {
+		border-color: #f2f2f2!important;
+	}
+}
+
+.event-list-wrap {
+	padding: 30px 10px;
+	.event-list {
+		list-style: none;
+		padding: 0;
+
+		.event {
+			font-size: 13px;
+			margin-bottom: 30px;
+			.event-icon {
+				color: #ac8bec;
+				position: relative;
+				min-width: 85px;
+				display: inline-block;
+				text-align: center;
+				i {
+					vertical-align: middle;
+					font-size: 18px;
+				}
+				&.has-next:after {
+					content: "";
+					position: absolute;
+					left: 42px;
+					top: 24px;
+					height: 26px;
+					width: 0;
+					border-left: 1px dashed #ac8bec;
+				}
+			}
+			.event-line-through-text {
+				color: #ccc;
+				text-decoration: line-through;
+			}
+		}
+	}
+}
+
+#newEventDialog, #editEventDialog {
+	.edit-view {
+		display: none;
+	}
+	&.edit-view {
+		.create-view {
+			display: none;
+		}
+		.edit-view {
+			display: initial!important;
+		}
+	}
+	#newEventStartTimepicker, #newEventEndTimepicker, #newEventDatePicker {
+		border: none;
+		color: rgb(77, 77, 77);
+		max-width: 82px;
+		font-size: 14px;
+		&:hover {
+			background-color: rgba(32,33,36,0.039);
+		}
+	}
+}
+#newEventDialog, #chagneOrCancelDialog, #editEventDialog, #newEventTimeConflict, #newEventMoreOptionDialog, #editEventMoreOptionDialog, #editCalendarWarningDialog, #newEventInsufficientCoin, #newEventMultipleTimeSelect, #deleteUnavailableTimeDialog {
+	max-width: 450px;
+	margin: 0 auto;
+	.modal-title {
+		font-size: 16px;
+	}
+	.form-group label {
+		font-size: 16px;
+	}
+	.new-event-main-text, .new-event-action-main-text {
+		font-size: 14px;
+	}
+	.new-event-subtext {
+		display: inline-block;
+		width: 110px;
+		font-size: 15px;
+		i {
+			font-size: 18px;
+			color: #75797e;
+			vertical-align: middle;
+		}
+	}
+	.new-event-action-subtext {
+		display: inline-block;
+		font-size: 15px;
+		margin-right: 25px;
+		i {
+			font-size: 18px;
+			color: #75797e;
+			vertical-align: middle;
+		}
+	}
+	.new-event-buy-gcoins {
+		font-size: 12px;
+		text-align: right;
+		position: relative;
+		a {
+			color: #2a8bf2;
+			position: absolute;
+			left: 200px;
+			top: -30px;
+		}
+	}
+	.new-event-action {
+		cursor: pointer;
+	}
+	.new-event-price, .new-event-remaining {
+		max-width: 310px;
+	}
+	.btn-primary, .btn-secondary, .btn-outline-dark {
+		font-size: 13px;
+		letter-spacing: 1px;
+		text-transform: none;
+		border-radius: 5px;
+	}
+	.btn-primary {
+		color: white!important;
+	}
+	.btn-secondary {
+		border: none;
+		color: #5f6368!important;
+		background-color: white!important;
+		&:hover {
+			color: white!important;
+			background-color: #5f6368!important;
+		}
+	}
+	.modal-footer {
+		border-top: none;
+	}
+}
+#editCalendarWarningDialog {
+	max-width: 600px;
+}
+input.gray-input, textarea.gray-input, select.gray-input {
+	background-color: rgb(241, 243, 244);
+	border: none;
+	border-radius: 3px;
+	color: rgb(60, 64, 67)
+}
+input.gray-input, select.gray-input{
+	height: 52px;
+}
+#newEventMoreOptionDialog, #editEventMoreOptionDialog {
+	max-width: initial!important;
+	max-height: 90%;
+	#newEventMoreOptionTodayBtn {
+		text-transform: none;
+		font-size: 14px;
+		letter-spacing: 1px;
+		border-radius: 3px;
+		border-color: #dee2e6!important
+	}
+	.modal-dialog {
+		height: 100%;
+	}
+	.modal-content {
+		max-height: 100%;
+		overflow-y: auto;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.new-event-avatar {
+		border-radius: 50%;
+	}
+	.new-event-more-option-buy-gcoins a {
+		color: #2a8bf2!important;
+	}
+	.new-event-user-overview-wrap {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.modal-content {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	.material-tabs a {
+		text-transform: none;
+	}
+	.notification-select, .notification-duration-input, .notification-duration-type-input {
+		max-width: 120px;
+	}
+	.btn-link {
+		color: rgb(60, 64, 67)!important;
+		span {
+			color: rgb(60, 64, 67);
+			font-size: 18px;
+		}
+		text-transform: none!important;
+		letter-spacing: 1px;
+		font-size: 14px;
+	}
+
+	.input-icon {
+		position: absolute;
+		left: -42px;
+		top: 15px;
+		i {
+			font-size: 17px;
+			color: rgb(95, 99, 104)
+		}
+	}
+	.yellow-bar {
+		background: #2a8bf2;
+	}
+	.new-event-time-picker {
+		max-width: 80px;
+		font-size: 14px;
+		text-align: center;
+	}
+	.new-event-date-picker {
+		max-width: 95px;
+		font-size: 14px;
+		text-align: center;
+	}
+	.more-option-main-column {
+		padding-left: 68px;
+	}
+}
+#newEventTimeConflict {
+	a {
+		color: #2a8bf2;
+	}
+}
+.time-conflict-icon {
+	display: inline-block;
+	border-radius: 50%;
+	border: 3px solid #f16821;
+	width: 60px;
+	height: 60px;
+
+	i {
+		font-size: 45px;
+		color: #f16821;
+		position: relative;
+		right: -1px;
+		bottom: -5px;
+	}
+}
+
+// backdrop
+.modal-backdrop.show {
+	z-index: 1999;
+}
+// tabs
+#more-options-tab1-tab.active ~ span.yellow-bar {
+	left: 0;
+	width: 132px;
+}
+
+#more-options-tab2-tab.active ~ span.yellow-bar {
+	left: 136px;
+	width: 122px;
+}

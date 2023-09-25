@@ -1,0 +1,16 @@
+<% if @type == "explores" %>
+  <% js = escape_javascript(
+    render(partial: 'categories/explorers', locals: { explores: @profiles })
+  ) %>
+  $("#filterrific_results_explores").html("<%= js %>");
+<% elsif @type == "guides" %>
+  <% js = escape_javascript(
+    render(partial: 'categories/guides', locals: { guides: @profiles })
+  ) %>
+  $("#filterrific_results_guides").html("<%= js %>");
+<% elsif @type == "projects" %>
+  <% js = escape_javascript(
+    render(partial: 'categories/projects', locals: { projects: @profiles })
+  ) %>
+  $("#filterrific_results_projects").html("<%= js %>");
+<% end %>

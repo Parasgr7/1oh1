@@ -1,0 +1,30 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="reservation-container-wrap">
+  <div class="container reservation-container shadow position-relative">
+    <div class="centerXY">
+      <div class="text-center">
+        <div class="d-inline-block position-relative">
+          <img src="<%=image_path('credit-card.png')%>" alt="credit card">
+
+          <div class="d-inline-block p-5 rounded-circle credit-card-big-icon bgc-red">
+            <img class="centerXY" src="<%=image_path('round_close_white_48dp.png')%>" alt="">
+          </div>
+        </div>
+      </div>
+
+      <h1 class="mt-4 fsz-32 c-black ff-ssp text-center">Payment unsuccessful</h1>
+
+      <p class="mt-3 ff-os fsz-14 text-center font-weight-bolder">
+        Your payment could not be processed.<br>
+        Please try again.
+      </p>
+
+      <div class="my-5 text-center">
+        <a class="btn btn-danger rounded-pill" style="min-width: 150px">Continue</a>
+      </div>
+    </div>
+  </div>
+</div>

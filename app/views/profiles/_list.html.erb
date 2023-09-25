@@ -1,0 +1,50 @@
+<!--<% @isGuide = request.env['PATH_INFO'] == "/profile/guides" %>-->
+<% @idPrefix = "explorerCat-" %>
+<%= javascript_tag do %>
+  var explore_ids = <%= @list.to_json.html_safe %>;
+<% end %>
+
+<div id="filterrific_results" class="row mx-0 justify-content-between">
+  <% if categories.blank? %>
+    No categories found
+  <% else %>
+    <% categories.each do |category| %>
+      <div class="col-auto mb-4 mw-mc center text-left">
+        <div class="category-card shadow <%= @list.include?(category.id) ? 'active' : ''%>"
+             data-id ="<%=category.id%>"
+             id="<%= @idPrefix + category.id.to_s %>">
+          <div class="category-card-image"
+               style="background-image: url('<%= category.url %>');">
+              <button class="btn btn-link btn-icon-fab position-relative rounded-circle explore-item-status-button explore-item-status-button-add">
+                        <i class="material-icons centerXY">add</i>
+            </button>
+          </div>
+          <div class="category-card-title">
+            <%= category.name %>
+          </div>
+          <div class="category-card-description">
+            <%= !category.description.nil? ? category.description.truncate(90): ''%>
+          </div>
+          <% stats_count = stats_count_category(category)%>
+
+          <div class="category-card-footer border-top">
+            <div class="row mx-0">
+              <div class="col">
+                <div class="text-center category-card-footer-number"><%=stats_count[:explore_count]%></div>
+                <div class="text-center">Explores</div>
+              </div>
+              <div class="col">
+                <div class="text-center category-card-footer-number"><%=stats_count[:guide_count]%></div>
+                <div class="text-center">Guides</div>
+              </div>
+              <div class="col">
+                <div class="text-center category-card-footer-number"><%=stats_count[:project_count]%></div>
+                <div class="text-center">Projects</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <%end%>
+</div>

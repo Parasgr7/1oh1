@@ -1,0 +1,15 @@
+<!-- Modal -->
+<div class="modal fade" id="otherUserEndedSession" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content p-4 small-size">
+      <div class="modal-body">
+      	<p class="c-black ff-ssp fsz-14 font-weight-bolder"><b><%= Profile.find(params[:peer_id]).user.full_name %></b> has left the session</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" id="otherUserEndedSessionConfirmBtn">
+        	Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="modal fade" id="editModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+      <%= form_tag( category_path(Category.first.id), { :method => :patch }) do %>
+      <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Category</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <input type="text" hidden id="edit_category_id" name="editid">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Category Name:</label>
+               <input type="text" class="form-control" id="editname" name="name" placeholder="Name">
+              </div>
+              <input type="text" hidden id="editid" name="editid">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description:</label>
+                 <textarea type="text" class="form-control" id="editdescription" name="description" placeholder="Description" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Category Image:</label>
+                <input type="file" class="form-control categories" id="edit_url">
+                <input type="text" hidden id="edurl" name="url">
+              </div>
+
+              <div class="form-group">
+                <label>Category Status :</label>
+
+                <select class="form-control custom-select" id="status" name="verified">
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="category-card shadow" id="edit_category_sample_card">
+                <div class="category-card-image position-relative">
+                  <div class="loading centerXY" style="display: none">                  
+                    <div class="spinner-border"  role="status">
+                    </div>
+                  </div>
+                </div>
+                <div class="category-card-title text-left">
+                </div>
+                <div class="category-card-description text-left">
+                </div>
+
+                <div class="category-card-footer border-top">
+                  <div class="row mx-0">
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">20</div>
+                      <div class="text-center">Explores</div>
+                    </div>
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">22</div>
+                      <div class="text-center">Guides</div>
+                    </div>
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">15</div>
+                      <div class="text-center">Projects</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

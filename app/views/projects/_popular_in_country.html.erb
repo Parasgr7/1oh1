@@ -1,0 +1,16 @@
+<h3 class="my-5" id="country_name">Recent projects in your country</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainPopularCountryProjects">
+	<% if popular_in_country.empty?%>
+		No Projects for your Country
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: popular_in_country, as: :project, locals:{class_name: "popularCountryProject", profile_builder: false} %>
+	<%end%>
+</div>
+
+<div class="popularCountryProjectsLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessPopularCountryProject">Less</a>
+	<div class="showMoreLessMessage" id="popularCountryProjectMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMorePopularCountryProject">More</a>
+</div>

@@ -1,0 +1,261 @@
+// start: styles base modal 
+// end: styles base modal 
+
+
+.grid-timeUpModal{  // Grid modal body
+    & .top-body{
+        & .notice{
+            font-size: 1.1rem;
+            font-weight: bolder;
+        }
+
+        & .name{
+            font-weight: bold;
+        }
+    }
+
+    // Part two of modal body
+    & .midle-body{
+        & .imageContainer{                      // Container img
+            & img{                              // Image
+                border-radius: 50%;
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        & .startsContainer{
+            & > i{
+                color: #F1C40F;
+            }
+        }
+
+    }
+}
+
+.container-right-modal{                 // Part right of modal colum
+    display: grid;
+    grid-template-rows: 68% 10% 1fr;
+
+    & .dropleft{                        // Dropdown option
+        grid-row: 2/3;
+
+        & .icon-dropdown-option{
+            justify-self: start;
+            height: auto;
+            transition: color .1s;
+
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.dropleft.show{
+
+    & .icon-dropdown-option{
+        color: #8CC63F;
+    }
+}
+
+.dropleft {
+
+    & .dropdown-menu{
+        padding: 20% 1rem;
+        min-width: 5rem;
+        transform: translate3d(-80px, -10px, 0px) !important;
+    }
+}
+
+
+// Part three of modal body
+.end-body{
+    & .comments form{
+        & .commentField{                                // Field text form
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #494949;
+            font-size: .9rem;
+        }
+
+        & .btn-submit{                                  // Button form
+            background-color: #8CC63F;
+            border-radius: 25px;
+            font-size: .8rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: capitalize;
+        }
+    }
+}
+
+.last-text-body{            // Rate later text
+    display: flex;
+    justify-content: center;
+
+    & > span{
+        text-decoration: underline;
+        font-size: .8rem;
+        margin-top: 2%;
+        font-weight: bold;
+        
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+/*problem reported modal*/
+.grid-problemReported {
+    display: grid;
+    grid-template-rows: repeat(4,auto);    
+}
+.reportProblemModalContent .modal-header {
+    padding-left: 60px;
+}
+.reportProblemModalContent .modal-header .modal-title {
+    font-size: 25px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+}
+.problemReportedIconCont {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+.problemReportedIcon {
+    height: 35px;
+    width: auto;
+}
+.problemReportedModal .modal-content {
+    width: 40%;
+    height: 220px;
+    margin-left: calc(70% - 40%);
+}
+.problemReportedTitle {
+    font-size: 25px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1vw;
+}
+.problemReportedText {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+.problemReportedCloseLinkCont {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+.problemReportedCloseLink {
+    margin-top: 1vw;
+    color: #000 !important; 
+    text-decoration: underline !important;
+}
+
+/*report problem modal*/
+.grid-reportProblem {
+    padding-left: 60px;
+    padding-right: 60px;
+    display: grid;
+    grid-template-rows: repeat(9, auto);
+    grid-template-columns: 70px 150px auto;
+    color: #000;
+}
+.dateInputReportProblemCont{
+    grid-column: 1/-1;
+    display: grid;
+    align-items: end;
+    justify-content: start;
+}
+.dateInputReportProblem {
+    border: none;
+    color: #b6b6b6;
+}
+.whoReportProblem {
+    grid-column: 1/2;
+    font-size: 25px;
+    font-weight: 600;
+}
+.whoReportProblemName {
+    grid-column: 2/-1;
+    font-size: 20px;
+    display: grid;
+    align-items: end;
+    justify-content: start;
+}
+.reportProblemIssueTitle {
+    font-size: 25px;
+    font-weight: 600;
+    grid-column: 1/-1;
+}
+.reportProblemType {
+    grid-column: 1/3;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.reportProblemTypeCheckbox {
+    grid-column: 3/-1;
+}
+.reportProblemTypeCheckboxItem {
+    padding: 7px !important;
+}
+.reportProblemDescriptionTitle {
+    grid-column: 1/-1;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 24px;
+}
+.reportProblemButtons {
+    grid-row: 9/-1;
+    grid-column: 3/-1;
+    display: grid;    
+    justify-content: end;
+}
+.buttosReportProblem {
+    display: grid;grid-template-columns: auto auto;
+}
+.reportProblemTextArea {
+    grid-column: 1/-1;
+    margin-bottom: 10px;
+}
+.reportProblemTextAreaItem {
+    width: 100%;
+    border-radius: 5px;
+}
+.reportPorblemSubmitButton {
+    background-color: #8CC63F;    
+    border-radius: 5px;    
+    font-weight: bold;
+    color: #fff;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: none;
+    height: 40px;
+}
+.reportPorblemCancelButton {
+    border: none;
+    background: none;    
+}
+.reportProblemBack {
+    cursor: pointer;
+}
+.reportProblemModalContent {
+    width: 60% !important;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.titleModalTimesUp{
+    color: #000;
+}

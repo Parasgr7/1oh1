@@ -1,0 +1,76 @@
+.sortable-table {
+	thead {
+		th, td {
+			a {
+				color: #00679F!important;
+			}
+			.current {
+				padding-right: 12px;
+				background-repeat: no-repeat;
+				background-position: right center;
+			}
+
+			.asc:after {
+				content: "arrow_upward";
+			    font-family: "Material Icons";
+			    margin-left: 8px;
+			    position: relative;
+			    top: 2px;
+			}
+			.desc:after {
+			    content: "arrow_downward";
+			    font-family: "Material Icons";
+			    margin-left: 8px;
+			    position: relative;
+			    top: 2px;
+			}
+		}
+	}
+}
+
+.table-responsive {
+	display: block;
+    width: 100%;
+    overflow-x: auto;
+    table {
+    	width: 100%;
+	    max-width: 100%;
+	    margin-bottom: 1rem;
+	    background-color: transparent;
+		border-collapse: collapse;
+
+		thead {
+			th {
+				color: #72777a;
+				font-weight: bold;
+				font-size: 14px;
+				vertical-align: bottom;
+	    		border-bottom: 2px solid #e9ecef;
+			    padding: .75rem;
+			    border-top: 1px solid #e9ecef;
+			    border-top-width: 0!important;
+			    text-align: inherit;
+			}
+		}
+		tbody {
+			td {
+				color: #72777a;
+				font-weight: 400;
+				font-size: 14px;
+				padding: .75rem;
+			    vertical-align: top;
+			    border-top: 1px solid #e9ecef;
+			}
+		}
+    }
+}
+
+.table-no-borders {
+	td, th {
+		border: none
+	}
+}
+.table-column-width-auto {
+	width: 1px;
+    white-space: nowrap;
+}

@@ -1,0 +1,120 @@
+<div class="tab-pane container active" id="about">
+  <%= form_tag( { :action => :create, }, { :method => :post }) do %>
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address :</label>
+          <%= email_field_tag :email,@user.email,class: 'form-control field_input',:readonly => true %>
+<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly value="<%#= current_user.email %>" placeholder="Email">-->
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Full Name :</label>
+          <%= text_field_tag :name,@user.firstname+" "+@user.lastname,class: 'form-control field_input',:readonly => true %>
+<!--          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" readonly value="<%#= current_user.firstname%>&nbsp;<%#= current_user.lastname %>">-->
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Contact No. :</label>
+          <%= telephone_field_tag :contact_no,@profile.contact_no,class: 'form-control field_input',placeholder: "Contact at" %>
+<!--          <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHe"  placeholder="Call me at.">-->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">State :</label>
+          <%= text_field_tag :state,@profile.state,class: 'form-control field_input',placeholder: "State" %>
+<!--          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="State">-->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Country :</label>
+          <%= text_field_tag :country,@profile.country,class: 'form-control field_input',placeholder: "Country" %>
+<!--          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="Country">-->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Fluent Languages</label>
+          <%=select_tag "languages", options_for_select([ "English", "French","German","Spanish","Russian","Mandarin" ],@profile.languages),multiple: true%>
+
+<!--          <select multiple="multiple" id="languages" name="languages[]">-->
+<!--            <option value='English'>English</option>-->
+<!--            <option value='French'>French</option>-->
+<!--            <option value='German'>German</option>-->
+<!--            <option value='Spanish'>Spanish</option>-->
+<!--            <option value='Russian'>Russian</option>-->
+<!--            <option value='Mandarin'>Mandarin</option>-->
+<!--          </select>-->
+          <!--                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="Languages">-->
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Profile Photo :</label>
+          <% if @profile.profile_photo.blank? %>
+            <%= file_field_tag :pro_photo,class: 'form-control field_input' %>
+            <%= hidden_field_tag :profile_photo%>
+          <% else %>
+            <img src="<%= @profile.profile_photo %>" alt="Image" class="fix-profile rounded">
+            <%#= file_field_tag :pro_photo,class: 'form-control field_input' %>
+            <%#= hidden_field_tag :profile_photo%>
+          <% end %>
+
+<!--          <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="Profile Photo">-->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Cover Photo :</label>
+          <% if @profile.banner_photo.blank? %>
+            <%= file_field_tag :ban_photo,class: 'form-control field_input' %>
+            <%= hidden_field_tag :banner_photo%>
+          <% else %>
+            <img src="<%= @profile.banner_photo %>" alt="Image" class="fix-profile rounded">
+            <%#= file_field_tag :ban_photo,class: 'form-control field_input' %>
+            <%#= hidden_field_tag :banner_photo%>
+          <% end %>
+<!--          <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="Cover Photo">-->
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Tell us about yourself :</label>
+          <%= text_area_tag :bio,@profile.bio,class: 'form-control field_input',placeholder: "Bio" %>
+<!--          <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHel" placeholder="Bio"></textarea>-->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="input-group-append float-right">
+      <% if @new_profile %>
+        <%= submit_tag("Create Profile",:id=>"submit", :class=>'btn custom-btn-outline-primary')%>
+      <% else %>
+        <%= submit_tag("Update Profile",:id=>"submit", :class=>'btn custom-btn-outline-primary')%>
+      <% end %>
+
+
+<!--      <button type="submit" class="btn btn-primary text-white button-addon" data-dismiss="modal">Update Profile</button>-->
+    </div>
+  <% end %>
+</div>

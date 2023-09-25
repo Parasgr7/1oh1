@@ -1,0 +1,16 @@
+<h3 class="my-5">Help Requested</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainHelps">
+	<% if projects.empty?%>
+		No Projects with help needed
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "helpsItem"} %>
+	<%end%>
+</div>
+
+<div class="helpsLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessHelps">Less</a>
+	<div class="showMoreLessMessage" id="helpsMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMoreHelps">More</a>
+</div>

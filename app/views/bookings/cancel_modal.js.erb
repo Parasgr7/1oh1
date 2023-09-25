@@ -1,0 +1,6 @@
+$("#chagneOrCancelDialog").modal("hide")
+<% js = escape_javascript(
+  render(partial: 'calendars/cancelDialogBox', locals: { booking: @booking, profile_id: @profile_id, balance: @balance, action: @action})
+) %>
+$("#cancelSessionDialog").html("<%= js %>");
+$("#cancelSessionDialog").modal("show")

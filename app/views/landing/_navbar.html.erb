@@ -1,0 +1,280 @@
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header py-3">
+    <a  href="/profiles">
+      <% if user_signed_in? %>
+        <% if current_user.profile.blank? %>
+          <img  class="profileTopbar" src="<%= image_path('profile.png') %>">
+        <% else %>
+          <img  class="profileTopbar" src="<%= profile_photo(current_user.profile) %>">
+        <% end %>
+
+        <span class="align-middle fsz-13 c-black ml-1"><%=current_user.full_name%></span>
+
+      <% end %>
+    </a>
+
+    <div class="site-mobile-menu-close m-2">
+      <i class="material-icons js-menu-toggle cursor-p">close</i>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body">
+    <ul class="custom-nav nav flex-column bg-white mb-0">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a href="/profiles" class="pl-0 py-1 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">home</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Profile</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/messages" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">forum</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Messages</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/notifications"
+             class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">notifications</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Notifications</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/calendars" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">insert_invitation</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Calendar</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/bookings" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">people</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">My Sessions</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/chests" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">table_chart</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Chest</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/helps" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">settings</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Settings</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, :method => :delete, :class=>"pl-0 py-2 rounded d-block whs-nw nav-link",:style=>"width: 200px" do%>
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2">exit_to_app</i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Log out</span>
+          <%end%>
+        </li>
+
+        <li class="nav-item border-top">
+          <a href="/" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2"></i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Home</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/markets" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+            <i class="material-icons align-middle c-light-gray fsz-19 ml-2"></i>
+            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Market</span>
+          </a>
+        </li>
+
+
+        <% if current_user.admin? %>
+	        <li class="nav-item border-top">
+	          <a href="/categories" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+	            <i class="material-icons align-middle c-light-gray fsz-19 ml-2"></i>
+	            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Categories</span>
+	          </a>
+	        </li>
+
+	        <li class="nav-item">
+	          <a href="/products" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+	            <i class="material-icons align-middle c-light-gray fsz-19 ml-2"></i>
+	            <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Products</span>
+	          </a>
+	        </li>
+
+          <li class="nav-item">
+            <a href="/admin" class="pl-0 py-2 rounded d-block whs-nw nav-link">
+              <i class="material-icons align-middle c-light-gray fsz-19 ml-2"></i>
+              <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Admin</span>
+            </a>
+          </li>
+        <% end %>
+
+      <% else %>
+        <li class="nav-item">
+          <a href="/" class="nav-link text-dark font-italic">
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a data-turbolinks="false" href="#how-it-works" class="nav-link text-dark font-italic">
+            How it works
+          </a>
+        </li>
+        <li class="nav-item">
+          <a data-turbolinks="false" href="#about-us" class="nav-link text-dark font-italic">
+            About us
+          </a>
+        </li>
+        <li class="nav-item">
+          <a data-turbolinks="false" class="nav-link text-dark font-italic cd-signin cursor-p">
+            Log in
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<header class="site-navbar js-site-navbar site-navbar-target" role="banner" id="site-navbar">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+
+      <div class="col-11 col-xl-4 site-logo">
+        <%if request.parameters[:action]=="show" && request.parameters[:controller] == "categories" %>
+          <% path = category_path %>
+        <%elsif request.parameters[:action]=="explorers" && request.parameters[:controller] == "categories"%>
+          <% path = categories_explorers_path %>
+        <%elsif request.parameters[:action]=="guides" && request.parameters[:controller] == "categories"%>
+          <% path = categories_guides_path %>
+        <%elsif request.parameters[:action]=="projects" && request.parameters[:controller] == "categories"%>
+          <% path = categories_projects_path %>
+        <%end%>
+        <%# if user_signed_in? %>
+          <a href="/"><img src="<%= image_path('1oh1-icon-BETA.png') %>" alt="Image" class="icon-nav "></a>
+          <div class="memberViewMobile" style="display: none;">
+            <i class="material-icons">keyboard_backspace</i>
+          </div>
+          <%result = ['projects', 'guides', 'explores','home','markets'].exclude? request.parameters["controller"]%>
+          <% if user_signed_in? && result%>
+            <div class="form-group mb-0 mt-2 ml-3 categories-search-form-group position-relative d-inline-block"
+                 id="navbar-search">
+                 <%= form_tag(search_result_path, method: :get) do %>
+                  <input type="text"
+                     id="search-form-input"
+                     class="form-control"
+                     placeholder="Search..." name="search" value="<%= params[:search]%>" data-path="<%=path%>" data-behavior="autocomplete"/>
+                  <%end%>
+                <i class="material-icons search-icon">search</i>
+            </div>
+          <%end%>
+        <%# else %>
+<!--          <h1 class="mb-0"><a href="/" class="text-white h2 mb-0">1oh1</a></h1>-->
+        <%# end %>
+      </div>
+
+      <div class="col-12 col-xl-8 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+          <ul class="site-menu mx-auto d-none d-lg-block">
+            <% if user_signed_in? %>
+              <!-- <li><%= text_field_tag :what,nil,class: 'form-control what',placeholder: 'Search' %></li> -->
+              <li><a href="/" class="nav-link">Home</a></li>
+
+              <li><a href="/markets" class="nav-link">Market</a></li>
+
+              <% if current_user.admin? %>
+                <li><a href="/categories" class="nav-link">Categories</a></li>
+                <li><a href="/products" class="nav-link">Products</a></li>
+                <li><a href="/admin" class="nav-link">Admin</a></li>
+              <% end %>
+              <!-- notification bell with counts -->
+              <li class="position-relative" tabindex="0">
+                <a id="notification" href="/notifications" class="animated-svg-hover">
+                  <span class="lottie d-inline-block animated-svg"
+                        data-icon-source="bell/bell.json"></span>
+
+                  <span id="unread_count" style="" class="notification-count">0</span>
+                </a>
+              </li>
+              <!-- More Options-->
+              <li>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle bgc-white border-0 px-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a  href="/profiles" class="" style="decoration:none">
+                    <% if current_user.profile.blank? %>
+                      <img  class="profileTopbar" src="<%= image_path('profile.png') %>">
+                    <% else %>
+                      <img  class="profileTopbar" src="<%= profile_photo(current_user.profile) %>">
+                    <% end %>
+                  </a>
+                </button>
+                <div class="dropdown-menu"
+                     style="margin-top: 10px;"
+                     aria-labelledby="dropdownMenuButton">
+                    <a href="/profiles" class="px-3 py-1 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">home</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Profile</span>
+                    </a>
+
+                    <a href="/messages" class="px-3 py-2 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">forum</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Messages</span>
+                    </a>
+
+                    <a href="/notifications" class="px-3 py-2 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">notifications</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Notifications</span>
+                    </a>
+
+                    <a href="/calendars" class="px-3 py-2 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">insert_invitation</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Calendar</span>
+                    </a>
+
+                    <a href="/bookings" class="px-3 py-2 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">people</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">My Sessions</span>
+                    </a>
+
+                    <a href="/chests" class="px-3 py-2 rounded d-block whs-nw dropdown-item" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">table_chart</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Chest</span>
+                    </a>
+
+                    <a href="/helps" class="px-3 py-2 rounded d-block whs-nw dropdown-item border-top" style="width: 200px">
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">settings</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Settings</span>
+                    </a>
+
+                    <%= link_to destroy_user_session_path, :method => :delete, :class=>"px-3 py-2 rounded d-block whs-nw dropdown-item border-top",:style=>"width: 200px" do%>
+                      <i class="material-icons align-middle c-light-gray fsz-19 ml-2">exit_to_app</i>
+                      <span class="txtcolor letter-spacing-0 tt-n no-break mx-2">Log out</span>
+                    <%end%>
+                </div>
+              </div>
+              </li>
+            <% else %>
+              <li><a data-turbolinks="false" href="#how-it-works" class="nav-link">How it works</a></li>
+              <li><a data-turbolinks="false" href="#about-us" class="nav-link">About us</a></li>
+              <li><a data-turbolinks="false" class="nav-link cd-signin cursor-p">Log in</a></li>
+            <% end %>
+
+          </ul>
+        </nav>
+      </div>
+
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+          <a href="#" class="site-menu-toggle js-menu-toggle">
+            <i class="material-icons c-dark-gray">menu</i>
+          </a>
+      </div>
+    </div>
+  </div>
+</header>

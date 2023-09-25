@@ -1,0 +1,32 @@
+.centerXY {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
+.centerMargin {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.d-none-i {
+	display: none!important;
+}
+.overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.width-max-content {
+  width: max-content;
+}
+
+.mw-mc {
+	min-width: max-content;
+}
+
+.whs-nw {
+	white-space: nowrap;
+}

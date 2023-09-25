@@ -1,0 +1,52 @@
+<%= render 'landing/navbar' %>
+<%= render 'cover' %>
+<div class="site-section block-13 border-bottom" id="section-explorers">
+
+  <div class="container" style="margin-top: 25px">
+    <div class="text-left pb-1 mb-4">
+      <h2 class="text-secondary">Products in Market</h2>
+      <!-- <button class="btn btn-primary text-white float-right" data-toggle="modal" data-target="#myModal" style="margin:10px">Add Product</button> -->
+      <%= button_to("Add Product", new_market_path(@product),method: :get, :class => "btn btn-primary text-white float-right")%>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Mode</th>
+            <th scope="col">Interval</th>
+            <th scope="col">Description</th>
+            <th scope="col">Available Offer</th>
+            <th scope="col">Order</th>
+            <th scope="col">Upload/Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do|product|%>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= product.name %></td>
+              <td><%= product.price %><%= product.currency %></td>
+              <td><%= product.mode %></td>
+              <td><%= product.interval %></td>
+              <td><%= product.description %></td>
+              <td><%= product.offer %></td>
+              <td><%= product.order %></td>
+              <td><%= button_to("Edit", edit_market_path(product),method: :get, :class => "btn btn-info text-white")%></td>
+              <td><%= button_to("Delete", market_path(product), method: :delete, :class => "btn btn-danger text-white")%></td>
+
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+<%= render 'landing/footer' %>

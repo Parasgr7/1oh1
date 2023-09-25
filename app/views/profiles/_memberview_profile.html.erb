@@ -1,0 +1,124 @@
+<div class="page-banner small text-center position-relative py-5 explores-banner mt-0"
+     style="background-image: url('<%= banner_photo(@profile) %>');
+            top: -18px;">
+</div>
+
+<div class="row mx-0">
+  <div class="col-12 col-lg-4 pr-0">
+    <div class="explores-card shadow text-center memberview-user-profile-card">
+      <div class="explores-card-image" style="max-width: initial;background-image: url('<%= profile_photo(@profile)%>');">
+      </div>
+
+      <div class="explores-card-content-wrap">
+        <div class="explores-card-title position-relative">
+          <%= @profile.user.firstname%> <%= @profile.user.lastname %>
+
+          <%if current_user.profile.id == @profile.id %>
+            <button class="btn btn-link btn-icon-fab position-absolute rounded-circle">
+              <i data-toggle="modal" data-target="#profileModal" class="material-icons centerXY">
+                create
+              </i>
+            </button>
+          <%end%>
+        </div>
+        <div class="expores-card-description"><%= @profile.bio %></div>
+        <div class="row mr-0 ml-2 justify-content-center mt-2">
+          <% if  @profile.languages.nil? %>
+            No languages updated
+          <% else %>
+            <% @profile.languages.each do |language| %>
+              <div class="col-auto px-0 mr-2 ">
+                <div class="project-tag bgcH-white border c-black fsz-12 px-2 py-1 rounded">
+                  <span><%= LanguageList::LanguageInfo.find(language).name %></span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="explores-card-location"><%= @profile.state%>, <%= @profile.city%>, <%= @profile.country%></div>
+        <div>
+          <%if current_user.profile.id != @profile.id %>
+            <%=link_to "Book", booking_subject_path(profile_id: @profile.id), class: "btn btn-link border mt-2 radius-25",style: "width: 140px;"%>
+
+            <%= link_to "Message" ,user_chats_path(current_user, :other_user => @profile.user.id), method: :post,class: "btn btn-link border mt-2 radius-25",style: "width: 140px;"  %>
+          <%end%>
+        </div>
+        <div class="explores-card-stars">
+          <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= average_rating(@profile.user,nil)[:rating] %>"></div>
+
+          <span class="fsz-10 align-bottom">
+            <%= average_rating(@profile.user,nil)[:count] %>
+          </span>
+        </div>
+        <% stats_count = stats_count_user(@profile.user, nil)%>
+        <div class="row mt-3">
+          <div class="col">
+             <div id="sparklinedash4"
+                  class="text-center w-100 centerMargin"
+                  style="max-width: 80px"
+                  data-sparkline="<%= sparklines_yearly(current_profile.explores) %>"></div>
+            <h5 class="c-black explores-card-section-count my-1"><%=@profile.explores.nil? ? 0 : stats_count[:explore_count]%></h5>
+            <div class="explores-card-section">EXPLORED</div>
+          </div>
+          <div class="col">
+            <div id="sparklinedash"
+                 class="text-center w-100 centerMargin"
+                 style="max-width: 80px"
+                 data-sparkline="<%= sparklines_yearly(current_profile.guides) %>"></div>
+                 <!-- <%= sparklines_yearly(current_profile.guides) %> -->
+            <h5 class="c-black explores-card-section-count my-1"><%=@profile.guides.nil? ? 0 : stats_count[:guide_count]%></h5>
+            <div class="explores-card-section">GUIDES</div>
+          </div>
+          <div class="col">
+            <div id="sparklinedash2"
+                  class="text-center w-100 centerMargin"
+                  style="max-width: 80px"
+                  data-sparkline="<%= sparklines_yearly(current_profile.projects) %>"></div>
+            <h5 class="c-black explores-card-section-count my-1"><%=@profile.projects.nil? ? 0 : stats_count[:project_count]%></h5>
+            <div class="explores-card-section">PROJECTS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-8 memberview_profile-tabcontent-wrap">
+      <div class="row">
+        <div class="col">
+          <div class="border-bottom-0 material-tabs explores-material-tabs">
+              <a id="profile-tab1-tab" class="pt-0" href="#tab1">Explorers</a>
+              <a id="profile-tab2-tab" class="pt-0" href="#tab2">Guides</a>
+              <a id="profile-tab3-tab" class="pt-0" href="#tab3">Projects</a>
+              <span class="yellow-bar"></span>
+          </div>
+
+        </div>
+        <%if current_user.profile.id != @profile.id %>
+          <div class="col-auto">
+            <div class="dropdown">
+              <button class="btn btn-link dropdown-toggle pt-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons">more_vert</i>
+              </button>
+              <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
+                <a data-turbolinks="false" class="dropdown-item ff-os font-weight-bolder px-3" href="#" id="block_user_button">
+                  <i class="material-icons align-middle mr-1">block</i>
+                  <span class="align-middle fsz-16">Block user</span>
+                </a>
+                <a data-turbolinks="false" class="dropdown-item ff-os font-weight-bolder px-3" href="#" id="report_user_button">
+                  <i class="material-icons align-middle mr-1">flag</i>
+                  <span class="align-middle fsz-16">Report user</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      </div>
+      <%= render 'member_explorers'%>
+      <%= render 'member_guides'%>
+      <%= render 'member_projects'%>
+
+
+      <%= render partial:'shared/block',locals:{ name: @profile.user.full_name}%>
+      <%= render partial:'shared/report',locals:{ name: @profile.user.full_name}%>
+
+  </div>
+</div>

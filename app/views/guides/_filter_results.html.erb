@@ -1,0 +1,14 @@
+<div id="filter_results_guides">
+  <% if guides.nil? %>
+  <% else %>
+    <%if filter=="popular"%>
+      <%= render partial:'guides/popular_in_region',locals:{popular_incountry: popular_incountry} %>
+      <%= render partial:'guides/popular_in_guides',locals:{world_popular_guide_category: world_popular_guide_category} %>
+    <%elsif filter=="top"%>
+      <%= render partial:'guides/top_guides', locals:{top_guides: guides} %>
+      <%= render partial:'guides/top_guides_for', locals:{first_category_guide: top_category,first_category_name_guide: top_name} %>
+    <%else%>
+      <%= render partial:'guides/most_sessions', locals:{top_guides: guides} %>
+    <%end%>
+  <%end%>
+</div>

@@ -1,0 +1,30 @@
+<% if @class === "main" %>
+  $('#projectDialogMainPage').modal('show');
+  $("#projectMainTitle").val("<%=@project.name%>");
+  $("#projectMainSummary").val("<%=@project.summary%>");
+  var categories = <%= @categories_name.to_json.html_safe %>;
+  window.projectsGlobalAddProjectMainTag(categories)
+  var images = <%= @project.image.to_json.html_safe %>;
+  window.projectsGlobalAddProjectImages(images);
+
+<% elsif @class == "support"%>
+  $('#projectDialogSupportPage').modal('show');
+  <% if @project.help%>
+    $("#radioSupportYes").prop("checked", true);
+  <%else%>
+    $("#radioSupportNo").prop("checked", true);
+  <%end%>
+  var help_needed = <%= @help_needed.to_json.html_safe %>;
+  window.projectsGlobalAddSupportTag(help_needed)
+  window.projectsToggleSupportNeedHelpInput($('input[type=radio][name=help]:checked').val())
+<% elsif @class == "details"%>
+  $('#projectDialogToolsPage').modal('show');
+  $("textarea#projectToolsDescription").val("<%=@project.description%>");
+  $("textarea#projectGaps").val("<%=@project.gaps%>");
+  $("textare#projectChallenges").val("<%=@project.challenges%>");
+  $("#completion_date").val("<%=@project.completion_date%>");
+  var tools = <%= @project.tools.to_json.html_safe %>;
+  var supplies = <%= @project.supplies.to_json.html_safe %>;
+  window.projectsGlobalAddProjectToolsTools(tools)
+  window.projectsGlobalAddProjectToolsSupport(supplies)
+<%end%>

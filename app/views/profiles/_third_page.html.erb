@@ -1,0 +1,61 @@
+<p class="font-weight-bold">
+	Skills
+</p>
+
+<!--  search container -->
+<div class="row">
+  <div class="col">
+  	<div class="input-group custom-from-group">
+				<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit', class: 'signup_guides w-100' } do |f| %>
+					<div>
+						<label for="">Search</label>
+						<%= f.text_field(
+							:search_query,
+							class: 'filterrific-periodically-observed form-control',
+							placeholder: 'ex. Spanish'
+						) %>
+					</div>
+<!--
+					<div>
+						<%= link_to(
+							'Reset filters',
+							reset_filterrific_url,
+						) %>
+					</div> -->
+					<%= render_filterrific_spinner %>
+				<% end %>
+  	</div>
+  </div>
+
+  <div class="col-auto">
+  	<div class="mt-4">
+  		<span class="fz-12 font-weight-bold c-black">Cant find something?</span>
+  	</div>
+  	<div>
+  		<a href="#" data-toggle="modal" data-target="#newCategoryModal" class="fz-12 font-weight-bold">Add a new category.</a>
+  	</div>
+  </div>
+</div>
+
+<!-- guiding container -->
+<div class="my-5 p-3 border rounded position-relative" id="guiding-item-container">
+			<%= render(
+				partial: 'listg',
+				locals: { categories: @categories }
+			) %>
+</div>
+
+
+<%= form_for(@guide) do |f| %>
+
+	<input type="hidden" id="guideCategories" name="guideCategories">
+	<input type="hidden" name="first_signup" value="true" >
+
+	<div class="form-row justify-content-end mb-5" id="action-buttons">
+		<a class="btn btn-link p-2 mr-3" href="/profile/explores">Back</a>
+
+		<button class="btn btn-success p-2 next-button" type="submit" >Next</button>
+	</div>
+<%end%>
+
+<%= render 'new_category_modal', type: "Guide" %>

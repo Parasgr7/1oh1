@@ -1,0 +1,89 @@
+<%= render 'landing/navbar' %>
+
+<div class="market">
+    <section class="page-banner text-center py-5">
+      <div class="details">
+        <div class="mt-5">
+          <img width="78px" src="<%= image_path('coin.png') %>" alt="coin">
+        </div>
+
+        <h1 class="mt-3 c-black">Currency for everything</h1>
+
+        <p class="px-4">
+          Use G-coins to purchase 1-on-1 time with users around the world
+        </p>
+      </div>
+    </section>
+    <div class="transparent-cards-wrap px-4">
+      <div class="row mb-5">
+        <div class="col text-left">
+          <div class="transparent-card">
+            <div class="text-center">
+              <img src="<%= image_path('Flexibility.png') %>" alt="Flexibility">
+            </div>
+            <h4>
+              Flexibility
+            </h4>
+            <p>
+              Explore topics whenever it is convenient for you.
+            </p>
+          </div>
+        </div>
+        <div class="col text-right">
+          <div class="transparent-card text-left">
+            <div class="text-center">
+              <img src="<%= image_path('speed2.png') %>" alt="speed2">
+            </div>
+            <h4>
+              Speed
+            </h4>
+            <p>
+              Learn at your own pace. <br>
+              Explore more, faster.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col text-left">
+          <div class="transparent-card">
+            <div class="text-center">
+              <img src="<%= image_path('data-flexibility.png') %>" alt="data-flexibility">
+            </div>
+            <h4>
+              Growth
+            </h4>
+            <p>
+              Expand your knowledge by exploring different categories.
+            </p>
+          </div>
+        </div>
+        <div class="col text-right">
+          <div class="transparent-card text-left">
+            <div class="text-center">
+              <img src="<%= image_path('time.png') %>" alt="time">
+            </div>
+            <h4>
+              Time
+            </h4>
+            <p>
+             Personalize your development by controlling your session time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'payment' %>
+
+  	<hr/>
+
+    <%= render 'subscription'%>
+
+  </div>
+
+<%= render 'preCheckout' %>
+<%= render 'postCheckoutSuccess' %>
+<%= render 'postCheckoutFailed' %>
+
+<%= render 'landing/footer' %>

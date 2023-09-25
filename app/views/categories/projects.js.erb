@@ -1,0 +1,4 @@
+<% js = escape_javascript(
+  render(partial: 'categories/projects', locals: { projects: @profiles })
+) %>
+$("#filter_category_results_projects").html("<%= js %>");

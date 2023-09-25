@@ -1,0 +1,160 @@
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <%= form_tag( profile_path(@profile),method: :patch) do %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Introduction</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body bodyEditProfile">
+          <div class="containerProfileModal">
+            <div class="celr backgroundimagechange text-right"
+                id="gridBackground"
+                style="background-image: url('<%= banner_photo(@profile) %>');">
+              <div>
+                <a class="btn btn-link btn-icon-fab position-relative shadow rounded-circle m-2" id="editBackgroundPic" >
+                  <i class="material-icons centerXY">edit</i>
+
+                  <div class="centerXY profile-loading">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </a>
+                <i style="display:none;margin-left: 91%;margin-top: 95px;" class="material-icons" id="loaderimagebackground">autorenew</i>
+                <i style="display:none;margin-left: 91%;margin-top: 95px;color:green;" class="material-icons" id="checkbackground">done</i>
+                <%= file_field_tag :profileBackground,class: 'form-control fieldinput d-none' %>
+              </div>
+              <div class="cel">
+                <div class="imgBackgraound">
+                  <% if @profile.profile_photo.blank? %>
+                    <img id="editProfileImg" class="profileImg shadow" src="<%= image_path('profile.png') %>">
+                  <% else %>
+                    <img src="<%= @profile.profile_photo %>" alt="Image" class="profileImg">
+                  <% end %>
+                  <div class="editProfilePicIconCont">
+                    <a class="btn btn-link btn-icon-fab position-relative shadow rounded-circle" id="editProfilePic">
+                      <i class="material-icons centerXY">edit</i>
+
+                      <div class="centerXY profile-loading">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </a>
+
+                    <%= file_field_tag :profilephoto,class: 'form-control fieldinput d-none' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row m-3">
+              <div class="col form-group custom-from-group">
+                <label>First Name</label>
+                <%= text_field_tag :name,@user.firstname,id:'firstname',class: 'form-control',:readonly => true %>
+              </div>
+              <div class="col form-group custom-from-group">
+                <label>Last Name</label>
+                <%= text_field_tag :name,@user.lastname,id:'lastname',class: 'form-control',:readonly => true %>
+              </div>
+            </div>
+
+            <div class="form-group m-3">
+              <label>Personal Summary</label>
+              <%= text_area_tag :bio,@profile.bio,class: 'form-control', placeholder: "Bio", rows: "3" %>
+            </div>
+
+            <div class="edit-profile-select-language-wrap">
+              <div class="form-group custom-from-group m-3" id="select-languages-wrap">
+                  <label>Fluent Language(s)</label>
+                  <%= select_tag "language", content_tag(:option,'Select Language',:value=>"")+options_from_collection_for_select(LanguageList::COMMON_LANGUAGES, "iso_639_3", "name"), {class:"custom-select"}%>
+                  <input type="hidden" id="edit-profile-hidden-languages" name="edit-profile-languages">
+
+                  <%= javascript_tag do %>
+                    var test = <%= @profile.languages.to_json.html_safe %>;
+                  <% end %>
+
+
+                  <i class="material-icons edit-profile-select-language-add" id="edit-profile-languages-add">add</i>
+              </div>
+
+              <div class="edit-profile-languages m-3" id="edit-profile-languages">
+              </div>
+            </div>
+
+            <div class="form-row m-3">
+              <div class="form-group col-md-4 custom-from-group pl-0">
+                <label>Country</label>
+                <select id="countries" class="custom-select" name="country">
+                  <option value="">Select Your Country</option>
+                  <% CS.countries.each do |key, value| %>
+                   <% if value == @profile.country %>
+                    <option value="<%= key %>" selected><%= value %></option>
+                    <%else%>
+                    <option value="<%= key %>"><%= value %></option>
+                    <%end%>
+                  <% end %>
+                </select>
+              </div>
+
+              <!-- <option value="<%=@profile.state%>" selected><%=@profile.state%></option> -->
+              <div class="form-group col-md-4 custom-from-group">
+                <label>State/Province</label>
+                <select id="states-of-country" class="custom-select" name="state">
+                  <%if @profile.state.present? %>
+                    <%CS.states(CS.countries.key(@profile.country)).to_a.each do |state|%>
+                      <option value="<%=state[0]%>" <%= @profile.state == state[1] ? 'selected' : ''%>>
+                        <%=state[1]%>
+                      </option>
+                    <%end%>
+                  <%else%>
+                    <option value="">Select Your Country</option>
+                  <%end%>
+                </select>
+                <div class="spinner-border spinner-border-sm position-absolute"
+                  style="right: 14px;top: 44px;display: none"
+                  role="status">
+                </div>
+              </div>
+
+              <div class="form-group col-md-4 custom-from-group pr-0">
+                <label>City</label>
+                <select id="cities-of-state" class="custom-select" name="city">
+                  <%if @profile.city.present? %>
+                    <%CS.cities(CS.states(CS.countries.key(@profile.country)).key(@profile.state),CS.countries.key(@profile.country)).each do |city|%>
+                      <option value="<%=city%>" <%= @profile.city == city ? 'selected' : ''%>>
+                        <%=city%>
+                      </option>
+                    <%end%>
+                  <%else%>
+                    <option value="">Select Your Country</option>
+                  <%end%>
+                </select>
+                <div class="spinner-border spinner-border-sm position-absolute"
+                  style="right: 14px;top: 44px;display: none"
+                  role="status">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input type="" id="urlprofileBackground" name="banner_photo" value="<%= @profile.banner_photo%>" style="display: none;">
+        <input type="" id="urlprofile" name="profile_photo" value="<%= @profile.profile_photo%>" style="display: none;">
+
+        <div class="modal-footer">
+          <div class="celr" id="gridbtnSave">
+            <div class="cel btnSave">
+              <% if @new_profile %>
+              <%= submit_tag("Save",:id=>"submit", :class=>'btn btn-success buttonSave next-button',data: {disable_with: "Saving..."})%>
+              <% else %>
+              <%= submit_tag("Save",:id=>"submit", :class=>'btn btn-success buttonSave next-button',data: {disable_with: "Updating..."})%>
+              <% end %>
+            </div>
+        </div>
+        </div>
+      </div>
+    <%end%>
+</div>
+</div>

@@ -1,0 +1,79 @@
+<div class="scroll-asist" id="scroll_assist" style="display: none">
+  <i class="material-icons">arrow_upward</i>
+</div>
+
+<footer class="site-footer" style="margin-top: 80px;">
+  <div>
+    <div class="row mt-5">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="row justify-content-between border-bottom pb-5">
+          <div class="col-sm-12 col-md-3 mt-3">
+            <div>
+              <img src="<%= image_path('logo.png') %>" height="36" alt="logo">
+              <p class="c-white fsz-14 ff-os mt-2" style="line-height: 1.2;">Encouraging curiosity, collaboration and the desire to learn, earn, and grow through our free-to-use education platform.</p>
+            </div>
+          </div>
+          <div class="col-auto mt-3">
+            <a href="/contact-us/technical-issues" class="fsz-14 c-white d-block">REPORT A BUG</a>
+            <a href="/contact-us" class="fsz-14 c-white d-block">CONTACT US</a>
+            <div href="" class="fsz-14 c-white">General: <a class="c-blue" href="mailto:info@1oh1.org">info@1oh1.org</a></div>
+            <div href="" class="fsz-14 c-white">Support: <a class="c-blue" href="mailto:support@1oh1.org">support@1oh1.org</a></div>
+          </div>
+          <% if user_signed_in? %>
+            <div class="col-auto mt-3">
+              <a href="/explores" class="fsz-14 c-white d-block">EXPLORE</a>
+              <a href="/guides" class="fsz-14 c-white d-block">GUIDE</a>
+              <a href="/projects" class="fsz-14 c-white d-block">PROJECTS</a>
+              <a href="/markets" class="fsz-14 c-white d-block">MARKET</a>
+              <a href="/helps" class="fsz-14 c-white d-block">SUPPORT</a>
+            </div>
+            <div class="col-auto mt-3">
+              <a href="/profiles" class="fsz-14 c-white d-block">PROFILE</a>
+              <a href="/messages" class="fsz-14 c-white d-block">MESSAGES</a>
+              <a href="/calendars" class="fsz-14 c-white d-block">CALENDAR</a>
+              <a href="/bookings" class="fsz-14 c-white d-block">SESSIONS</a>
+              <a href="/helps" class="fsz-14 c-white d-block">SETTINGS</a>
+            </div>
+          <% else %>
+            <div class="col-auto mt-3">
+              <a href="" class="fsz-14 c-white d-block cd-signup">EXPLORE</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">GUIDE</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">PROJECTS</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">MARKET</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">SUPPORT</a>
+            </div>
+            <div class="col-auto mt-3">
+              <a href="" class="fsz-14 c-white d-block cd-signup">PROFILE</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">MESSAGES</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">CALENDAR</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">SESSIONS</a>
+              <a href="" class="fsz-14 c-white d-block cd-signup">SETTINGS</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+    <div class="text-center mt-4">
+      <div class="mt-5">
+        <a href="https://www.facebook.com/1oh1edu" target="_blank">
+          <img width="45" src="<%= image_path('footer/facebook.svg') %>" alt="facebook">
+        </a>
+        <a class="mx-1" href="https://twitter.com/1oh1edu" target="_blank">
+          <img width="45" src="<%= image_path('footer/twitter.svg') %>" alt="twitter">
+        </a>
+        <a class="mx-1" href="https://www.instagram.com/1oh1edu/" target="_blank">
+          <img width="45" src="<%= image_path('footer/instagram.svg') %>" alt="instagram">
+        </a>
+        <a href="https://www.linkedin.com/company/1oh1edu/" target="_blank">
+          <img width="45" src="<%= image_path('footer/linkedin.svg') %>" alt="linkedin">
+        </a>
+
+      </div>
+      <p class="text-white fsz-14 mt-4">
+        &copy; Copyright All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

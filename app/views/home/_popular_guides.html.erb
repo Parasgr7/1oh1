@@ -1,0 +1,19 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Recent Categories With Guides</h3>
+
+  <div class="row my-4" id="mainPopularRol">
+    <% if world_popular_guide_category.empty? %>
+      No Popular Guides
+    <%else%>
+      <%= render partial: 'shared/category_card.html', collection: world_popular_guide_category, as: :category,locals:{ class_name: "popularRolItem",type:"All"} %>.
+    <%end%>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessRol">Less</a>
+    <div class="showMoreLessMessage" id="popularRolMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreRol">More</a>
+  </div>
+</section>

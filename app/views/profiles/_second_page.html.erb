@@ -1,0 +1,50 @@
+<p class="font-weight-bold">
+	Interests
+</p>
+<!--  search container -->
+<div class="row">
+  <div class="col">
+  	<div class="input-group custom-from-group">
+				<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit', class: 'signup_explores w-100' } do |f| %>
+					<div>
+						<label for="">Search</label>
+						<%= f.text_field(
+							:search_query,
+							class: 'filterrific-periodically-observed form-control',
+							placeholder: 'ex. oil painting'
+						) %>
+					</div>
+				<% end %>
+  	</div>
+  </div>
+
+  <div class="col-auto">
+  	<div class="mt-4">
+  		<span class="fz-12 font-weight-bold c-black">Cant find something?</span>
+  	</div>
+  	<div>
+  		<a  class="fz-12 font-weight-bold" data-toggle="modal" data-target="#newCategoryModal" >Add a new category.</a>
+  	</div>
+  </div>
+</div>
+
+
+<div class="my-5 p-3 border rounded position-relative" id="explore-item-container">
+		<%= render(
+			partial: 'list',
+			locals: { categories: @categories }
+		) %>
+</div>
+
+<%= form_for(@explore) do |f| %>
+	<input type="hidden" id="exploreCategories" name="exploreCategories">
+	<input type="hidden" name="first_signup" value="true" >
+
+	<div class="form-row justify-content-end mb-5" id="action-buttons">
+		<a class="btn btn-link p-2 mr-3" href="/profile/about-yourself">Back</a>
+
+		<button class="btn btn-success p-2 next-button" type="submit" >Next</button>
+	</div>
+<%end%>
+
+<%= render 'new_category_modal', type: "Explore" %>

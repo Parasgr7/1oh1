@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  week_day: 1
+  profile: one
+  timing: MyString
+  full_day_off: false
+
+two:
+  week_day: 1
+  profile: two
+  timing: MyString
+  full_day_off: false

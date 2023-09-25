@@ -1,0 +1,130 @@
+<div class="navbar-without-banner">
+	<%= render 'landing/navbar' %>
+</div>
+
+<!-- @category.url -->
+<section class="page-banner small text-center position-relative pt-2 pb-5"
+		 style="background-image: url('<%= category_photo(@category) %>');">
+		 <div class="text-right position-relative" style="z-index: 20">
+			<div class="dropdown mr-2 mt-2">
+	            <button class="btn btn-link dropdown-toggle pt-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	              <i class="material-icons c-white">more_vert</i>
+	            </button>
+	            <div class="dropdown-menu dropdown-menu-right rounded" aria-labelledby="dropdownMenuButton">
+	              <a data-turbolinks="false" class="dropdown-item ff-os font-weight-normal px-3" href="#" id="report_category_button">
+	                <i class="material-icons align-middle mr-1">flag</i>
+	                <span class="align-middle fsz-14">Report category</span>
+	              </a>
+	            </div>
+	        </div>
+		 </div>
+		 <div class="text-right position-absolute" id="categoryAddDropdownBtnWrap">
+			<div class="dropdown mr-2 mt-2">
+	            <button class="btn btn-success dropdown-toggle no-after pt-0" type="button" id="categoryAddDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	            	&nbsp;
+	             	&nbsp;
+	             	<i class="material-icons centerXY">add</i>
+	            </button>
+	            <div class="dropdown-menu dropdown-menu-right rounded" aria-labelledby="categoryAddDropdownBtn">
+								<%if Explore.find_by(category: @category, profile: current_user.profile).present?%>
+									<%= link_to  edit_types_path(@category.id, type: "removeExplore"),method: :put, remote: true, class: "dropdown-item ff-os font-weight-bolder px-3" do%>
+										<span class="align-middle fsz-14 font-weight-normal">Remove Interest</span>
+									<% end %>
+								<%else%>
+									<%= link_to  edit_types_path(@category.id, type: "Explore"),method: :put, remote: true, class: "dropdown-item ff-os font-weight-bolder px-3" do%>
+										<span class="align-middle fsz-14 font-weight-normal">Add Interest</span>
+									<% end %>
+								<%end%>
+								<%if Guide.find_by(category: @category, profile: current_user.profile).present?%>
+									<%= link_to  edit_types_path(@category.id, type: "removeGuide"),method: :put, remote: true, class: "dropdown-item ff-os font-weight-bolder px-3" do%>
+										<span class="align-middle fsz-14 font-weight-normal">Remove Skill</span>
+									<% end %>
+								<%else%>
+									<%= link_to  edit_types_path(@category.id, type: "Guide"),method: :put, remote: true, class: "dropdown-item ff-os font-weight-bolder px-3" do%>
+										<span class="align-middle fsz-14 font-weight-normal">Add Skill</span>
+									<% end %>
+								<%end%>
+	            </div>
+	        </div>
+		 </div>
+
+		<!-- <button class="btn btn-link c-white add-category-btn-icon">
+			Add<i class="material-icons fsz-16">add</i>
+		</button> -->
+		<h1 class="mt-5 pt-4 c-white font-weight-bold category-big-padding-left text-left position-relative"
+			style="z-index: 2">
+			<%= @category.name.camelize %>
+		</h1>
+
+</section>
+
+<div>
+	<div class="row border-bottom">
+		<div class="col-12 col-md">
+			<h5 class="my-4 fsz-16 category-big-padding-left font-weight-bolder c-black text-center text-md-left">
+				<%= @category.description %>
+			</h5>
+		</div>
+		<div class="col-12 col-md-auto border-left border-right px-5">
+			<div class="row align-items-center pt-4">
+				<div class="col">
+					<div class="text-center">
+						<img src="<%= image_path("flags/#{find_top_country(@category).nil? ? "India": find_top_country(@category) }.png") %>" alt="Country">
+					</div>
+					<p class="fsz-11 font-weight-bolder mt-2 text-center">TOP COUNTRY</p>
+				</div>
+				<div class="col">
+					<div class="font-weight-bold fsz-18 c-black text-center">
+						<%= time_ago_in_words(@created_at,include_seconds: true) + ' ago'%>
+						<!--<%=@created_at.strftime('%B %d, %Y')%>-->
+					</div>
+					<p class="fsz-11 font-weight-bolder mt-2 text-center">Created At</p>
+				</div>
+			</div>
+		</div>
+		<% stats_count = stats_count_category(@category)%>
+		<div class="col-12 col-md">
+			<div class="row justify-content-center py-4">
+				<div class="col category-trend-wrap px-0">
+					<div id="sparklinedash3"
+						 class="text-center w-100 centerMargin"
+						 style="max-width: 80px"
+						 data-sparkline="<%= sparklines_yearly(Explore.with_category(@category.id)).zip(sparklines_yearly(Guide.with_category(@category.id)), sparklines_yearly(Project.includes(:categories).with_category(@category.id))).map{|m| m.inject(:+)} %>"></div>
+
+					<div class="text-center font-weight-bold fsz-18 c-black"><%=stats_count[:sum_count]%></div>
+					<div class="text-center fsz-11 font-weight-bolder">ALL</div>
+				</div>
+				<div class="col category-trend-wrap">
+					<div id="sparklinedash4"
+						 class="text-center w-100 centerMargin"
+						 style="max-width: 80px"
+						 data-sparkline="<%= sparklines_yearly(Explore.with_category(@category.id)) %>"></div>
+					<div class="text-center font-weight-bold fsz-18 c-black"><%=stats_count[:explore_count]%></div>
+					<div class="text-center fsz-11 font-weight-bolder">EXPLORERS</div>
+				</div>
+				<div class="col category-trend-wrap">
+					<div id="sparklinedash"
+						 class="text-center w-100 centerMargin"
+						 style="max-width: 80px"
+						 data-sparkline="<%= sparklines_yearly(Guide.with_category(@category.id)) %>"></div>
+					<div class="text-center font-weight-bold fsz-18 c-black"><%=stats_count[:guide_count]%></div>
+					<div class="text-center fsz-11 font-weight-bolder">GUIDES</div>
+				</div>
+				<div class="col category-trend-wrap">
+					<div id="sparklinedash2"
+						 class="text-center w-100 centerMargin"
+						 style="max-width: 80px"
+						 data-sparkline="<%= sparklines_yearly(Project.includes(:categories).with_category(@category.id)) %>"></div>
+					<div class="text-center font-weight-bold fsz-18 c-black"><%=stats_count[:project_count]%></div>
+					<div class="text-center fsz-11 font-weight-bolder">PROJECTS</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div>
+	<%= render 'shared/category_search_form' %>
+</div>
+
+<%= render partial:'shared/report',locals:{ name: @category.name.camelize}%>

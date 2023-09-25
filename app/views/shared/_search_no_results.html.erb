@@ -1,0 +1,16 @@
+<div class="text-center">
+  <img src="<%=image_path('no-result-found-icon.png')%>" alt="time out">
+</div>
+
+<h1 class="mt-4 fsz-32 c-black ff-ssp text-center">No result found</h1>
+
+<p class="mt-3 ff-os fsz-16 text-center font-weight-bolder">
+  We couldn't find any results based on your search. <br>
+  Try again or create a new category
+</p>
+
+<div class="my-5 text-center">
+  <a class="btn btn-success" id="open_category_modal">Create a new category</a>
+
+</div>
+<%= render 'profiles/new_category_modal', type: "Explore"%>

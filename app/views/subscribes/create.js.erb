@@ -1,0 +1,7 @@
+$('form#footer_subscribes').trigger("reset");
+$('html,body').animate({ scrollTop: 20 }, 'slow', function () {});
+
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

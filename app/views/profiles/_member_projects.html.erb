@@ -1,0 +1,12 @@
+<div class="tab-content" style="padding-right: 70px;">
+  <div id="tab3" style="overflow-x: visible;">
+  	<%if current_user.profile.id == @profile.id %>
+	  	<div class="text-right">
+           <%=link_to "Create New Project", projects_overview_path,class: "buttonCreate btn btn-success mt-3 mr-3"%>
+	   </div>
+   <%end%>
+    <div class="row mt-5 mx-0" id="projects_tab_profile">
+      <%= render partial:'shared/list_projects.html',locals:{projects: @projects,profile_builder: false} %>
+    </div>
+  </div>
+</div>

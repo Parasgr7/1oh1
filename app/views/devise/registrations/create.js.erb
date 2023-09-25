@@ -1,0 +1,12 @@
+// $('#authDialog').modal('toggle');
+
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');
+
+
+// show login dialog box then run these codes
+$('.auth-pages').addClass('d-none')
+$('#verification_email_address_placeholder').text('email address')
+$('#modal_signedup').removeClass('d-none')

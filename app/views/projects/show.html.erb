@@ -1,0 +1,192 @@
+ <div class="navbar-without-banner">
+	<%= render 'landing/navbar' %>
+</div>
+<%= render 'project_dialog_support_page',project: @project %>
+<div class="container pt-5">
+    <%if @project.profile_id == current_profile.id %>
+    <div class="row mt-5">
+        <div class="col text-right">
+          <button class="btn btn-link td-n" id="project_delete_btn">
+            <i class="material-icons c-red-500 fsz-20 align-middle td-none">delete</i>
+            <span class="align-middle c-red-500 fsz-14 ml-2 td-none">REMOVE</span>
+          </button>
+        </div>
+    </div>
+  <%end%>
+	<!-- project name -->
+  <div class="row">
+    <div class="col">
+      <h1 class="mt-5 fsz-25 c-black" id="title">
+        <%=@project.name.camelize%>
+      </h1>
+    </div>
+    <%if @project.profile_id == current_profile.id %>
+      <div class="col-auto">
+        <!-- <button class="btn btn-link mt-5" id="project_edit_main_page_btn">
+            <i class="material-icons c-gray fsz-18">edit</i>
+        </button> -->
+        <%= link_to open_edit_project_modal_path(id: @project,class: "main"), remote: true,class:"btn btn-link mt-5" do%>
+          <i class="material-icons c-gray fsz-18">edit</i>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
+
+	<!-- status -->
+	<p class="fsz-11 c-black mb-1"></p>
+
+	<!-- description -->
+	<div class="row">
+		<div class="col-7">
+			<p class="fsz-13 font-weight-bolder c-black" id="summary"><%=@project.summary%></p>
+		</div>
+	</div>
+
+
+	<div class="row mt-2 mx-0">
+		<div class="col-7 px-0">
+			<!--  project image -->
+			<div class="position-relative project-image rounded"
+				 style="background-image: url('<%= project_photo(@project) %>');">
+
+				<!-- right arrow this is for next image -->
+				<!-- <div class="project-arrow-right border">
+					<i class="material-icons">keyboard_arrow_right</i>
+				</div> -->
+			</div>
+		</div>
+		<div class="col-5 pl-5 pr-0">
+			<div>
+				<!-- project status progress -->
+  				<div class="row m-0">
+            <%if @project.status=="idea"%>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle"
+                      style="background-image: url('<%= image_path('Icons/Idea_icon.png') %>');"
+                   >
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line ">
+
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line">
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+              </div>
+            <%elsif @project.status == "progress"%>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle active">
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line active">
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle"
+                   style="background-image: url('<%= image_path('Icons/project_status.png') %>');">
+
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line">
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+              </div>
+            <%elsif @project.status == "completed"%>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle active"
+                   >
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line active">
+
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle active">
+                </div>
+              </div>
+              <div class="col px-0">
+                <div class="project-progress-line active">
+
+                </div>
+              </div>
+              <div class="col-auto px-0">
+                <div class="project-progress-circle"
+                     style="background-image: url('<%= image_path('Icons/completed-icon.png') %>');">
+                </div>
+              </div>
+            <%end%>
+  				</div>
+			</div>
+
+			<!-- owner -->
+			<div>
+				<p class="fsz-11 c-black mb-3 font-weight-bolder mt-4">PROJECT OWNER</p>
+				<div class="row">
+					<div class="col-auto pr-0">
+            <%= link_to profile_path(@project.profile) do%>
+						      <div class="project-avatar"
+							           style="background-image: url('<%= profile_photo(@project.profile) %>')"></div>
+            <%end%>
+					</div>
+					<div class="col">
+						<div class="font-weight-bold fsz-15 c-black"><%=@project.profile.user.full_name%></div>
+						<div class="fsz-13 c-black"><%=@project.profile.city%></div>
+					</div>
+				</div>
+			</div>
+
+      <%= render 'project_support', project: @project%>
+		</div>
+	</div>
+
+	<div class="row mt-2">
+		<!-- <div class="col-auto">
+			<i class="material-icons align-middle c-black">navigation</i>
+			<span class="align-middle c-black fsz-14">Product Design</span>
+		</div> -->
+		<div class="col-auto">
+			<i class="material-icons align-middle c-black fsz-18">location_on</i>
+			<span class="align-middle c-black fsz-14"><%= @project.profile.state %>, <%= @project.profile.country %></span>
+		</div>
+	</div>
+</div>
+
+<div class="border-bottom mt-2">
+	<div class="container pb-2">
+		<div class="row m-0">
+      <% @project.categories.each do |category|%>
+        <%=link_to category_path(category) do%>
+          <div class="d-inline-block border project-help-needed-box fsz-10 mr-2 font-weight-bolder">
+    				<%=category.name%>
+    			</div>
+        <%end%>
+      <% end %>
+		</div>
+	</div>
+</div>
+
+<%= render 'project_details',project: @project %>
+
+<%= render 'landing/footer' %>
+<%= render 'project_dialog_main_page',project: @project %>
+<%= render 'project_dialog_tools_page',project: @project %>
+<%= render 'project_dialog_offer_help',project: @project %>
+<%= render 'project_dialog_remove_project',project: @project %>
+<%= render 'shared/dialog_commenting_guideline',type: "project"%>

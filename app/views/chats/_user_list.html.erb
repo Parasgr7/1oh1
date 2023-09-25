@@ -1,0 +1,36 @@
+<% if user != current_user && !find_chat(user).nil?%>
+  <%= link_to(user_chats_path(current_user, :other_user => user.id), method: :post) do %>
+    <div class="conversation-item rounded border mb-2 cursor-p p-3 row m-0 <%= user.id == other_user[:id] ? 'bg-light shadow-sm' : ''%>">
+      <!-- avatar -->
+      <div class="col-auto px-0">
+          <div class="avatar"
+                 style="background-image: url('<%= profile_photo(user.profile)%>')">
+          </div>
+      </div>
+
+      <div class="col">
+        <!-- name -->
+        <div class="name">
+          <%= user.firstname %>
+        </div>
+
+        <div class="occupation">
+          <%= !user.profile.nil? ? user.profile.country : ""%>
+        </div>
+      </div>
+
+      <div class="col-auto px-0">
+        <div class="last-visit">
+          last visit
+        </div>
+
+        <div class="unread-messages text-right c-black fsz-12 mt-2">
+          <!-- <div class="red-circle">
+            1
+          </div> -->
+          <%= find_chat(user).messages.empty? ? time_ago_in_words(find_chat(user).created_at,include_seconds: true) + ' ago' : time_ago_in_words(find_chat(user).messages.last.created_at,include_seconds: true) + ' ago' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

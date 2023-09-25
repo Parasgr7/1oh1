@@ -1,0 +1,48 @@
+<div id="filterrific_results">
+<div class="site-section block-13 border-bottom" id="section-explorers">
+
+  <button class="btn btn-success text-white float-right" data-toggle="modal" data-target="#myModal" style="margin:10px">Add Category</button>
+
+    <div class="table-responsive">
+      <%= page_entries_info categories %>
+      <table class="table table-striped sortable-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"><%= sortable "name" %></th>
+            <th scope="col">Description</th>
+            <th scope="col"><%= sortable "verified" %></th>
+            <th scope="col">Image</th>
+            <th scope="col">Submitted BY</th>
+            <th scope="col">Upload/Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.each do|category|%>
+            <tr>
+              <th scope="row"><%= category.id %></th>
+              <td><%= category.name %></td>
+              <td><%= category.description %></td>
+              <td><%= category.verified %></td>
+              <td><img src="<%= category_photo(category) %>" alt="Image" style="height:50px"></td>
+              <%name = Guide.find_by(category: category).nil? ?  Explore.find_by(category: category).nil? ? nil :  Explore.find_by(category: category).profile.user : Guide.find_by(category: category).profile.user%>
+              <td><%=link_to name.nil? ? "" : name.full_name, profile_path(name.nil? ? current_profile : name.profile)  %></td>
+              <td><button class="btn btn-info text-white category_modal" data-toggle="modal" data-target="#editModal" data-val="<%=category.id%>::<%=category.name%>::<%=category.description%>::<%=category.url%>::<%=category.verified%>">Edit</button></td>
+              <td><%= button_to("Delete", category_path(category), method: :delete, :class => "btn btn-danger text-white")%></td>
+
+            </tr>
+          <% end %>
+
+        </tbody>
+      </table>
+      <%= will_paginate categories%>
+
+    </div>
+
+
+</div>
+</div>
+
+<%= render 'add_category'%>
+<%= render 'edit_category'%>

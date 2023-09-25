@@ -1,0 +1,40 @@
+<div class="col-12 col-md-6 col-lg-4 mb-4 mw-mc center text-left <%=class_name%>">
+<% if type=="Explorer" %>
+  <% path = categories_explorers_path(category.slug)%>
+<% elsif type=="Guides" %>
+  <% path = categories_guides_path(category.slug)%>
+<%else%>
+  <% path = category_path(category.slug)%>
+<% end %>
+<%= link_to path do %>
+  <div class="category-card shadow" id="category-card" data-id ="<%=category.id%>">
+    <div class="category-card-image"
+         style="background-image: url('<%= category_photo(category) %>');">
+
+    </div>
+    <div class="category-card-title">
+      <%= category.name %>
+    </div>
+    <div class="category-card-description">
+      <%= !category.description.nil? ? category.description.truncate(90): ''%>
+    </div>
+    <% stats_count = stats_count_category(category)%>
+    <div class="category-card-footer border-top">
+      <div class="row mx-0">
+        <div class="col">
+          <div class="text-center category-card-footer-number"><%=stats_count[:explore_count]%></div>
+          <div class="text-center">Explores</div>
+        </div>
+        <div class="col">
+          <div class="text-center category-card-footer-number"><%=stats_count[:guide_count]%></div>
+          <div class="text-center">Guides</div>
+        </div>
+        <div class="col">
+          <div class="text-center category-card-footer-number"><%=stats_count[:project_count]%></div>
+          <div class="text-center">Projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>

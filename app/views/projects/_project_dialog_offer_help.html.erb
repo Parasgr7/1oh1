@@ -1,0 +1,43 @@
+<!-- Modal -->
+<%= form_tag(offer_help_path,:method => :post,remote: true,:id => 'offer_help' )do |f|%>
+  <div class="modal fade" id="projectDialogOfferHelp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-4 medium-size">
+          <div class="modal-body">
+          	<div class="text-center mb-3">
+          		<div class="project-avatar centerMargin"
+    				 style="background-image: url('<%= profile_photo(current_profile) %>')"></div>
+    		    <div class="fsz-12 text-center c-gray">
+    		    	<%=current_user.full_name%>
+    		    </div>
+          	</div>
+
+          	<div class="form-group custom-from-group pl-0">
+    			<label>What can you help with?</label>
+    			<select id="countries" required name="category" class="custom-select" name="country">
+            <option value="" selected="true">Select a subject</option>
+            <%if !@project.help_needed.nil? && !@project.help_needed.empty?%>
+              <%@project.help_needed.each do |category|%>
+                <option value="<%=category%>"><%=category.camelize%></option>
+              <%end%>
+            <%end%>
+    			</select>
+    		</div>
+        <input type="hidden" name="project_id" value="<%=@project.id%>">
+    		<div class="form-group custom-from-group w-100">
+    		    <label for="projectDialogOfferHelpTextArea">Message</label>
+    		    <textarea class="form-control"
+    		    		  placeholder="Hi! I see you're having problems with your project and I think I can help."
+    		    		  id="projectDialogOfferHelpTextArea"
+    		    		  name="message"
+    		    		  rows="5">Hi! I see you're having problems with your project and I think I can help.</textarea>
+    		</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+            <%= submit_tag("Send",:id=>"submit_offer_help", :class=>'btn btn-success',data: { disable_with: "Sending..." })%>
+          </div>
+        </div>
+    </div>
+  </div>
+<%end%>

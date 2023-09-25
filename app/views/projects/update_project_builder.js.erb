@@ -1,0 +1,10 @@
+$("form#edit_project").trigger('reset');
+$("#editProjectsModal").modal("hide")
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');
+<% fourth_page = escape_javascript(
+  render(partial: "projects/list_project", locals: {  projects: @projects })
+) %>
+$("#projects-container").html('<%= fourth_page %>');

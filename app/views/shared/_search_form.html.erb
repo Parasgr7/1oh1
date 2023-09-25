@@ -1,0 +1,204 @@
+  <div class="landing-search-wrap">
+    <div class="row m-0 border search-container">
+      <div class="col px-0">
+        <div class="form-group m-0 border-right">
+          <%if request.parameters[:controller]=="home"%>
+            <% path = home_index_path %>
+          <%elsif request.parameters[:controller]=="explores"%>
+            <% path = explores_path %>
+          <%elsif request.parameters[:controller]=="guides"%>
+            <% path = guides_path %>
+          <%elsif request.parameters[:controller]=="projects"%>
+            <% path = projects_path %>
+          <%end%>
+          <%= form_tag(path, method: :get,id:"searching-form") do %>
+            <input type="text"
+                 id="searching-form-input"
+                 class="form-control"
+                 placeholder="Search..." name="search" value="<%= params[:search]%>" data-path="<%=path%>" data-behavior="autocomplete">
+          <%end%>
+          <i class="material-icons search-icon">search</i>
+        </div>
+      </div>
+      <div class="col-auto pr-0">
+        <div class="filters">
+          <div class="d-inline-block d-md-none custom-select-filters-wrap pr-3">
+            <select class="custom-select fsz-14" id="selectBoxFilters">
+              <option value="all"
+                      selected
+                      data-href="/">
+                All
+              </option>
+              <option value="explores"
+                      data-href="/explores">
+                Explores
+              </option>
+              <option value="guides"
+                      data-href="/guides">
+                Guides
+              </option>
+              <option value="projects"
+                      data-href="/projects">
+                Projects
+              </option>
+            </select>
+          </div>
+          <span class="d-none d-md-inline-block">
+            <a href="/" class="btn" id="action-all-filter" data-toggle="all-filters">All</a>
+            <a href="/explores" class="btn" id="action-explores-filter" data-toggle="explores-filters">Explorers</a>
+            <a href="/guides" class="btn" id="action-guides-filter" data-toggle="guides-filters">Guides</a>
+            <a href="/projects" class="btn mr-3" id="action-projects-filter" data-toggle="projects-filters">Projects</a>
+          </span>
+        </div>
+      </div>
+      <div class="col-auto border-left d-none d-md-block">
+        <button class="btn border" id="toggle-filters">
+          <i class="material-icons align-middle fsz-17">filter_list</i>
+          <span class="align-middle">Filters</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="my-3 animated faster" id="filters-wrap">
+      <div class="filters-target d-none" id="all-filters">
+        <button class="btn active" data-filter="popular">Popular</button>
+        <button class="btn" data-filter="top">Top rated</button>
+        <button class="btn" data-filter="most">Most Sessions</button>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap">
+          <select class="custom-select search-countries" name="country">
+            <option selected value="all">All countries</option>
+            <% CS.countries.each do |key, value| %>
+            <option value="<%= key %>" data-country="<%=value%>">
+              <%= value %>
+            </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap d-none">
+          <select class="custom-select states-of-country" name="state">
+              <option value="">State</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeStateFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 search-select-wrap d-none">
+          <select class="custom-select cities-of-state" name="city">
+            <option value="">City</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeCityFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-target d-none" id="explores-filters">
+        <button class="btn active" data-filter="popular">Popular</button>
+        <button class="btn" data-filter="top">Top rated</button>
+        <button class="btn" data-filter="most">Most Explorations</button>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap">
+          <select class="custom-select search-countries" name="country">
+            <option selected value="all">All countries</option>
+            <% CS.countries.each do |key, value| %>
+            <option value="<%= key %>" data-country="<%=value%>">
+              <%= value %>
+            </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap d-none">
+          <select class="custom-select states-of-country" name="state">
+              <option value="">State</option>
+          </select>
+
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeStateFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 search-select-wrap position-relative d-none">
+          <select class="custom-select cities-of-state" name="city">
+            <option value="">City</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeCityFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-target d-none" id="guides-filters">
+        <button class="btn active" data-filter="popular">Popular</button>
+        <button class="btn" data-filter="top">Top rated</button>
+        <button class="btn" data-filter="most">Most Guided</button>
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 d-inline-block search-select-wrap">
+          <select class="custom-select search-countries" name="country">
+            <option selected value="all">All countries</option>
+            <% CS.countries.each do |key, value| %>
+            <option value="<%= key %>" data-country="<%=value%>">
+              <%= value %>
+            </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap d-none">
+          <select class="custom-select states-of-country" name="state">
+              <option value="">State</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeStateFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 search-select-wrap d-none">
+          <select class="custom-select cities-of-state" name="city">
+            <option value="">City</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeCityFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-target d-none" id="projects-filters">
+        <button class="btn active" data-filter="popular">Popular</button>
+        <button class="btn" data-filter="status">Status</button>
+        <button class="btn" data-filter="help">Help requested</button>
+        <button class="btn" data-filter="most">Most recent</button>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap">
+          <select class="custom-select search-countries" name="country">
+            <option selected value="all">All countries</option>
+            <% CS.countries.each do |key, value| %>
+            <option value="<%= key %>" data-country="<%=value%>">
+              <%= value %>
+            </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 mr-2 search-select-wrap d-none">
+          <select class="custom-select states-of-country" name="state">
+              <option value="">State</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeStateFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4 custom-from-group px-0 search-select-wrap d-none">
+          <select class="custom-select cities-of-state" name="city">
+            <option value="">City</option>
+          </select>
+          <div class="d-inline-block search-filter-remove shadow cursor-p removeCityFilter">
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

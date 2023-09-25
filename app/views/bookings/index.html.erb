@@ -1,0 +1,29 @@
+<% content_for :css_includes do %>
+  <%= stylesheet_link_tag "calendars" %>
+<% end %>
+
+<div class="profile-navbar">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="page-wrapper default-theme sidebar-bg bg1 sessionsActive">
+
+    <%= render 'profiles/side_bar' %>
+    <!-- page-content  -->
+    <main class="page-content">
+        <div id="sidebar-overlay" class="overlay"></div>
+        <div class="mainContent">
+            <!-- <i id="responsiveMenu" class="material-icons">more_vert</i> -->
+            <%= render 'my_sessions' %>
+        </div>
+
+        <%= render 'landing/footer'%>
+    </main>
+    <!-- page-content" -->
+</div>
+
+
+<%= render 'decline_booking' %>
+<%= render 'cancel_booking' %>
+<%= render 'sendTipDialog' %>
+<%= render 'calendars/changeSendRequestDialogBox' %>

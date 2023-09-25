@@ -1,0 +1,19 @@
+// date picker
+.dtp {
+	z-index: 10000;
+}
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header, .dtp div.dtp-date, .dtp div.dtp-time, .dtp table.dtp-picker-days tr > td > a.selected {
+	background: #2a8bf2;
+}
+.dtp div.dtp-date i {
+	color: white;
+}
+.dtp-btn-cancel {
+	margin-right: 5px;
+}
+.dtp-btn-ok,.dtp-btn-cancel {
+	font-size: 14px;
+	&:hover {
+		color: #2a8bf2
+	}
+}

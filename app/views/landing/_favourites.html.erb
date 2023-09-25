@@ -1,0 +1,28 @@
+<div class="site-section block-13 border-bottom" id="section-favourites">
+
+  <div class="container" style="margin-top: 25px">
+    <div class="text-left pb-1 mb-4">
+      <h2 class="text-secondary">Here are some favourites</h2>
+    </div>
+
+    <div class=" slide-one-item home-slider owl-carousel nonloop-block-13">
+      <% if @categories.blank? %>
+        No Favourite Categories
+      <%else%>
+         <% @categories.each do |category| %>
+            <%= link_to category_path(category.slug,type:"guides"),data: { turbolinks: false } do %>
+             <div>
+               <div class="unit-1 text-center">
+                 <img src="<%= category_path(category) %>" alt="Image" class="img-fluid">
+                 <div class="unit-1-text">
+                   <h3 class="unit-1-heading"><%=category.name%></h3>
+                 </div>
+               </div>
+             </div>
+            <%end%>
+         <%end%>
+      <%end%>
+    </div>
+  </div>
+
+</div>

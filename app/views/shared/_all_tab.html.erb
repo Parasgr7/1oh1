@@ -1,0 +1,25 @@
+<div class="mt-5">
+  <%= render partial:'shared/rating.html',locals:{
+    rating: average_rating(type,type.category)[:rating],
+    count: average_rating(type,type.category)[:count],
+    group_rating: average_rating(type,type.category)[:pop_up_all]
+  } %>
+</div>
+
+<!-- reviews -->
+<div class="border-top mt-5">
+<!-- filter -->
+<div class="text-right">
+  <select class="custom-select radius-25 explores-review-filter mr-3 mt-3">
+      <option value="recent" data-model="<%=type.class.name%>" data-id="<%=type.id%>" data-tab="all">Recent</option>
+      <option value="highest" data-model="<%=type.class.name%>" data-id="<%=type.id%>"data-tab="all">Highest</option>
+      <option value="lowest" data-model="<%=type.class.name%>" data-id="<%=type.id%>" data-tab="all">Lowest</option>
+     </select>
+</div>
+
+<div class="mt-5" id="filter_results_all_<%=type.class.name.downcase%>">
+</div>
+<div class="mt-5" id="all_tab_<%=type.class.name.downcase%>">
+  <%= render partial:'shared/list_reviews',locals:{ratings: type_ratings}%>
+</div>
+</div>

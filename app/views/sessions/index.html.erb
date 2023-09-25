@@ -1,0 +1,154 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "sessions" %>
+<% end %>
+
+<% content_for :css_includes do %>
+  <%= stylesheet_link_tag "sessions" %>
+<% end %>
+
+
+<div class="bookings-container-wrap">
+  <%= render 'landing/navbar' %>
+<div>
+
+<div class="container booking-container">
+    <div class="booking-overview">
+        <h3><b>Booking</b></h3>
+
+        <h6>with <%= @companion.profile.user.full_name%></h6>
+
+        <img class="booking-overview-avatar"
+             height="80px"
+             width="80px"
+             src="<%= profile_photo(@companion.profile) %>" alt="">
+    </div>
+
+    <div class="row border-top mt-4">
+      <div class="col-8 timeline-calendar-wrap slot-duration-12 mt-2">
+        <button class="booking-add-event-btn" id="booking-add-event-btn">
+            <!-- plus sign -->
+            <span class="booking-add-event-btn-svg align-middle">
+                <svg width="36" height="36" viewBox="0 0 36 36"><path fill="#34A853" d="M16 16v14h4V20z"></path><path fill="#4285F4" d="M30 16H20l-4 4h14z"></path><path fill="#FBBC05" d="M6 16v4h10l4-4z"></path><path fill="#EA4335" d="M20 16V6h-4v14z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg>
+            </span>
+
+            <span class="booking-add-event-btn-text align-middle">Create</span>
+        </button>
+
+        <div class="timeline-calendar"></div>
+      </div>
+      <div class="col-4 border-left p-0">
+        <div class="very-custom-calendar-wrap">
+            <div class="calendar-current-date text-center mt-4">
+                <span class="month-placeholder"></span>
+                <span class="day-placeholder"></span>
+            </div>
+            <div class="months-wrap mt-4">
+                <button type="button" id="month-1" class="btn btn-link month">January</button>
+
+                <button type="button" id="month-2" class="btn btn-link month">February</button>
+
+                <button type="button" id="month-3" class="btn btn-link month">March</button>
+
+                <button type="button" id="month-4" class="btn btn-link month">April</button>
+
+                <button type="button" id="month-5" class="btn btn-link month">May</button>
+
+                <button type="button" id="month-6" class="btn btn-link month">June</button>
+
+                <button type="button" id="month-7" class="btn btn-link month">July</button>
+
+                <button type="button" id="month-8" class="btn btn-link month">August</button>
+
+                <button type="button" id="month-9" class="btn btn-link month">September</button>
+
+                <button type="button" id="month-10" class="btn btn-link month">October</button>
+
+                <button type="button" id="month-11" class="btn btn-link month">November</button>
+
+                <button type="button" id="month-12" class="btn btn-link month">December</button>
+            </div>
+            <!-- custom calendar -->
+            <div class="very-custom-calendar"></div>
+        </div>
+
+        <!-- Calendars -->
+        <div class="p-3">
+            <div>
+                <label class="pure-material-checkbox orange">
+                  <input type="checkbox" id="current_user_checkbox" checked="true">
+                  <span><%= @companion.profile.user.full_name%></span>
+                </label>
+            </div>
+
+            <div>
+                <label class="pure-material-checkbox blue">
+                  <input type="checkbox" id="other_user_checkbox"  checked="true">
+                  <span><%= current_user.full_name%></span>
+                </label>
+            </div>
+            <div>
+                <label class="pure-material-checkbox pink">
+                  <input type="checkbox" class="common_checkbox" onClick="this.checked=!this.checked;">
+                  <span>Shared Bookings</span>
+                </label>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- new event dialog -->
+<div id='remote_container'></div>
+
+<!-- new event dialog with more options -->
+<%= render 'new_session_more'%>
+
+<!-- time conflict dialog dialog -->
+<div class="modal fade" id="newEventTimeConflict" tabindex="-1" role="dialog" aria-labelledby="newEventTimeConflict" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+        <div class="time-conflict-icon mt-3">
+            <i class="material-icons">close</i>
+        </div>
+        <h3 class="mt-3"><b>Time conflict</b></h3>
+        <p class="mt-2">
+            You are trying to book a session that conflicts with another. Please select a new time, or review <a href="">your calendar</a>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- loading -->
+<%= render 'loading'%>
+
+<!-- time conflict dialog dialog -->
+<%= render 'multiple_session'%>
+
+<!-- Not enough coins -->
+<%= render 'error_insufficient_coin' %>
+
+<div class="modal fade" id="editCalendarWarningDialog" tabindex="-1" role="dialog" aria-labelledby="editCalendarWarningDialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+        <div class="time-conflict-icon mt-3">
+            <img height="80" src="<%= image_path('Icons/warning_icon.png') %>" alt="warning_icon">
+        </div>
+        <h4 class="mt-3"><b>About to edit the calendar</b></h4>
+
+        <p class="mt-2 fz-14 px-5">
+            You have labeled this time in your calendar as "Unavailable". Are you sure you would like to submit booking request?
+        </p>
+      </div>
+      <div class="modal-footer justify-content-center mb-3">
+        <button type="button" class="btn btn-outline-dark mr-4">Submit</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

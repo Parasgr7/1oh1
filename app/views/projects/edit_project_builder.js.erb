@@ -1,0 +1,5 @@
+<% js = escape_javascript(
+  render(partial: 'profiles/edit_project', locals: { project: @project})
+) %>
+$("#editProjectsModal").html("<%= js %>");
+$("#editProjectsModal").modal("show")

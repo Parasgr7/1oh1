@@ -1,0 +1,217 @@
+<div class="row">
+	<div class="col-12 col-lg-8">
+		<div class="form-group custom-from-group">
+		  <label for="projectMainTitle">Project Title</label>
+		  <input type="text" name="name" required value="<%=@project.nil? ? "": @project["name"]%>" class="form-control" id="projectMainTitle">
+		</div>
+		<div class="form-group custom-from-group">
+		  <label for="projectMainSummary">Project Summary</label>
+		  <input type="text" name="summary" required value="<%=@project.nil? ? "" : @project["summary"]%>" class="form-control" id="projectMainSummary">
+		</div>
+		<div class="form-group mb-0">
+			<label>Photos</label>
+		</div>
+		<!-- photos -->
+		<input type="file" hidden id="project-photos-input-file">
+
+		<div class="row">
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="0">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="0">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="0">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="1">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="1">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="1">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="2">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="2">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="2">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="3">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="3">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="3">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="4">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="4">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="4">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="5">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="5">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="5">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="6">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="6">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="6">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto pr-0">
+				<div class="card-project-photo my-2">
+					<button class="btn centerXY project-upload-photo-btn" data-number="7">
+						<i class="material-icons">add</i>
+					</button>
+
+					<button class="btn centerXY project-remove-photo-btn" data-number="7">
+						<i class="material-icons">close</i>
+					</button>
+
+					<div class="centerXY project-upload-loading" data-number="7">
+						<div class="spinner-border" role="status">
+						    <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" name="image" id="api-project-uploaded-images">
+	<div class="col-12 col-lg-4">
+		<div class="row align-items-end">
+			<div class="col">
+				<div class="form-group custom-from-group pl-0">
+					<label>Project Status</label>
+					<select id="projectStatusSelect" class="custom-select" name="status">
+						<option value="idea" selected>Idea</option>
+						<option value="progress">In progress</option>
+						<option value="completed">Done</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-auto projectPageMainStatusWrap mb-3">
+				<img class=""
+					 width="40"
+					 id="projectPageMainStatusIdea"
+					 src="<%=image_path('Icons/Idea_icon.png')%>"
+					 alt="Idea">
+				<img class="d-none"
+					 width="40"
+					 id="projectPageMainStatusProgress"
+					 src="<%=image_path('Icons/project_status.png')%>"
+					 alt="Progress">
+				<img class="d-none"
+					 width="40"
+					 id="projectPageMainStatusCompleted"
+					 src="<%=image_path('Icons/completed-icon.png')%>"
+					 alt="completed">
+			</div>
+		</div>
+
+		<div class="form-group custom-from-group">
+		  <label for="projectMainCounty">COUNTRY</label>
+		  <input type="text" name="country" readonly value="<%=current_profile.country%>" class="form-control" id="projectMainCounty">
+		</div>
+		<div class="form-group custom-from-group">
+		  <label for="projectMainState">STATE</label>
+		  <input type="text" name="state" readonly value="<%=current_profile.state%>" class="form-control" id="projectMainState">
+		</div>
+		<div class="form-group custom-from-group">
+		  <label for="projectMainCity">CITY</label>
+		  <input type="text" name="city" readonly value="<%=current_profile.city%>" class="form-control" id="projectMainCity">
+		</div>
+		<div class="form-group custom-from-group">
+		  <label for="projectMainTags">TAGS</label>
+		  <input type="text"
+		  		 class="form-control categories-auto-complete"
+		  		 id="projectMainTags"
+		  		 placeholder="add+">
+		</div>
+		<div class="form-group">
+			<div class="row project-main-tags-wrap mx-0">
+
+			</div>
+			<!--<%= javascript_tag do %>
+				window.projectsGlobalAddSupportTag(<%= @project_categories.to_json.html_safe %>);
+      <% end %>-->
+        	<input type="hidden" name="tags" id="api-main-tags">
+		</div>
+	</div>
+</div>

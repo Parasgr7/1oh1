@@ -1,0 +1,9 @@
+$('#projectDialogToolsPage').modal("hide");
+$("div#project_details_section p#project_description").html("<%=@project.description%>");
+$("div#project_details_section p#completion_date").html("<%=@project.completion_date%>");
+$("div#project_details_section p#gaps").html("<%=@project.gaps%>");
+$("div#project_details_section p#challenges").html("<%=@project.challenges%>");
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

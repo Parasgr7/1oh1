@@ -1,0 +1,125 @@
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header py-3">
+    <a  href="/profiles" class="" style="decoration:none">
+      <% if user_signed_in? %>
+          <img  class="profileTopbar" src="<%= profile_photo(current_user.profile) %>">
+      <% end %>
+    </a>
+
+    <div class="site-mobile-menu-close mt-2">
+      <i class="material-icons js-menu-toggle cursor-p">close</i>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body">
+    <ul class="custom-nav nav flex-column bg-white mb-0">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a href="/markets" class="nav-link text-dark font-italic">
+              Market
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/guides" class="nav-link text-dark font-italic">
+              Guide
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/explores" class="nav-link text-dark font-italic">
+              Explore
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/projects" class="nav-link text-dark font-italic">
+              Project
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Log out",
+              destroy_user_session_path,
+              :method => :delete,
+              :class=>"nav-link text-dark font-italic" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a data-turbolinks="false" id="forSignUpLink" class="nav-link text-dark font-italic cd-signup cursor-p">Signup
+          </a>
+        </li>
+        <li class="nav-item">
+          <a data-turbolinks="false" id="forLoginLink" class="nav-link text-dark font-italic cd-signup cursor-p">Login
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<header class="site-navbar js-site-navbar site-navbar-target" role="banner" id="site-navbar">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-11 col-xl-2 site-logo">
+          <a href="/"><img src="<%= image_path('1oh1-icon-BETA.png') %>" alt="Image" class="icon-nav "></a>
+        <div class="memberViewMobile" style="display: none;">
+          <i class="material-icons">keyboard_backspace</i>
+        </div>
+
+      </div>
+
+      <div class="col-12 col-md-10 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+          <ul class="site-menu mx-auto d-none d-lg-block">
+            <% if user_signed_in? %>
+              <!-- <li><%= text_field_tag :what,nil,class: 'form-control what',placeholder: 'Search' %></li> -->
+              <li><a href="/markets" class="nav-link">Market</a></li>
+              <li><a href="/guides" class="nav-link">Guide</a></li>
+              <li><a href="/explores" class="nav-link">Explore</a></li>
+              <li><a href="/projects" class="nav-link">Project</a></li>
+              <% if current_user.admin? %>
+                <li><a href="/categories" class="nav-link">Categories</a></li>
+                <li><a href="/products" class="nav-link">Products</a></li>
+              <% end %>
+              <!-- notification bell with counts -->
+              <li class="has-children" tabindex="0">
+                <a id= "notification">
+                  <i class="material-icons icons notificationsIcon">notifications</i>
+
+                  <span id="unread_count" style="" class="notification-count">100</span>
+                </a>
+                <ul class="dropdown" id="nav-data">
+                  <!-- Real time data updates (AJAX and ActionCable Rails) -->
+                </ul>
+              </li>
+              <!-- More Options-->
+              <li style="width: 1rem;">
+                <div class="dropdownImg has-children">
+                  <a  href="/profiles" class="" style="decoration:none">
+                      <img  class="profileTopbar" src="<%= profile_photo(current_user.profile) %>">
+                  </a>
+                  <div class="dropdown-menu drop-Bottom dropdown">
+                      <a class="txtLog">  <%= link_to "Log out", destroy_user_session_path, :method => :delete, :class=>"logtxt" %> </a>
+                  </div>
+
+
+                </div>
+              </li>
+            <% else %>
+              <li><a data-turbolinks="false" class="nav-link cd-signup cursor-p">Sign up</a></li>
+              <li><a data-turbolinks="false" class="nav-link cd-signin cursor-p">Log in</a></li>
+            <% end %>
+
+          </ul>
+        </nav>
+      </div>
+
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+          <a href="#" class="site-menu-toggle js-menu-toggle">
+            <i class="material-icons">menu</i>
+          </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,123 @@
+ <div class="navbar-without-banner">
+	<%= render 'landing/navbar' %>
+</div>
+<div class="page-banner medium text-center position-relative py-5 explores-banner"
+     style="background-image: url('<%= category_photo(@explore.category) %>');">
+   <div class="row">
+   	<div class="col-4">
+   	</div>
+   	<div class="col-8">
+			<h1 class="mt-5 pt-5 c-white font-weight-bold text-left position-relative d-none d-lg-block">
+				<%= @explore.category.name %>
+			</h1>
+   	</div>
+   </div>
+</div>
+
+<div class="row mx-0">
+	<div class="col-12 col-lg-4 pr-0">
+    <%=link_to profile_path(@explore.profile) do%>
+  		<div class="explores-card shadow text-center memberview-user-profile-card" id="explores-sticky-card">
+  			<div class="explores-card-image"
+  				 style="max-width: initial;background-image: url('<%= profile_photo(@explore.profile) %>');"></div>
+
+        <div class="position-relative">
+          <%= link_to "Message" ,user_chats_path(current_user, :other_user => @explore.profile.user_id), method: :post,class: "explores-card-book-btn btn btn-link shadow rounded-pill"  %>
+        </div>
+
+  			<div class="explores-card-content-wrap">
+  				<div class="explores-card-title">
+  					<%= @explore.profile.user.full_name %>
+  				</div>
+  				<div class="expores-card-description"><%= @explore.profile.bio %></div>
+  				<div class="explores-card-location"><%= @explore.profile.state %> ,<%= @explore.profile.country %></div>
+  				<div class="explores-card-stars">
+  					<div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%=average_rating(@explore,@explore.category)[:rating]%>"></div>
+  				</div>
+          <% stats_count = stats_count_user(@explore,@explore.category)%>
+  				<div class="row mt-3">
+  					<div class="col">
+              <div id="sparklinedash4"
+    						 class="text-center w-100 centerMargin"
+    						 style="max-width: 80px"
+    						 data-sparkline="<%= sparklines_yearly(Explore.where(category: @explore.category, profile: @explore.profile)) %>"></div>
+  						<h5 class="explores-card-section-count c-black my-1"><%=stats_count[:explore_count]%></h5>
+  						<div class="explores-card-section">EXPLORED</div>
+  					</div>
+  					<div class="col">
+              <div id="sparklinedash"
+                 class="text-center w-100 centerMargin"
+                 style="max-width: 80px"
+                 data-sparkline="<%= sparklines_yearly(Guide.where(category: @explore.category, profile: @explore.profile)) %>"></div>
+  						<h5 class="explores-card-section-count c-black my-1"><%=stats_count[:guide_count]%></h5>
+  						<div class="explores-card-section">GUIDES</div>
+  					</div>
+  					<div class="col">
+              <div id="sparklinedash2"
+                 class="text-center w-100 centerMargin"
+                 style="max-width: 80px"
+                 data-sparkline="<%= sparklines_yearly(Project.includes(:categories).where(categories:{id: @explore.category.id},profile: @explore.profile)) %>"></div>
+  						<h5 class="explores-card-section-count c-black my-1"><%=stats_count[:project_count]%></h5>
+  						<div class="explores-card-section">PROJECTS</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+    <%end%>
+	</div>
+	<div class="col-12 col-lg-8 ">
+      <div class="row align-items-center mt-2">
+        <div class="col">
+    		  <div class="border-bottom-0 material-tabs explores-material-tabs text-nowrap overflow-auto">
+    	        <a class="pt-0 active" id="explores-tab1-tab" href="#tab1">All</a>
+    	        <a class="pt-0" id="explores-tab2-tab" href="#tab2">Explorers</a>
+    	        <a class="pt-0" id="explores-tab3-tab" href="#tab3">Guides</a>
+    	        <a class="pt-0" id="explores-tab4-tab" href="#tab4">Projects</a>
+    	        <span class="yellow-bar"></span>
+    	    </div>
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <button class="btn btn-link dropdown-toggle pt-0 mt-1" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right rounded" aria-labelledby="dropdownMenuButton1">
+              <a data-turbolinks="false" class="dropdown-item ff-os font-weight-bolder px-3" href="#"
+              data-toggle="modal" data-target="#block-dialog">
+                <i class="material-icons align-middle mr-1">block</i>
+                <span class="align-middle fsz-16">Block user</span>
+              </a>
+              <a data-turbolinks="false" class="dropdown-item ff-os font-weight-bolder px-3" href="#"
+              data-toggle="modal" data-target="#report-dialog">
+                <i class="material-icons align-middle mr-1">flag</i>
+                <span class="align-middle fsz-16">Report user</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+	    <div class="tab-content">
+	    	<!-- all tab -->
+	    	<div id="tab1">
+          <%= render partial:'shared/all_tab',locals:{type: @explore,type_ratings: @all_ratings}%>
+	    	</div>
+	    	<!-- explores -->
+	    	<div id="tab2">
+            <%= render partial:'shared/explorers_tab',locals:{type: @explore,type_ratings: @explore_ratings}%>
+	    	</div>
+	    	<!-- guides -->
+	    	<div id="tab3">
+          <%= render partial:'shared/guides_tab',locals:{type: @explore,type_ratings: @guide_ratings}%>
+	    	</div>
+	    	<!-- projects -->
+	    	<div id="tab4">
+          <%= render partial:'shared/projects_tab',locals:{type: @explore,projects: @projects}%>
+	    	</div>
+	    </div>
+	</div>
+</div>
+
+<%= render 'landing/footer' %>
+<%= render 'shared/dialog_commenting_guideline',type: "session" %>
+<%= render partial:'shared/block',locals:{ name: @explore.profile.user.full_name}%>
+<%= render partial:'shared/report',locals:{ name: @explore.profile.user.full_name}%>

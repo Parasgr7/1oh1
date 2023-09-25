@@ -1,0 +1,36 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "home" %>
+<% end %>
+
+<% content_for :css_includes do %>
+  <%= stylesheet_link_tag "home" %>
+<% end %>
+
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div style="margin-top: 120px;">
+  <%= render 'shared/search_form'%>
+</div>
+<div class="section">
+    <main class="container">
+      <!-- uncomment this line for no result -->
+      <!-- <%= render partial:'shared/search_no_results' %> -->
+
+      <%= render partial:'filter_results',locals:{explores:nil}%>
+      <div id="popular_results">
+        <% if request.parameters[:search] %>
+          <%= render partial:'shared/search_results',locals:{results: @results}%>
+        <%else%>
+          <%= render partial:'popular_explores',locals:{world_popular_explore_category: @world_popular_explore_category}%>
+          <%= render partial:'popular_guides',locals:{world_popular_guide_category: @world_popular_guide_category}%>
+        <%end%>
+      </div>
+    </main>
+</div>
+
+<%= render 'landing/footer' %>
+
+<!-- no-result-found-icon.png -->
+<!--  -->

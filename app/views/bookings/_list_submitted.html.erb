@@ -1,0 +1,38 @@
+<% if booking.guide.profile_id == @profile_id %>
+<% @type= "Guide" %>
+<% @companion = booking.explore.profile %>
+<% elsif booking.explore.profile_id == @profile_id %>
+<% @type= "Explorer" %>
+<% @companion = booking.guide.profile %>
+<%end%>
+<tr class="submittedBookingsItem">
+  <td>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%B %e, %Y')%></p>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%l:%M %P') %> - <%=local_time(booking.end,'%l:%M %P')%></p>
+  </td>
+  <th scope="row"><%=booking.title%></th>
+  <td><%=booking.description.nil? || booking.description.empty?  ? "None" : booking.description%></td>
+  <td>
+    <%= link_to profile_path(@companion) do%>
+      <div class="project-avatar mr-2 d-inline-block align-middle"
+           style="background-image: url('<%= profile_photo(@companion)%>')">
+      </div>
+    <%end%>
+    <span class="whs-nw" id="nameBooking-<%= booking.id%>"><%= @companion.user.full_name %></span>
+  </td>
+  <th>
+    <%= @type.upcase %>
+  </th>
+  <td>
+    <% if (booking.start.to_datetime.in_time_zone(current_profile.time_zone) - (@schedule_time.nil? ? 30.minutes : @schedule_time.minutes)) < Time.zone.now %>
+      <i class="c-gray">Expired</i>
+    <%else%>
+      <i class="c-gray">Pending approval</i>
+    <%end%>
+  </td>
+  <td>
+    <% if (booking.start.to_datetime.in_time_zone(current_profile.time_zone) - (@schedule_time.nil? ? 30.minutes : @schedule_time.minutes)) > Time.zone.now %>
+      <a id="<%= booking.id%>" class="btn btn-link border rounded-pill booking-cancel-btn">Cancel</a>
+    <%end%>
+  </td>
+</tr>

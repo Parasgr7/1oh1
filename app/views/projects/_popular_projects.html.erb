@@ -1,0 +1,16 @@
+  <h3 class="my-5"><%=heading%> projects</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainPopularProjects">
+	<% if popular_projects.empty?%>
+		No <%=heading%> Projects
+	<%else%>
+    <%= render partial: 'shared/project_card.html', collection: popular_projects, as: :project, locals:{class_name: "popularProject", profile_builder: false} %>
+  <%end%>
+</div>
+
+<div class="popularProjectsLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessPopularProject">Less</a>
+	<div class="showMoreLessMessage" id="popularProjectMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMorePopularProject">More</a>
+</div>

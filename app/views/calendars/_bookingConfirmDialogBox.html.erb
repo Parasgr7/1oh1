@@ -1,0 +1,111 @@
+<% if booking.guide.profile_id == profile_id %>
+  <% @guide = booking.guide.profile %>
+  <% @explore = booking.explore.profile %>
+<% elsif booking.explore.profile_id == profile_id %>
+  <% @explore = booking.explore.profile %>
+  <% @guide = booking.guide.profile %>
+<%end%>
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content medium-size">
+		<div class="modal-header px-3">
+	        <h5 class="modal-title c-black">Booking Request</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	    </div>
+
+		<div class="modal-body position-relative">
+			<div class="row justify-content-around">
+				<div class="col-auto">
+					<div class="fsz-15 c-black font-weight-bold text-center mb-2">
+						Guide
+					</div>
+					<div class="text-center">
+						<div class="reservation-avatar d-inline-block"
+		             		 style="background-image: url('<%=image_path(profile_photo(@guide))%>')">
+		  		        </div>
+					</div>
+					<div class="fsz-15 c-black mt-1 text-center" id="guide_name">
+						<%= @guide.user.full_name %>
+					</div>
+				</div>
+				<div class="col-auto">
+					<div class="fsz-15 c-black font-weight-bold text-center mb-2">
+						Explore
+					</div>
+					<div class="text-center">
+						<div class="reservation-avatar d-inline-block"
+		             		 style="background-image: url('<%=image_path(profile_photo(@explore))%>')">
+		  		        </div>
+					</div>
+					<div class="fsz-15 c-black mt-1 text-center" id="explorer_name">
+						<%= @explore.user.full_name %>
+					</div>
+				</div>
+			</div>
+
+        	<div>
+				<div class="fsz-16 ff-ssp font-weight-bold mt-4 c-black" id="subject">
+					<%= booking.title %>
+				</div>
+				<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue" id="time_slot">
+					<%= local_time(booking.start,'%I:%M %P')%> - <%= local_time(booking.end,'%I:%M %P')%>, <%= local_time(booking.start,'%B %e, %Y')%>
+				</div>
+				<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue" id="timezone">
+					<%= @guide.time_zone %>
+				</div>
+				<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue">
+					<i id="booking_description"><%=booking.description%></i>
+				</div>
+			</div>
+
+			<div class="border-bottom">
+				<div class="mt-3 pb-3" style="max-width: 200px">
+					<div class="row mx-0">
+						<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+							Cost:
+						</div>
+						<div class="col-auto pr-0">
+							<span class="align-middle fsz-13 ff-os font-weight-bolder reservation-cost c-green-500" id="booking_cost">+<%=booking.coins%></span>
+							<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+						</div>
+					</div>
+					<div class="row mx-0">
+						<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+							Current balance:
+						</div>
+						<div class="col-auto pr-0">
+							<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="chest-container">
+								<%= balance %>
+							</span>
+							<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+						</div>
+					</div>
+					<div class="row mx-0">
+						<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+							New balance:
+						</div>
+						<div class="col-auto pr-0">
+							<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="remaining-container"><%= balance + booking.coins %></span>
+							<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+						</div>
+					</div>
+
+					<a href="/markets" class="fsz-14 c-blue font-weight-bold">Buy more coins</a>
+				</div>
+			</div>
+        </div>
+
+		<div class="modal-footer border-0 px-3">
+	      <button type="button" class="btn btn-link border rounded-pill" data-dismiss="modal">Decline</button>
+				<%= form_tag(booking_path(booking.id), :method => "put", remote: true) do %>
+					<div class="w-100">
+						<input type="hidden" name="approve_request" value="true">
+						<%= submit_tag 'Approve', class:"btn btn-success rounded-pill", id:"submit_approve_modal",data: { disable_with: "Approving..." } %>
+					</div>
+				<%end%>
+	      <!-- <button type="button" class="btn btn-success rounded-pill">Approve</button> -->
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,85 @@
+<main class="container">
+  <section class="my-5">
+    <h3 class="my-4">Top Guides</h3>
+
+    <div class="card-slider owl-carousel">
+      <% if @top_guides.blank? %>
+          <div class="custom-card card-normal mx-auto my-3" >
+            <div class="has-bg" style="background-image: url('<%= image_path('Skills/code-1084923_640.png') %>');">
+              <div class="top-images">
+                <img src="<%= image_path('flags/united-states.png') %>" alt="">
+                <img src="<%= image_path('eng.jpeg') %>" alt="">
+              </div>
+
+            <div class="texts-wrap">
+              <h5 class="text-white">Coding</h5>
+            </div>
+
+            <div class="bottom-image">
+              <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+            </div>
+          </div>
+
+          <h5 class="text-right">Chris Morrie</h5>
+          <div class="text-right">
+            <div class="rateYo d-inline-block p-0"></div>
+
+            <span class="d-inline-block star-counter">453</span>
+          </div>
+        </div>
+
+        <div class="custom-card card-normal my-3" >
+          <div class="has-bg" style="background-image: url('<%= image_path('Skills/code-1084923_640.png') %>');">
+            <div class="top-images">
+              <img src="<%= image_path('flags/united-states.png') %>" alt="">
+              <img src="<%= image_path('eng.jpeg') %>" alt="">
+            </div>
+
+          <div class="texts-wrap">
+            <h5 class="text-white">Coding</h5>
+          </div>
+
+          <div class="bottom-image">
+            <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+          </div>
+        </div>
+
+        <h5 class="text-right">Chris Morrie</h5>
+        <div class="text-right">
+          <div class="rateYo d-inline-block p-0"></div>
+
+          <span class="d-inline-block star-counter">453</span>
+        </div>
+      </div>
+      <%else%>
+        <%@top_guides.each do |guide|%>
+          <div class="custom-card card-normal mx-auto my-3" >
+            <%= link_to guide_path(guide.id),data: { turbolinks: false } do %>
+              <div class="has-bg" style="background-image: url('<%= category_path(guide.category) %>');">
+                <div class="top-images">
+                  <img src="<%= image_path('flags/united-states.png') %>" alt="">
+                  <img src="<%= image_path('eng.jpeg') %>" alt="">
+                </div>
+
+              <div class="texts-wrap">
+                <h5 class="text-white"><%=guide.category.name%></h5>
+              </div>
+
+              <div class="bottom-image">
+                <img src="<%= profile_photo(guide.profile) %>" alt="">
+              </div>
+            </div>
+          <%end%>
+
+          <h5 class="text-right"><%=guide.profile.user.full_name%></h5>
+          <div class="text-right">
+            <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= average_rating(guide,nil)[:guide_rating] %>"></div>
+            <span class="d-inline-block star-counter"><%= average_rating(guide,nil)[:guide_count] %></span>
+          </div>
+          </div>
+      <%end%>
+    <%end%>
+
+    </div>
+  </section>
+</main>

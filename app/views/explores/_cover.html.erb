@@ -1,0 +1,85 @@
+<section class="page-banner text-center py-5" style="background-image: url('<%= image_path('Section/workshop.jpg') %>');">
+  <div class="details container text-left">
+    <h1 class="mt-3 c-white">Explores</h1>
+
+    <div class="input-group mb-3">
+      <input type="text"
+             class="form-control border-secondary text-white bg-transparent custom-search-input"
+             placeholder="People, Projects, Subjects">
+
+      <div class="input-group-append">
+        <button class="btn custom-btn-outline-primary" type="button">Search</button>
+      </div>
+    </div>
+
+    <!-- <h3 class="c-white-darker cursor-p" id="arroundScheduleBtn">
+      Around your schedule
+      <button type="button" class="btn btn-link p-0 around-schedule-btn">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </button>
+    </h3> -->
+
+    <div class="position-relative schedule-popup-wrap d-none">
+      <div class="schedule-popup shadow">
+        <div class="form-group mb-4">
+          <label for="schedule-popup-what">What</label>
+          <input type="text"
+                 class="form-control"
+                 id="schedule-popup-what"
+                 placeholder="ex. Piano">
+        </div>
+
+        <h6 class="mt-4 mb-0 form-group">
+          <label for="">When</label>
+        </h6>
+        <div class="form-inline mb-4">
+          <div class="form-group small-group">
+            <select class="custom-select">
+              <option value="Monday" selected>Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+
+          <small class="mx-2 font-weight-bold">at</small>
+
+          <div class="form-group small-group">
+            <input type="text"
+                   class="form-control time-picker"
+                   placeholder="7:00 PM">
+          </div>
+
+          <small class="mx-2 font-weight-bold fz-14">PST</small>
+        </div>
+
+        <h6 class="mt-4 mb-0 form-group">
+          <label for="">Duration</label>
+        </h6>
+        <div class="form-group small-group mb-4">
+          <select class="custom-select">
+              <option value="5" selected>5 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15">15 minutes</option>
+              <option value="20">20 minutes</option>
+              <option value="25">25 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="35">35 minutes</option>
+              <option value="40">40 minutes</option>
+              <option value="45">45 minutes</option>
+              <option value="50">50 minutes</option>
+              <option value="55">55 minutes</option>
+              <option value="60">60 minutes</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
+          <button type="button" class="btn btn-success">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

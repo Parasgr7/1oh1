@@ -1,0 +1,6 @@
+<% js = escape_javascript(
+  render(partial: 'calendars/bookingConfirmDialogBox', locals: { booking: @booking, profile_id: @profile_id, balance: @balance})
+) %>
+
+$("#bookingConfirmDialogBox").html("<%= js %>");
+$("#bookingConfirmDialogBox").modal("show")

@@ -1,0 +1,16 @@
+<h3 class="my-5">Status: Idea</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainStatusIdea">
+	<% if projects.empty?%>
+		No Projects with status Idea
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "ideaStatusItem",profile_builder: false} %>
+	<%end%>
+</div>
+
+<div class="ideaStatusLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessIdea">Less</a>
+	<div class="showMoreLessMessage" id="ideaStatusMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMoreIdea">More</a>
+</div>

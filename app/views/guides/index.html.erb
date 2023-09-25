@@ -1,0 +1,27 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div style="margin-top: 120px;">
+  <%= render 'shared/search_form'%>
+</div>
+
+<div class="section">
+    <main class="container">
+      <div class="row border-bottom pb-5 mt-5">
+        <h3 class="c-black"><b>Guide</b> an Explorer through a subject to help with their development.</h3>
+      </div>
+      <%= render partial:'filter_results',locals:{guides:nil}%>
+      <div id="popular_results">
+        <% if request.parameters[:search] %>
+        <%= render partial:'shared/search_results',locals:{results: @results}%>
+        <%else%>
+        <%= render partial:'popular_in_region',locals:{popular_incountry: @popular_incountry,type:"guide"}%>
+        <%= render partial:'popular_in_guides',locals:{world_popular_guide_category: @world_popular_guide_category}%>
+
+        <%end%>
+      </div>
+    </main>
+</div>
+
+<%= render 'landing/footer' %>

@@ -1,0 +1,333 @@
+
+/*SECTION
+general css elements*/
+@media (min-width: 10px){
+	.sectionContent {
+		padding-top: 15px;
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
+
+
+.sales-report-balance {
+	top: 13px
+}
+.sales-report-balance-coin {
+	top: 8px
+}
+/*SECTION
+header section*/
+@media (min-width: 10px){
+	.chestHeader{
+		display: grid;
+		grid-template-columns: 2vw auto auto 1fr;
+		border-bottom: 1px solid #dfdfdf;
+	}
+	.chestHeader .title {
+		grid-column: 2/-1;		
+		font-size: 25px;
+    	font-weight: 900;
+	}
+	.dropdownTitle {
+		padding-right: 40px;		
+		font-size: 12px;
+	    color: black;
+	    font-family: 'Source Sans Pro', sans-serif;
+	    position: relative;
+	}
+	.dropdownTitle:after{
+		position: absolute;
+	    content: "\e313";
+	    font-size: 14px;
+	    top: 50%;
+	    right: 25%;
+	    transform: translateY(-50%);
+	    font-family: 'Material Icons';
+	}
+	#dropdownTitle2:after{
+		right: 15%;
+	}
+	.dropdownTitle select {
+		width: 160%;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    text-indent: 1px;
+	    text-overflow: '';
+	    border: none;
+	}	
+	.keydown {
+		position: absolute;
+	    right: 10px;
+	    top: 2px;
+	    font-size: 18px;
+	}
+
+}
+
+
+/*SECTION
+boxes section*/
+@media (min-width: 10px){
+	.chestBoxes {
+		display: grid;
+		grid-template-columns: 67% 33%;
+		margin: 0px 10px; 
+	}
+	.roleBoxes {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		padding: 44px 20px 10px 20px;
+	}
+	.roleBox {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-template-rows: 50px 90px;
+    	height: 145px;
+		border: 1px solid  #c0c0c0;
+		border-radius: 5px;
+
+	}
+	.exploringBox {
+		background-color: #e2f0cf;
+	}
+
+	.guidingBox {
+		background-color: #e7ecf5;
+	}
+
+	.roleBoxTitle {
+		grid-column: 1/-1;
+		font-size: 14px;
+		justify-self: center;
+		align-self: end;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 800;
+		border-bottom: 1px solid #c0c0c0;
+		width: 100%;
+		text-align: center;
+	}
+
+	.roleBoxCount {
+		justify-self: end;
+		font-size: 24px;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 700;
+		align-self: center;
+	}
+
+	.gCoin {
+		justify-self: start;
+		align-self: center;
+		width: 30px;
+	}
+
+	.balanceBox {
+		display: grid;
+		grid-template-columns: 1fr;
+		background-color: #f5f6fa;
+		border: 0.5px solid blue;
+		border-radius: 5px;
+		padding-left: 40px;
+		margin-right: 15px;
+		grid-template-rows: 77px 55px 40px 73px;
+		
+	}
+	.balanceTitle {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 900;
+		font-size: 25px;
+		color: black;
+		align-self: end;
+    	
+	}
+	.balanceCount {
+		display: grid;
+		grid-template-columns: auto auto 1fr;
+
+	}
+	.balanceNumber {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 700;
+		font-size: 30px;
+		align-self: center;
+	}
+	.gCoinBalance {
+		justify-self: center; 
+		align-self: center;
+		width: 50px;
+	}
+
+	.getCoins {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		font-size: 14px;	
+		color: #5d6dfe;
+	}
+	.roleTrends {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.roleTrend {
+		display: grid;
+		grid-template-columns: 20% 80%
+	}
+	.trendTitle {
+		grid-column: 1/-1;
+		justify-self:start;
+		color: gray; 
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		font-size: 12px;	
+	}
+	.trendIcon {
+		justify-self: end;
+		font-size: 30px;
+	    align-self: center;
+	    color: green;
+	}
+	.trendCount {
+		justify-self:start;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 900;
+		font-size: 30px;
+	    align-self: center;
+	    color: black;
+
+	}
+}
+
+
+/*SECTION
+graph section*/
+@media (min-width: 10px){
+	.chestGraph {
+		display: grid;
+		grid-template-columns: 70% 30%;
+		padding-top: 45px;
+		padding-bottom: 45px;
+	}
+}
+
+
+/*SECTION
+counter and table section*/
+@media (min-width: 10px){
+	.chestStats {
+		grid-template-columns: 20% 830%;
+		grid-gap: 50px;
+	}
+	.sessionesCounter {
+		display: grid;
+		grid-template-columns: 1fr;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		grid-gap: 10px;
+	}
+	.exploringSessions { 
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		background-color: #e1f0cd;
+		height: 75px;
+		border-radius: 5px;
+	}
+	.guidingSessions { 
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		background-color: #f8f1ff;
+		height: 75px;
+		border-radius: 5px;
+	}
+	.exploringCounter {
+		justify-self:end;
+		align-self: center;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 700;
+		font-size: 38px; 
+	}
+	.guidingCounter{
+		justify-self:end;
+		align-self: center;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 700;
+		font-size: 38px; 
+		color: #a04aff;
+	}
+	.sessionesTitle {
+		justify-self: start;
+		align-self: center;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 700;
+		padding-left: 10px;
+		font-size: 15px; 
+	}
+	.tableHeight {
+		height: 40px;
+	}
+	.tableHeader {
+		color: #abb1c2;
+		font-size: 15px;
+		font-weight: 700;
+		font-family: 'Source Sans Pro', sans-serif;
+	}
+	.boldCell {
+		color: black;
+		font-size: 14px;
+		font-weight: 900;
+		font-family: 'Source Sans Pro', sans-serif;
+	}
+	.middleCell {
+		color: #abb1c2;
+		font-size: 14px;
+		font-weight: 900;
+		font-family: 'Source Sans Pro', sans-serif;
+	}
+	.bottomBorder {
+		border-bottom: 1px solid #cfd3dd;
+
+	}
+}
+
+// Mobile classes 
+@media (max-device-width: 767px) {
+	
+	.sectionContent{
+
+		& .chestHeader{
+			margin-top: 2rem;
+		}
+
+		& .chestBoxes{
+			width: 100vw;
+			grid-template-columns: 1fr;
+			padding: 2rem;
+			margin: 0;
+			gap: 20px;
+	
+			& .balanceBox{
+				margin: 0;;
+			}
+
+			& .roleBoxes{
+				grid-gap: 10px;
+			}
+
+		}
+
+		& .chestGraph{
+			margin-top: 8%;
+			margin-bottom: 10%;
+			grid-template-columns: 1fr;
+			width: 100vw;
+			padding: 2rem;
+		}
+
+		& .chestStats{
+			grid-template-columns: repeat(2,1fr);
+			grid-gap: 8px;
+			padding: 2rem;
+		}
+	}
+}

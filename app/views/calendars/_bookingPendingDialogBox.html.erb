@@ -1,0 +1,70 @@
+<div class="modal fade"
+	id="bookingPendingConfirmDialogBox"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="bookingPendingConfirmDialogBox"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header px-5">
+		        <h6 class="modal-title">Booking</h6>
+
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		    </div>
+
+			<div class="modal-body px-5 position-relative">
+				<div class="bookingConfirmDialogBox-avatar">
+					<span class="fz-14">with Bell Throne</span>
+					<img class="rounded-circle"
+			             height="80px"
+			             width="80px"
+			             src="<%=image_path('People/asian-square.jpg')%>" alt="asian">
+				</div>
+
+	        	<h6 class="mt-2"><b>Your Role: Guide</b></h6>
+				<h6><b>Subject: Logo Design</b></h6>
+				<h6><b>Status: Confirmed</b></h6>
+
+				<h6 class="fz-13 mt-4"><b>Details</b></h6>
+				<p class="fz-14 mt-2 mb-0">
+					<i class="material-icons align-middle mr-3">today</i>
+					<span class="today-placeholder align-middle">July 4th</span>
+				</p>
+
+				<p class="fz-14">
+					<i class="material-icons align-middle mr-3">access_time</i>
+					<span class="start-time-placeholder align-middle">4:30PM</span>
+					<span class="align-middle"> - </span>
+					<span class="end-time-placeholder align-middle">5:30PM</span>
+					<span class="align-middle">PST</span>
+				</p>
+
+				<h6 class="fz-13 mt-4"><b>Price</b></h6>
+
+				<h6 class="fz-14">
+					<span class="align-middle mr-5 ">Session cost:</span>
+					<span class="session-const-placeholder align-middle">-60</span>
+					<img class="align-middle" width="25px" src="<%= image_path('coin.png') %>" alt="coin"/>
+				</h6>
+				<h6 class="fz-14">
+					<span class="align-middle mr-5 ">New Balance:</span>
+					<span class="session-const-placeholder align-middle">360</span>
+					<img class="align-middle" width="25px" src="<%= image_path('coin.png') %>" alt="coin"/>
+				</h6>
+
+				<p class="border bookingConfirmDialogBox-description mt-4 fz-14">
+					<i class="material-icons">menu_open</i>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum provident quos id consequuntur voluptatum debitis laboriosam obcaecati nulla illum laborum, quia, sed qui incidunt eius voluptatem quisquam repudiandae facere. Voluptate?
+				</p>
+	        </div>
+		    
+			<div class="modal-footer border-0 px-5">
+		      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Session</button>
+		      <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
+		      <button type="button" class="btn btn-primary">Approve</button>
+		    </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+---
+:verbose: true
+:concurrency: 5
+:timeout: 60
+development:
+  :concurrency: 25
+staging:
+  :concurrency: 50
+production:
+  :concurrency: 5
+:queues:
+    - [mailers, 7]
+    - [default, 5]

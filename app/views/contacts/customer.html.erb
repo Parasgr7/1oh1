@@ -1,0 +1,24 @@
+<%if request.path.split("/contact-us/")[1] == 'customer-support'%>
+  <%=render 'customer_care'%>
+<%elsif request.path.split("/contact-us/")[1] == 'security-escalations'%>
+  <%=render partial:'shared_contacts',locals:{name:'Security Escalations',
+  description:'We are commited to maintaining a safe environment. Please let us know if any vulnerability is discovered.',
+  type:'security',
+  url: image_path('Icons/contacts/Security.png')}%>
+<%elsif request.path.split("/contact-us/")[1] == 'technical-issues'%>
+  <%=render partial:'technical_issues'%>
+<%elsif request.path.split("/contact-us/")[1] == 'hr-inquiries'%>
+  <%=render partial:'hr_inquiries'%>
+<%elsif request.path.split("/contact-us/")[1] == 'investor-opportunites'%>
+  <%=render partial:'shared_contacts',
+    locals:{name:'Investor Opportunities',
+    description:'We love working with people. Obviously.',
+    type:'investor',
+    url: image_path('Icons/contacts/Investor.png')}%>
+<%elsif request.path.split("/contact-us/")[1] == 'pr-communications'%>
+  <%=render partial:'shared_contacts',
+    locals:{name:'PR and Communications',
+      description:'Let\'s get in touch.',
+      type:'pr_communication',
+      url: image_path('Icons/contacts/PR.png')}%>
+<%end%>

@@ -1,0 +1,128 @@
+<div class="reservation-top-nav-wrap border-bottom">
+	<div class="reservation-top-nav">
+		<div class="row m-0">
+			<div class="col-auto px-0">
+                <div class="project-progress-circle active text-center">
+                   <i class="material-icons c-white fsz-16" style="margin-top: 5px;">check</i>
+                </div>
+                <span class="reservation-top-nav-text c-deep-green ">Subject</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line active">
+
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle active text-center">
+                	<i class="material-icons c-white fsz-16" style="margin-top: 5px;">check</i>
+                </div>
+                <span class="reservation-top-nav-text c-deep-green">Date and Time</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line active">
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+                <span class="reservation-top-nav-text c-black font-weight-bold">Confirm</span>
+            </div>
+		</div>
+	</div>
+</div>
+
+
+<div class="mt-5">
+	<div class="centerMargin pb-5" style="max-width: 450px">
+		<div class="border-bottom mb-4 px-4">
+			<div>
+				<div class="reservation-avatar centerMargin"
+					style="background-image: url('<%= image_path(profile_photo(@guide.profile)) %>')"></div>
+				<div class="fsz-16 ff-ssp c-black mt-2 text-center c-black"><%=@guide.profile.user.full_name%></div>
+
+				<div class="fsz-16 ff-ssp font-weight-bold mt-4 c-black">
+					<%= @guide.category.name.camelize %>
+				</div>
+				<%if @params[:edit]=="true"&& @params[:id].present?%>
+					<p class="mb-1 ff-os fsz-13 lh-3\/2 c-light-blue" style="text-decoration: line-through">
+						<%=@previous_start_time + " - " +@previous_end_time +", "+ @previous_date%>
+					</p>
+				<%end%>
+				<p class="mb-1 ff-os fsz-13 lh-3\/2 c-light-blue">
+					<%=@start_time + " - " +@end_time +", "+ @date%>
+				</p>
+				<p class="mb-1 ff-os fsz-13 lh-3\/2 c-light-blue">
+					<i><%= @session_goal.camelize %></i>
+				</p>
+			</div>
+			<div class="mt-3 pb-4" style="max-width: 180px">
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Session Cost:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black">
+							<%= @session_cost %>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="22" alt="">
+					</div>
+				</div>
+				<%if @params[:edit]=="true" && @params[:id].present?%>
+						<div class="row mx-0">
+							<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+								Change Fee:
+							</div>
+							<div class="col-auto pr-0">
+								<span class="align-middle fsz-13 ff-os font-weight-bolder c-black">
+									100
+								</span>
+								<img class="align-middle" src="<%= image_path('coin.png') %>" width="22" alt="">
+							</div>
+						</div>
+				<%end%>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Chest:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black">
+							<%=@chest%>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="22" alt="">
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Remaining:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black">
+							<%=@remaining_balance%>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="22" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<% if @params["edit"]=="true" && @params["id"].present? %>
+				<%= form_tag booking_path(@params["id"]),:method => :patch do |f| %>
+					<input type="hidden" value="<%= @params%>" name="payload">
+					<%= submit_tag("Send Request",:id=>"submit_request", :class=>'btn btn-success',data: { disable_with: "Submitting..." })%>
+				<% end %>
+			<%else%>
+				<%= form_tag submit_request_path,:method => :post do |f| %>
+					<input type="hidden" value="<%= @params%>" name="payload">
+					<%= submit_tag("Send Request",:id=>"submit_request", :class=>'btn btn-success',data: { disable_with: "Submitting..." })%>
+				<% end %>
+			<%end%>
+		</div>
+		<div class="row">
+			<div class="col text-center my-1">
+				<%=link_to "Back", :back,class: "btn btn-link c-light-blue"%>
+				<a href="/" class="btn btn-link c-light-blue">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>

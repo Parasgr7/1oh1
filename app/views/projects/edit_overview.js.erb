@@ -1,0 +1,5 @@
+$('#projectDialogMainPage').modal("hide");
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

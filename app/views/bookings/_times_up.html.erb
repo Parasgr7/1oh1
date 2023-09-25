@@ -1,0 +1,53 @@
+
+<!-- Modal -->
+<div class="modal fade timeUpModal" id="timesUp" tabindex="-1" role="dialog" aria-labelledby="timesUp" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered medium-size" role="document">
+    <div class="modal-content medium-size p-4">
+      <!-- --  -->
+      <div class="modal-header justify-content-center">
+        <h3 class="modal-title titleModalTimesUp text-center" id="timesUpModalTitle">Times up!</h3>
+      </div>
+      <div class="modal-body grid-timeUpModal text-center">
+        <!-- --  -->
+        <div class="main">
+          <div class="top-body">
+            <span class="notice">Please rate your experience with</span>
+            <% if params["peer_id"]%>
+              <span class="name c-black"><%= params["peer_id"].present? ? Profile.find(params["peer_id"]).user.full_name : "" %></span>
+            <%end%>
+          </div>
+            <!-- person image  -->
+          <div class="midle-body">
+            <div class="imageContainer mt-4">
+              <%= image_tag(profile_photo(params["peer_id"].present? ? Profile.find(params["peer_id"]) : current_user.profile), :class => "img-fluid") %>
+            </div>
+            <!-- starts  -->
+            <div class="startsContainer mt-4">
+                <div id="" class="rateYoInput centerMargin" rating="0"></div>
+            </div>
+          </div>
+
+          <div class="end-body mt-3">
+            <div class="comments">
+              <%= form_tag(reviews_path, :method => "post", remote: true) do %>
+                <input type="hidden" id="rateExperience" value="3" name="rating">
+                <input type="hidden" id="peer_id" value="<%= params["peer_id"].present? ? params["peer_id"] : "" %>" name="peer_id">
+                <input type="hidden" id="booking_id" value="<%= params["id"].present? ? params["id"] : "" %>" name="booking_id">
+                <input type="hidden" id="user_id" value="<%= params["profile_id"].present? ? params["profile_id"] : "" %>" name="user_id">
+                <input type="text" placeholder="Leave a comment" name="review" class="form-control commentField">
+                <%= submit_tag 'Submit', class:"btn btn-success rounded-pill mt-3 w-100",data: { disable_with: "Submitting..." } %>
+              <%end%>
+            </div>
+
+            <div class="last-text-body">
+              <a class="mt-3 text-secondary font-weight-normal fsz-13"
+              style="text-decoration: underline!important;" href="/chests">Rate later</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'bookings/report_problem' %>

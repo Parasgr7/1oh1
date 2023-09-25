@@ -1,0 +1,60 @@
+  <div class="site-section border-bottom" id="section-popular">
+  <div class="container" style="margin-top: 25px">
+
+    <div class="row mb-5">
+      <div class="col-md-12 order-md-1" data-aos="fade-up">
+
+        <div class="text-left pb-1 mb-4">
+          <h2 class="text-secondary" id="country_name">Popular in <%=@user_country%></h2>
+        </div>
+        <div class="row">
+          <% if @popular_incountry.blank? %>
+            No items for your country
+          <%else%>
+            <% @popular_incountry.each do |category|%>
+              <div class="col text-center">
+                <%= link_to category_path(category.slug,type:"explores"),data: { turbolinks: false } do %>
+                  <div class="custom-card card-small my-3 centerMargin">
+                    <div class="has-bg" style="background-image: url('<%= category_path(category) %>');">
+                      <div class="texts-wrap">
+                        <div class="main-text"><%=category.name.classify%></div>
+                        <!-- <div class="sub-text">editing</div> -->
+                      </div>
+                    </div>
+                  </div>
+                <%end%>
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+    <hr>
+
+    <div class="text-left pb-1 mb-4">
+      <h2 class="text-secondary">Popular around the World</h2>
+    </div>
+    <div class="row">
+      <% if @popular_inworld.blank? %>
+        No items available
+      <%else%>
+        <% @popular_inworld.each do |category| %>
+          <div class="col text-center">
+            <%= link_to category_path(category.slug,type:"explores"),data: { turbolinks: false } do %>
+              <div class="custom-card card-small my-3 centerMargin">
+                <div class="has-bg" style="background-image: url('<%= category_path(category) %>');">
+                  <div class="texts-wrap">
+                    <div class="main-text"><%=category.name.classify%></div>
+                    <!-- <div class="sub-text">editing</div> -->
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <%end%>
+    </div>
+
+  </div>
+</div>

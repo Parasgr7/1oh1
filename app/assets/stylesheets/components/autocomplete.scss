@@ -1,0 +1,19 @@
+.easy-autocomplete-container {
+	width: calc(100% - 17px)!important;
+    left: 18px!important;
+    margin-top: 1px;
+	ul {
+		max-height: 70vh!important;
+		overflow-y: auto!important;
+		border-radius: 0 0 5px 5px;
+		border: 1px solid #dee2e6 !important;
+		.eac-category, li {
+			padding: 10px 16px !important;
+			border: none!important;
+		}
+		.eac-category, a {
+			color: #000!important;
+			white-space: nowrap;
+		}
+	}
+}

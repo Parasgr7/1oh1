@@ -1,0 +1,9 @@
+$('form#create_project_comment').trigger("reset");
+<% js = escape_javascript(
+  render(partial: 'projects/project_comments', locals: { comment:@project_comment })
+) %>
+$("#project_comments").prepend("<%= js %>");
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

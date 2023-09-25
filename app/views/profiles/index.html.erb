@@ -1,0 +1,19 @@
+<!-- <div class="profile-page">
+
+</div> -->
+<div class="page-wrapper default-theme sidebar-bg bg1 profileActive">
+
+    <%= render 'profiles/side_bar' %>
+    <!-- page-content  -->
+        <div class="mainContent">
+            <!-- <i id="responsiveMenu" class="material-icons">more_vert</i> -->
+            <%= render :template => "profiles/show" %>
+        </div>
+    <!-- page-content" -->
+</div>
+
+<%= render 'reviews_modal' %>
+<%= render 'editprofile' %>
+<%= render 'edit_explore' %>
+<%= render 'edit_guide' %>
+<%= render 'new_category_modal', type: nil %>

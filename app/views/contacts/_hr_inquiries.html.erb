@@ -1,0 +1,56 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="container">
+  <h1 class="contact-us-title mt-5 pt-5">
+    Contact Us
+  </h1>
+  <p class="contact-us-description">Get in touch with the right people at 1oh1. Email a member of our <br>
+    customer care team, marketing team, technical team or HR team.</p>
+
+  <div class="row mt-4">
+  	<div class="col">
+  		<div class="contact-card active">
+	        <div class="content">
+	          <img src="<%=image_path('Icons/contacts/HR.png')%>" alt="">
+	          <div class="title">
+	            HR Inquiries
+	          </div>
+	          <div class="description">
+	            Passionate about education? Want to help others learn, earn and grow? Lets get in touch.
+	          </div>
+	        </div>
+        </div>
+  	</div>
+  	<div class="col">
+      <%= form_tag(contacts_path,remote: :true,id:"contacts") do %>
+    		<div class="form-group custom-from-group">
+    		  <label for="name">Name</label>
+    		  <input type="text" class="form-control" required name="name" id="name">
+  		  </div>
+
+  		<div class="form-group custom-from-group">
+  		  <label for="email">Email</label>
+  		  <input type="email" class="form-control" required name="email" id="email">
+  		</div>
+
+  		<div class="form-group custom-from-group">
+  		    <label for="bio">Tell us about yourself</label>
+  		    <textarea class="form-control" id="bio" required name="messsage" rows="3"></textarea>
+  		</div>
+      <input type="hidden" name="category" value="hr">
+  		<div class="form-group custom-from-group">
+  		  <label for="subject">LinkedIn URL</label>
+  		  <input type="text" class="form-control" required name="linkedin_url" id="subject">
+  		</div>
+
+  		<div class="form-group">
+  			<button class="btn btn-success" data-disable-with="Sending...">
+  				Send
+  			</button>
+  		</div>
+    <%end%>
+  	</div>
+  </div>
+</div>

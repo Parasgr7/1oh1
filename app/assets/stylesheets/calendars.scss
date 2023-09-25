@@ -1,0 +1,372 @@
+#calendarMain {
+	top: -128px;
+}
+
+.calendar-page-container {
+	// margin-top: 150px;
+	.pending-btn, .guiding-btn, .exploring-btn, .unavailable-btn {
+		color: #4d4d4d!important;
+		text-transform: capitalize;
+		border-radius: 5px;
+		letter-spacing: 1px;
+		min-width: 165px;
+	}
+	.pending-btn {
+		border: 1px solid #ffbc7d;
+		background-color: rgb(255, 240, 220);
+	}
+	.guiding-btn {
+		border: 1px solid rgb(182, 134, 224);
+		background-color: rgb(233, 227, 241);
+	}
+	.exploring-btn {
+		border: 1px solid #aaaaaa;
+		background-color: #e6e7e7;
+	}
+	.unavailable-btn {
+		border: 1px solid rgb(249, 147, 168);
+		background-color: rgb(252, 227, 233);
+	}
+	.dropdown-menu {
+		.dropdown-item.active {
+			background-color: #ac8bec;
+		}
+	}
+}
+
+#chagneOrCancelDialog, #cancelSessionDialog, #bookingChangeRequestDialog, #bookingConfirmDialogBox {
+	overflow-y: auto;
+	.modal-content {
+		margin: 0 auto;
+		padding:  40px;
+	}
+	.chagneOrCancelDialog-title {
+		padding-top: 29px;
+		font-size: 20px;
+	}
+	.chagneOrCancelDialog-option {
+		padding: 20px;
+		padding-left: 60px;
+		position: relative;
+		.chagneOrCancelDialog-option-icon {
+			position: absolute;
+			left: 14px;
+			top: 23px;
+			width: 30px;
+		}
+	}
+	.custom-btn-outline-primary {
+		text-transform: none;
+		letter-spacing: 1px;
+	}
+}
+
+#cancelSessionDialog, #bookingChangeRequestDialog, #canceledDialogBox, #deleteUnavailableTimeDialog  {
+	.btn {
+		border-radius: 3px;
+		text-transform: none;
+		letter-spacing: 1px;
+		font-size: 14px;
+	}
+	.cancelSessionDialog-price-wrap {
+		& > span:first-child {
+			width: 240px;
+			display: inline-block;
+		}
+	}
+}
+.time-conflict-icon {
+	display: inline-block;
+	border-radius: 50%;
+	border: 3px solid #f16821;
+	width: 60px;
+	height: 60px;
+
+	i {
+		font-size: 45px;
+		color: #f16821;
+		position: relative;
+		right: -1px;
+		bottom: -5px;
+	}
+}
+#bookingChangeRequestDialog {
+	.previous-day-placeholder, .previous-wrap {
+		text-decoration: line-through;
+	}
+}
+#canceledDialogBox {
+	.modal-content {
+		max-width: 450px;
+		margin: 0 auto;
+		padding: 40px;
+	}
+}
+
+#bookingConfirmDialogBox, #bookingPendingConfirmDialogBox, #profileCalendarUnavailableDialogBox, #profileCalendarRecurringUnavailableDialogBox {
+	.btn {
+		border-radius: 8px;
+		text-transform: none;
+		letter-spacing: 1px;
+		font-size: 14px;
+	}
+	a {
+		color: #2a8bf2
+	}
+	.modal-content {
+		max-width: 600px;
+		margin: 0 auto;
+		border-radius: 25px;
+	}
+	.bookingConfirmDialogBox-avatar {
+		text-align: center;
+		position: absolute;
+		top: 18px;
+		right: 135px;
+		span {
+			display: block;
+			margin: 0 auto;
+		}
+		img {
+			margin: 5px auto 0 auto;
+		}
+	}
+	.bookingConfirmDialogBox-description {
+		position: relative;
+		margin: 10px 0 0 50px;
+		padding: 15px;
+		border-radius: 12px;
+		i {
+			left: -53px;
+			top: 0;
+			position: absolute;
+		}
+	}
+}
+
+#profileCalendarRecurringUnavailableDialogBox {
+	.time-picker {
+		max-width: 100px;
+		text-align: center;
+	}
+	.time-picker-wrap > div {
+		margin-top: 5px;
+	}
+
+	.time-picker-wrap > div:first-child {
+		margin-top: 0;
+	}
+
+	.btn-link-close {
+		font-size: 20px;
+		color: #3c4043!important;
+	}
+}
+
+#newEventDialog, #editEventDialog {
+	.edit-view {
+		display: none;
+	}
+	&.edit-view {
+		.create-view {
+			display: none;
+		}
+		.edit-view {
+			display: initial!important;
+		}
+	}
+	#newEventStartTimepicker, #newEventEndTimepicker, #newEventDatePicker {
+		border: none;
+		color: rgb(77, 77, 77);
+		max-width: 82px;
+		font-size: 14px;
+		&:hover {
+			background-color: rgba(32,33,36,0.039);
+		}
+	}
+}
+#newEventDialog, #editEventDialog, #newEventTimeConflict, #newEventMoreOptionDialog, #editEventMoreOptionDialog, #editCalendarWarningDialog, #newEventInsufficientCoin, #newEventMultipleTimeSelect, #deleteUnavailableTimeDialog {
+	.modal-title {
+		font-size: 16px;
+	}
+	.form-group label {
+		font-size: 16px;
+	}
+	.new-event-main-text, .new-event-action-main-text {
+		font-size: 14px;
+	}
+	.new-event-subtext {
+		display: inline-block;
+		width: 110px;
+		font-size: 15px;
+		i {
+			font-size: 18px;
+			color: #75797e;
+			vertical-align: middle;
+		}
+	}
+	.new-event-action-subtext {
+		display: inline-block;
+		font-size: 15px;
+		margin-right: 25px;
+		i {
+			font-size: 18px;
+			color: #75797e;
+			vertical-align: middle;
+		}
+	}
+	.new-event-buy-gcoins {
+		font-size: 12px;
+		text-align: right;
+		position: relative;
+		a {
+			color: #2a8bf2;
+			position: absolute;
+			left: 200px;
+			top: -30px;
+		}
+	}
+	.new-event-action {
+		cursor: pointer;
+	}
+	.new-event-price, .new-event-remaining {
+		max-width: 310px;
+	}
+	.btn-primary, .btn-secondary, .btn-outline-dark {
+		font-size: 13px;
+		letter-spacing: 1px;
+		text-transform: none;
+		border-radius: 5px;
+	}
+	.btn-primary {
+		color: white!important;
+	}
+	.btn-secondary {
+		border: none;
+		color: #5f6368!important;
+		background-color: white!important;
+		&:hover {
+			color: white!important;
+			background-color: #5f6368!important;
+		}
+	}
+	.modal-footer {
+		border-top: none;
+	}
+}
+
+#newEventMoreOptionDialog, #editEventMoreOptionDialog {
+	max-width: initial!important;
+	max-height: 90%;
+	#newEventMoreOptionTodayBtn {
+		text-transform: none;
+		font-size: 14px;
+		letter-spacing: 1px;
+		border-radius: 3px;
+		border-color: #dee2e6!important
+	}
+	.modal-dialog {
+		height: 100%;
+	}
+	.modal-content {
+		max-height: 100%;
+		overflow-y: auto;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.new-event-avatar {
+		border-radius: 50%;
+	}
+	.new-event-more-option-buy-gcoins a {
+		color: #2a8bf2!important;
+	}
+	.new-event-user-overview-wrap {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.modal-content {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	.material-tabs a {
+		text-transform: none;
+	}
+	.notification-select, .notification-duration-input, .notification-duration-type-input {
+		max-width: 120px;
+	}
+	.btn-link {
+		color: rgb(60, 64, 67)!important;
+		span {
+			color: rgb(60, 64, 67);
+			font-size: 18px;
+		}
+		text-transform: none!important;
+		letter-spacing: 1px;
+		font-size: 14px;
+	}
+
+	.input-icon {
+		position: absolute;
+		left: -42px;
+		top: 15px;
+		i {
+			font-size: 17px;
+			color: rgb(95, 99, 104)
+		}
+	}
+	.yellow-bar {
+		background: #2a8bf2;
+	}
+	.new-event-time-picker {
+		max-width: 80px;
+		font-size: 14px;
+		text-align: center;
+	}
+	.new-event-date-picker {
+		max-width: 95px;
+		font-size: 14px;
+		text-align: center;
+	}
+	.more-option-main-column {
+		padding-left: 68px;
+	}
+}
+
+
+// custom checkboxes
+.custom-checkbox.explore .custom-control-input:checked ~ .custom-control-label::before {
+	background-color: #40E4B1;
+	border-color: #40E4B1;
+}
+.custom-checkbox.guide .custom-control-input:checked ~ .custom-control-label::before {
+	background-color: #43A9F6;
+	border-color: #43A9F6;
+}
+.custom-checkbox.pending .custom-control-input:checked ~ .custom-control-label::before {
+	background-color: #FFC447;
+	border-color: #FFC447;
+}
+.custom-checkbox.unavailable .custom-control-input:checked ~ .custom-control-label::before {
+	background-color: #E7E7EB;
+	border-color: #E7E7EB;
+}
+
+.custom-checkbox.explore .custom-control-label::before {
+    border: 2px solid #40E4B1;
+    background: white;
+}
+.custom-checkbox.guide .custom-control-label::before {
+    border: 2px solid #43A9F6;
+    background: white;
+}
+.custom-checkbox.pending .custom-control-label::before {
+    border: 2px solid #FFC447;
+    background: white;
+}
+.custom-checkbox.unavailable .custom-control-label::before {
+    border: 2px solid #E7E7EB;
+    background: white;
+}

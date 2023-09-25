@@ -1,0 +1,20 @@
+<div class="navbar-without-banner">
+	<%= render 'landing/navbar' %>
+</div>
+
+<div class="container mt-5 pt-4">
+	<div class="row">
+		<div class="col-12 col-lg-12">
+			<div id="filter_results_all">
+			</div>
+			<div id="popular_results_categories_all">
+				<% if request.parameters[:search] %>
+        	<%= render partial:'shared/search_results',locals:{results: @results}%>
+				<%end%>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<%= render 'landing/footer' %>

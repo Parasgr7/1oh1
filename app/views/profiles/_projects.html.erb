@@ -1,0 +1,95 @@
+<div class="projectsSection" id="view_projects">
+    <div class="projectsContent" id="projectsListProfile">
+      <div class="projectsSearchCreate">
+       <div class="text-right">
+         <% if !view_individual_profile.nil? %>
+             <!-- <button class="buttonCreate btn btn-success mt-3 mr-3" data-toggle="modal" data-target="#createProjectsModal">Create New Project</button> -->
+             <%=link_to "Create New Project", projects_overview_path,class: "buttonCreate btn btn-success mt-3 mr-3"%>
+         <%end%>
+       </div>
+      </div>
+      <% if @projects.blank? %>
+            <div class="gridProfileActivity">
+              <div class="titleactivityProfile">
+                <span class="titleYetAdd">Nothing added yet</span>
+              </div>
+              <div class="gridImgActivity">
+                <div class=""></div>
+                <div class="">
+                  <img src="<%= image_path('Icons/yet.png') %>" alt="Image" class="imgYet">
+                </div>
+                <div class=""></div>
+              </div>
+            </div>
+
+      <% else %>
+         <% @projects.each do|project| %>
+              <div class="projectInContainer projectContainer">
+                 <div class="projectImages">
+                     <div class="projectPhoto">
+                         <img class="projectPicture" src="<%= project.image %>">
+                         <% if project.status == 0 %>
+                              <img src="<%= image_path('Icons/Idea_icon.png') %>" alt="Image" class="projectIcon">
+                            <% elsif project.status == 1 %>
+                              <img src="<%= image_path('Icons/WIP-icon.png') %>" alt="Image" class="projectIcon">
+                            <% else %>
+                              <img src="<%= image_path('Icons/completed-icon.png') %>" alt="Image" class="projectIcon">
+                          <% end %>
+                     </div>
+                   <div>
+                     <% project.colab_id.each do |x|%>
+                       <div class="profilePict d-inline-block mt-1">
+                         <% if User.find(x).profile.nil?%>
+                         <img class="profileImage" src="<%= image_path('no_profile.png')  %>">
+                         <%else%>
+                         <img class="profileImage mr-1" src="<%= profile_photo(User.find(x).profile) %>">
+                         <%end%>
+                       </div>
+                     <% end %>
+                     <button class="btn btn-success float-right">Offer Help</button>
+                   </div>
+               </div>
+               <div class="projectInfo">
+                   <div class="projectTitle c-black"><%= project.name %></div>
+                   <div class="editIconProject">
+                     <% if !view_individual_profile.nil? %>
+                       <%= link_to open_edit_project_modal_path(id: project), remote: true do%>
+                        <i class="material-icons icons create">create</i>
+                       <%end%>
+                     <%end%>
+                     <%= link_to project_path(id: project.id), method: :delete, remote: true do%>
+                     <i class="material-icons">
+                        delete
+                      </i>
+                      <%end%>
+
+                   </div>
+                   <div class="projectDescription">
+                      <h3 class="descriptionTitle mb-1 c-black">Description:</h3>
+                      <p class="descriptionText fz-14 fw-500"> <%= project.description %></p>
+                      <div class="projectSkills">
+                        <h3 class="descriptionTitle c-black mb-0">Tags:</h3>
+                        <div>
+                           <% project.categories.each do |category|%>
+                            <div class="base-chips d-inline-block p-1">
+                              <div class="base-chips-name fz-13">
+                                <%= category.name %>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                   </div>
+               </div>
+           </div>
+         <% end %>
+         <div class="showButtonsContainer">
+           <button id="showMoreButton">Show More</button>
+           <div class="showMoreLessMessage" id="projectsProfileMessage">
+             Showing x of y items
+           </div>
+           <button id="showLessButton">Show Less</button>
+         </div>
+         <%end%>
+    </div>
+</div>

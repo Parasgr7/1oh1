@@ -1,0 +1,67 @@
+<div class="modal fade"
+	id="preCheckoutDialog"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="preCheckoutDialog"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="logo-container">
+				<img height="35px" src="<%= image_path('icon.png') %>" alt="icon">
+				<span>
+					1oh1
+				</span>
+			</div>
+
+			<div class="row m-0 main-content align-items-center">
+				<div class="col text-center">
+					<img width="250px" src="<%= image_path('coin.png') %>" alt="coin">
+				</div>
+				<div class="col">
+					<p>
+						G-Coin
+					</p>
+					<p>
+						Plan: <span id="preCheckoutAmount">480</span>
+					</p>
+					<p>
+						Total: $<span id="preCheckoutTotal">48.00</span> USD
+					</p>
+				</div>
+			</div>
+			<input type="hidden" id="current-user" value=<%=current_user.email%>>
+
+			<div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+			    <button type="button" role="link" class="btn btn-primary checkout-button" id="dynamic" >Continue</button>
+			  </div>
+		</div>
+	</div>
+</div>
+<div id="error-message"></div>
+<script>
+(function() {
+	var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+
+	var checkout = document.getElementsByClassName('checkout-button');
+	var checkoutButton = checkout[0];
+	checkoutButton.addEventListener('click', function () {
+		var type = checkoutButton.id.split('_')[0];
+		var email = $("#current-user").val();
+		stripe.redirectToCheckout({
+			items: [{[type]: checkoutButton.id, quantity: 1}],
+			// items: [{'sku': 'sku_G5nYYuuMxCe93q', quantity: 1}],
+			customerEmail: email,
+			successUrl: window.location.origin +'/payment?session_id={CHECKOUT_SESSION_ID}',
+			cancelUrl: window.location.origin + '/canceled',
+		})
+		.then(function (result) {
+			if (result.error) {
+				var displayError = document.getElementById('error-message');
+				displayError.textContent = result.error.message;
+			}
+		});
+	});
+})();
+</script>

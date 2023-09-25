@@ -1,0 +1,139 @@
+<%= render 'profiles/beta_modal' %>
+
+<h5 class="tell-us">Tell us about yourself</h5>
+
+<div id="new_profile_form">
+	<%= form_for(@profile)  do |f| %>
+		<div class="form-row">
+			<div class="form-group col-md-6 custom-from-group">
+			  <label for="first-name">First Name</label>
+			  <input type="text" class="form-control" id="first-name" readonly placeholder="<%= current_user.firstname.capitalize %>">
+			</div>
+			<div class="form-group col-md-6 custom-from-group">
+			  <label for="last-name">Last Name</label>
+			  <input type="text" class="form-control" id="last-name"  readonly placeholder="<%= current_user.lastname.capitalize %>">
+			</div>
+		</div>
+		<input type="hidden" name="first_signup" value="true" >
+		<div class="form-row">
+			<div class="col">
+		        <div class="form-group custom-from-group">
+				  <label for="birth-month">Date of birth</label>
+				  <select class="custom-select" id="firstPage_month_select" name="birth-month">
+						<% Date::MONTHNAMES.compact.each_with_index do |month,index| %>
+							<option value="<%=index+1%>" <%= index+1 == (current_user.profile.nil? ? 0 : current_user.profile.birth_date.nil? ? 0 : current_user.profile.birth_date.month) ? 'selected' : ''%>  ><%=month%></option>
+						<%end%>
+				  </select>
+				</div>
+		    </div>
+		    <div class="col">
+		        <div class="form-group custom-from-group">
+				  <label for="birth-day">	&nbsp;</label>
+				  <input type="text"
+				  		 id="firstPage_day_input"
+				  		 placeholder="Day"
+				  		 class="form-control"
+				  		 required value="<%= current_user.profile.nil? ? "":current_user.profile.birth_date.nil? ? "" : current_user.profile.birth_date.day %>" name="birth-day">
+				</div>
+		    </div>
+		    <div class="col">
+		        <div class="form-group custom-from-group">
+				  <label for="birth-year">	&nbsp;</label>
+				  <input type="text"
+				  		placeholder="Year"
+				  		 id="firstPage_year_input" class="form-control" value="<%= current_user.profile.nil? ? "":current_user.profile.birth_date.nil? ? "" : current_user.profile.birth_date.year %>" required name="birth-year">
+				</div>
+		    </div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-4 custom-from-group">
+				<label>Country</label>
+				<select id="countries" class="custom-select" required name="country">
+					<option value="" selected="">Select Your Country</option>
+					<% CS.countries.each do |key, value| %>
+						<% if value == @profile.country %>
+						 <option value="<%= key %>" selected><%= value %></option>
+						 <%else%>
+						 <option value="<%= key %>"><%= value %></option>
+						 <%end%>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group col-md-4 custom-from-group">
+				<label>State/Province</label>
+				<select id="states-of-country" class="custom-select" required name="state">
+					<%if @profile.state.present? %>
+						<%CS.states(CS.countries.key(@profile.country)).to_a.each do |state|%>
+						<%=state[0]%>
+							<option value="<%=state[0]%>" <%= CS.states(CS.countries.key(@profile.country)).key(@profile.state) == state[0] ? 'selected' : ''%>>
+								<%=state[1]%>
+							</option>
+						<%end%>
+					<%else%>
+						<option value="">Select Your Country</option>
+					<%end%>
+				</select>
+
+	            <div class="spinner-border spinner-border-sm position-absolute"
+	            	 style="right: 14px;top: 47px;display: none"
+	            	 role="status">
+				</div>
+			</div>
+
+			<div class="form-group col-md-4 custom-from-group pr-0">
+			  <label for="city">City</label>
+				<select id="cities-of-state" class="custom-select" required name="city">
+					<%if @profile.city.present? %>
+						<%CS.cities(CS.states(CS.countries.key(@profile.country)).key(@profile.state),CS.countries.key(@profile.country)).each do |city|%>
+							<option value="<%=city%>" <%= @profile.city == city ? 'selected' : ''%>>
+								<%=city%>
+							</option>
+						<%end%>
+					<%else%>
+						<option value="">Select Your Country</option>
+					<%end%>
+				</select>
+				<div class="spinner-border spinner-border-sm position-absolute"
+	            	 style="right: 14px;top: 47px;display: none"
+	            	 role="status">
+				</div>
+			</div>
+		</div>
+
+		<div class="position-relative form-row" id="languagesBuilder">
+			<div class="form-group custom-from-group mb-0 col" id="select-languages-wrap">
+			    <label for="birth-day">Spoken Language(s)</label>
+					<select id="profile-builder-languages-select" class="custom-select selectdelete" required name="language" tags_parent="profile-builder-languages">
+						<% LanguageList::COMMON_LANGUAGES.each do |language| %>
+							<option value="<%=language.iso_639_3%>" <%= @profile.nil? ?  "" : @profile.languages.last == language.iso_639_3 ? 'selected' : ''%>>
+								<%=language.name%>
+							</option>
+						<%end%>
+					</select>
+					<input type="hidden" id="check" name="languages" >
+					<input type="hidden" id="profileBuilderSelectedLanguages" value="<%= @profile.nil? ?  [] : @profile.languages.to_json %>">
+			</div>
+			
+			<button class="btn btn-link btn-icon-fab btn-icon-fab-success position-relative rounded-circle mb-1"
+					style="margin-top: 38px" 
+					id="addLanguageBtn">
+				<i class="material-icons centerXY" >add</i>
+			</button>
+		</div>
+		<div id="profile-builder-languages" class="mb-3 mt-2 form-row mx-0">
+
+		</div>
+
+		<div class="form-row">
+			<div class="form-group custom-from-group w-100">
+			    <label for="about">About</label>
+			    <textarea class="form-control" placeholder="Tell us a little bit about yourself" id="about" required name="bio" rows="3"><%=@profile.nil? ? "": @profile.bio%></textarea>
+			</div>
+		</div>
+
+		<div class="form-row justify-content-end mb-5" id="action-buttons">
+			<%= submit_tag("Next",:id=>"submit_profile", :class=>'btn btn-success p-2 next-button',data: { disable_with: "Submitting..." })%>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,56 @@
+<!-- collaborators -->
+<div>
+  <div class="row">
+    <div class="col">
+      <p class="fsz-11 c-black mb-3 mt-4 font-weight-bolder">COLLABORATORS</p>
+    </div>
+    <%if project.profile_id == current_profile.id %>
+      <div class="col-auto">
+        <%= link_to open_edit_project_modal_path(id: project,class: "support"),class:"btn btn-link mb-3 mt-4", remote: true do%>
+          <i class="material-icons c-gray fsz-18">edit</i>
+        <%end%>
+        <!-- <button class="btn btn-link mb-3 mt-4" id="project_edit_support_btn">
+          <i class="material-icons c-gray fsz-18">edit</i>
+        </button> -->
+      </div>
+    <%end%>
+  </div>
+
+  <div>
+     <div class="project-avatars avatars-wrap" style="margin-left: 10px;">
+       <%=render 'recursive_colab',list:project.colab_id%>
+     </div>
+  </div>
+</div>
+
+<% if project.help && !project.help_needed.nil? %>
+<!-- HELP NEEDED WITH -->
+<div>
+  <p class="fsz-11 c-black mb-3 mt-4 font-weight-bolder">HELP NEEDED WITH</p>
+  <% unless project.help_needed.nil? %>
+    <%project.help_needed.each if !project.help_needed.empty? do |category| %>
+      <%= link_to category_path(Category.find_by_name(category).nil? ? Category.first : Category.find_by_name(category)) do%>
+        <div class="d-inline-block border project-help-needed-box fsz-10 mr-2 font-weight-bolder">
+          <%=category%>
+        </div>
+      <%end%>
+    <%end%>
+  <%end%>
+</div>
+
+<!-- offer help button -->
+  <%if project.profile == current_profile %>
+    <div class="mt-4 text-center">
+        <button class="btn border project-offer-help-btn font-weight-bolder fsz-14">
+          Offer Help
+        </button>
+    </div>
+  <%else%>
+    <div class="mt-4 text-center">
+        <button class="btn border project-offer-help-btn font-weight-bolder fsz-14"
+                id="prjoectOfferHelpButton">
+          Offer Help
+        </button>
+    </div>
+  <%end%>
+<%end%>

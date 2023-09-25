@@ -1,0 +1,34 @@
+<div class="modal fade" id="claimRewardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content medium-size p-4">
+      <div class="modal-body pb-0">
+        <div class="text-center">
+        	<img src="<%= image_path('landing_vectors/pay.png') %>" alt="chest">
+        </div>
+        <h1 class="c-black my-0 text-center py-3">
+        	<b>Profile complete!</b>
+        </h1>
+
+        <p class="text-center c-black fsz-16 font-weight-bolder my-3">
+        	Looking good! Now to get started we are giving you:
+        </p>
+
+        <div class="my-4">
+        	<h1 class="c-black text-center">
+        		<b class="align-middle">1,200</b>
+        		<img class="align-middle" src="<%= image_path('coin.png') %>" width="55" alt="coin">
+        	</h1>
+        </div>
+
+        <p class="text-center c-black fsz-14 font-weight-bolder centerMargin" style="max-width: 415px;">
+          This will give you 2 hours of time to learn from other users. After that, coins can be earned by helping other users as a Guide or purchased in the market.
+        </p>
+      </div>
+      <div class="modal-footer justify-content-around">
+        <%= form_tag( claim_reward_path, :method => :get,remote: true ,:id => 'claim_reward' ) do |f| %>
+        <%= submit_tag("Claim reward",:id=>"claim_reward", :class=>'btn btn-success rounded-pill',data: { disable_with: "Claiming..." }, :style=>'padding: 10px 20px!important')%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

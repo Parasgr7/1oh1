@@ -1,0 +1,21 @@
+<h1 class="fsz-28 c-black font-weight-bolder ff-os">
+	Almost there!
+</h1>
+
+<p class="fsz-12 font-weight-bolder c-darker-gray my-4">We have sent an email to <span id="verification_email_address_placeholder">__</span>. click the verification link in that email to begin using 1oh1</p>
+
+<div class="text-center mb-4" style="">
+	<img src="<%=image_path('Icons/email_sent.png') %>" alt="email">
+</div>
+
+<p class="text-center fsz-12 font-weight-bolder c-darker-gray mb-0">
+	If you did not receive an email,
+
+	<div class="mt-1 text-center">
+		<%= form_tag( resend_verification_path, :method => :post,remote: true ,:id => 'resend_verification' ) do |f| %>
+			<input type="email" id="waitingForVerification" name="email" hidden>
+			<%= submit_tag("Resend Verification email", :class=>'c-blue fsz-12 btn btn-link', data: { disable_with: "Sending..." })%>
+		<%end%>
+		<!-- <a class="c-blue fsz-14" href="">Resend Verification email</a> -->
+	</div>
+</p>

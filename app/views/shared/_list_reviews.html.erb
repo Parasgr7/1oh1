@@ -1,0 +1,14 @@
+<% if ratings.blank? %>
+  No results found
+<% else %>
+  <% ratings.each do |rating|%>
+    <%if rating.class.name == "GuideRating"%>
+      <% type_name = "Guide"%>
+      <% by_name = "Explorer"%>
+    <%else%>
+      <% type_name = "Explorer"%>
+      <% by_name = "Guide"%>
+    <%end%>
+    <%= render partial:'shared/review.html',locals:{rating: rating,type: type_name,by_name: by_name} %>
+  <% end %>
+<% end %>

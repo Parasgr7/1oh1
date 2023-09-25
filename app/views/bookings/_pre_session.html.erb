@@ -1,0 +1,87 @@
+<!-- <script src="/javascripts/signaling-server.js" type="text/javascript"></script>
+
+<span id="end-time" hidden>November 13, 2019 1:30 pm</span>
+<span id="current-user" hidden>2</span>
+<span id="session_id" hidden>j7dnzqnf9e6gva</span> -->
+<div style="display: none" id="otherUserDisplayNamePlaceholder"><%=@companion.full_name%></div>
+<div>
+    <div class="card container sessionCardCustom border-top-0">
+        <div class="card-body pt-0">
+            <div class="containerSessionVid">
+                <div class="partnerWindow" id="local-video-center">
+                    <p id="preSessionErrorContainer" class="centerXY text-center c-red-500" style="display: none"></p>
+
+                    <video class="partnerWindowView img-fluid imageSession" id="local-video" autoplay muted></video>
+                    <input type="text" hidden id="AmIHostInput"
+                           value="<%= @booking.client_id == params[:profile_id].to_i%>">
+                    <div class="position-absolute pre-session-video-btns-wrap">
+                        <button class="btn btn-link position-relative pre-session-video-btns"
+                             id="pre-session-toggle-video-btn"
+                             onclick="handleToggleVideo(['pre-session-toggle-video-btn', 'toggle-video-btn'])">
+                            <i class="material-icons c-white centerXY">videocam</i>
+                            <i class="material-icons c-white centerXY">videocam_off</i>
+                        </button>
+
+                        <button class="btn btn-link position-relative pre-session-video-btns"
+                             id="pre-session-toggle-audio-btn"
+                             onclick="handleToggleAudio(['pre-session-toggle-audio-btn', 'toggle-audio-btn'])">
+                            <i class="material-icons c-white centerXY">mic</i>
+                            <i class="material-icons c-white centerXY">mic_off</i>
+                        </button>
+
+                        <button class="btn btn-link position-relative pre-session-video-btns pre-session-switch-camera"
+                             id="pre-session-switch-camera"
+                             onclick="switchCameras()">
+                            <i class="material-icons c-white centerXY">switch_camera</i>
+                            <i class="material-icons c-white centerXY">switch_camera</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="optionsSession text-center">
+                <span class="fsz-25 font-weight-normal">Ready to join?</span>
+                <div class="buttonsOptions my-3">
+                    <button class="btn rounded-pill btn-success"
+                    style="padding: 0.375rem 0.75rem!important"
+                    disabled
+                    id="join-session-btn" onclick="handleJoinSession()">Join</button>
+                    <button class="btn btn-link border rounded-pill mx-2" data-toggle="modal" data-target="#modalChat">Running late!</button>
+                    <div class="d-inline-block">
+                        <%= form_tag cancel_modal_path(@booking.id),remote: true do |f|%>
+                          <%= submit_tag 'Cancel',class:"btn btn-link border rounded-pill" %>
+                        <% end %>
+                    </div>
+                </div>
+                <h6 class="timeDetails">Starting in:
+                    <span class="time"
+                          id="pre_session_start_time"
+                          data-count-down="<%=@booking.start.iso8601%>"></span>
+                </h6>
+            </div>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-auto userDetails">
+                    <div class="row align-items-center">
+                        <div class="col-auto pr-0">
+                            <%= image_tag(profile_photo(@companion.profile), :class => 'img-fluid') %>
+                        </div>
+                        <div class="col details">
+                            <h4 class="title"><%=@booking.title%></h4>
+                            <span class="descriptionSession">with <%=@companion.full_name%></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto sessionDetails">
+                    <span class="desc-top d-block">Your role: <%=@my_role%></span>
+                    <span class="desc-bottom d-block">Duration: <%=@booking.duration%> Minutes</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="centerMargin fsz-13 c-darker-gray" style="max-width: 380px;">
+                If you experience connection issues, refresh the page and rejoin. Hanging up will end the session and close the room.
+            </div>
+        </div>
+    </div>
+</div>

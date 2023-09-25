@@ -1,0 +1,48 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="reservation-container-wrap">
+  <div class="container reservation-container shadow position-relative">
+    <%= render 'success' %>
+  </div>
+</div>
+
+<!-- <%= form_tag payment_index_path do %>
+<article>
+  <% if flash[:error].present? %>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
+  <% end %>
+  <label class="amount">
+  <span>Amount: $50</span>
+  </label>
+</article>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-amount="5000"
+  data-name="1oh1.org"
+  data-description="Voyager Subscription"
+  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+  data-label="Buy Now"
+  data-locale="auto"></script>
+
+<% end %> !-->
+
+
+
+
+<!-- Load Stripe.js on your website. -->
+<!-- <script src="https://js.stripe.com/v3"></script> -->
+
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<!-- <button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-sku_G5nYYuuMxCe93q"
+  role="link"
+>
+  Checkout
+</button>
+<div id="error-message"></div>
+<%=@id%> -->

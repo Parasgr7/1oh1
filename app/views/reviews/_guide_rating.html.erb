@@ -1,0 +1,69 @@
+<div class="cell searchContainer">
+    <div class="searchHelp grid mt-4">
+        <div class="cell">
+            <div class="searchReview grid">
+                <div class="cell searchReview">
+                    <div class="searchCont">
+                        <i class="material-icons  md-36 searchIcon d-block">search</i><input type="text"
+                            placeholder="Search" class="searchInput">
+                    </div>
+                </div>
+                <div class="sortBy">
+                    <div class="cell sortByText c-black">Sort by</div>
+                    <div class="cell">
+                        <select class="custom-select dropdownTitle">
+                            <option>Most recent</option>
+                            <option>Rating ascending</option>
+                            <option>Rating descending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell">
+            <div class="help grid">
+                <div class="tab-content custom-table">
+                    <div id="tab-help">
+                        <div class="cell helpText c-black">Learn <%= @info.category.name %> with <%= @info.profile.user.full_name %></div>
+                        <div class="cell">
+                          <!-- <button class="button">Book</button> -->
+                            <%= link_to "Book" , booking_subject_path(guide_id: @info.id ),class: "btn btn-success"%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cell">
+    <div class="reviews grid">
+      <% if @guide_ratings.nil? %>
+        No Guide Ratings Available
+      <% else %>
+        <% @guide_ratings.each do |guide_rating| %>
+            <div class="cell">
+                <div class="review grid">
+                    <div class="cell">
+                        <div class="profile2 grid">
+                            <div class="cell perfil">
+                                <%= image_tag('People/women.jpg', :class => 'imgperfil') %>
+                            </div>
+
+                            <div style="padding-top: 33px;">
+                                <div class="cell ratingName c-black"><%= guide_rating.explore.profile.user.full_name %></div>
+                                <div class="grid score2">
+                                  <div id="" class="rateYoCustom d-inline-block p-0" starsSize="normal" rating="<%=guide_rating.rating%>"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell ratingText" style="padding-top: 33px;">
+                      <%= guide_rating.review %>
+                    </div>
+                </div>
+            </div>
+          <%end%>
+        <%end%>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div class="modal fade" id="commentingGuideLineDialog" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content p-4 medium-size">
+      <div class="modal-body">
+        <div class="text-center">
+          <img class="centerMargin" src="<%=image_path('commenting-guidelines-vector.png')%>" alt="guide line">
+        </div>
+        <h1 class="c-black ff-os fsz-24 font-weight-bold text-center">Community Guidelines</h1>
+        <p class="fsz-12 c-gray ff-os text-center mb-4">Before you comment please review our guidelines</p>
+
+      	<h1 class="c-black ff-os fsz-14 font-weight-bold">Be Respectful</h1>
+      	<p class="c-black ff-ssp fsz-14 font-weight-bolder">We ask that you keep your comments constructive and respectful. We don’t tolerate abusive, vulgar or insulting comments.</p>
+
+        <h1 class="c-black ff-os fsz-14 font-weight-bold">Stay On-Topic</h1>
+        <p class="c-black ff-ssp fsz-14 font-weight-bolder">Comments must be about the <%= type == "project" ? "project" : "session"%> you are commenting on. Don’t use a <%= type == "project" ? "projects" : "sessions"%> comment section to self promote or post links to other websites.
+          <br>
+          We consider off topic posts ‘spam’ and will deactivate accounts that repeatedly violate this guideline.
+
+        </p>
+      </div>
+      <div class="modal-footer border-top justify-content-center">
+        <button type="button" class="btn btn-success radius-25" data-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>

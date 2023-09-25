@@ -1,0 +1,19 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Most Sessions for Explorers</h3>
+
+  <div class="row my-4" id="mainTopExplore">
+    <% if top_explores.empty? %>
+      <h6 class="my-7 c-black">No Explorers Available</h6>
+    <% else %>
+      <%= render partial: 'shared/user_card.html', collection: top_explores, as: :user,locals:{ class_name: "topExploreItem",type:"Explorer"} %>
+    <% end %>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessTopExplore">Less</a>
+    <div class="showMoreLessMessage" id="topExploreMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreTopExplore">More</a>
+  </div>
+</section>

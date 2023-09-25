@@ -1,0 +1,246 @@
+// Place all the styles related to the Markets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#preCheckoutDialog, #postCheckoutFailedDialog, #postCheckoutSuccessDialog {
+	.modal-content {
+		width: 535px;
+		height: 385px;
+		margin: 0 auto;
+		padding: 30px;
+		.logo-container {
+			span {
+				color:#8cc63f;
+				font-size: 23px;
+				font-weight: 500;
+				letter-spacing: -2px;
+				position: relative;
+				left: -13px;
+				top: 4px;
+			}
+		}
+		.main-content {
+			height: 240px;
+			p {
+				margin: 5px 0;
+				font-weight: 400;
+				color: #000;
+				font-size: 19px;
+			}
+		}
+		.modal-footer {
+			border: none;
+			padding: 0;
+		}
+		.btn-primary {
+			background-color: #8cc63f;
+			color: white!important;
+			letter-spacing: 1px;
+			text-transform: none;
+			font-size: 15px;
+		}
+		.btn-secondary {
+			color: rgb(112, 112, 112);
+			background: transparent;
+			letter-spacing: 1px;
+			text-transform: none;
+			font-size: 15px;
+			border: none;
+		}
+	}
+}
+
+#postCheckoutFailedDialog, #postCheckoutSuccessDialog {
+	h5 {
+		text-align: center;
+	    font-weight: 600;
+	    color: #000;
+		font-size: 26px;
+		margin-top: 20px;
+	}
+	p {
+		font-size: 14px!important;
+		line-height: 20px;
+		color: rgb(112, 112, 112)!important;
+	}
+	.btn-secondary {
+		text-decoration: underline;
+		color:#000!important;
+	}
+	svg {
+	  width: 90px;
+	  display: block;
+	  margin: 0 auto 0;
+	}
+	
+	.path {
+	  stroke-dasharray: 1000;
+	  stroke-dashoffset: 0;
+	  &.circle {
+	  	transform: none!important;
+	    -webkit-animation: dash .9s ease-in-out;
+	    animation: dash .9s ease-in-out;
+	  }
+	  &.line {
+	    stroke-dashoffset: 1000;
+	    -webkit-animation: dash .9s .35s ease-in-out forwards;
+	    animation: dash .9s .35s ease-in-out forwards;
+	  }
+	  &.check {
+	    stroke-dashoffset: -100;
+	    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+	    animation: dash-check .9s .35s ease-in-out forwards;
+	  }
+	}
+
+	p {
+	  text-align: center;
+	  margin: 20px 0 60px;
+	  font-size: 1.25em;
+	  &.success {
+	    color: #73AF55;
+	  }
+	  &.error {
+	    color: #D06079;
+	  }
+	}
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+
+.market {
+	/* coins & subscription section*/
+	.coins .coin.active, .subscriptions .subscription.active {
+	  border: 3px solid rgb(140,199,63);
+	}
+
+	.coins {
+		.coin {
+			width: 255px;
+			height: 235px;
+			position: relative;
+			vertical-align: middle;
+			& > div {
+				margin-top: 25px;
+			}
+		}
+	}
+	.more-option-button {
+		background-color: rgb(249,249,249);
+		border: 1px solid rgb(243,243,243);
+		color: rgb(112,112,112);
+
+		padding: 15px 25px;
+		text-transform: none;
+		letter-spacing: 1px;
+	}
+	.page-banner {
+		&:after {
+			background-color: #fff;
+		}
+
+		h1 {
+			color: #000;
+			font-weight: 600;
+		}
+
+		p {
+			color: rgb(137, 137, 137);
+			font-weight: 400;
+			font-size: 20px;
+		}
+	}
+	.transparent-cards-wrap {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	.transparent-card {
+		width: 300px;
+		display: inline-block;
+		img {
+			height: 100px;
+		}
+		h4 {
+			color: #000;
+			font-weight: 600;
+		}
+		p {
+			color: rgb(137, 137, 137);
+			font-weight: 400;
+		}
+	}
+	.subscription .description {
+	  max-width: 150px;
+	  height: 100px;
+	  margin: 0 auto;
+	}
+	.subscription .includes {
+	  max-width: 200px;
+	}
+	.includes-icon {
+		color: #79a4f4;
+	}
+	/* override bootstrap */
+	.btn-primary {
+	  color: #fff;
+	  background-color: rgb(140,199,63);
+	  border: none;
+	}
+	
+	.btn-primary:hover, .btn-primary:active {
+	  color: #fff;
+	  background-color: rgb(140,199,63)!important;
+	}
+	.btn-primary:focus {
+	  box-shadow: 0 0 0 0.2rem rgba(140, 199, 63, 0.5) !important;
+	}
+
+	/* General */
+	.c-white {
+		color: #ffffff;
+	}
+	.c-white-darker {
+		color: rgb(249, 250, 251);
+	}
+	hr {
+	  margin-top: 1rem;
+	  margin-bottom: 1rem;
+	  border: 0;
+	  border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+}
+

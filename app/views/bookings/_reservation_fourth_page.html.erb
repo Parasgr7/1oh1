@@ -1,0 +1,56 @@
+<div class="reservation-top-nav-wrap border-bottom">
+	<div class="reservation-top-nav">
+		<div class="row m-0">
+			<div class="col-auto px-0">
+                <div class="project-progress-circle active text-center"
+                   >
+                   <i class="material-icons c-white fsz-16" style="margin-top: 5px;">check</i>
+                </div>
+                <span class="reservation-top-nav-text c-deep-green ">Subject</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line active">
+
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle active text-center">
+                	<i class="material-icons c-white fsz-16" style="margin-top: 5px;">check</i>
+                </div>
+                <span class="reservation-top-nav-text c-deep-green">Date and Time</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line active">
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle text-center active">
+                    <i class="material-icons c-white fsz-16" style="margin-top: 5px;">check</i>
+                </div>
+                <span class="reservation-top-nav-text c-deep-green">Confirm</span>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div style="height: calc(100% - 220px)">
+    <div class="row h-100">
+       <div class="col align-self-center">
+          <div class="text-center mt-4">
+                <img width="175" src="<%=image_path('send_mensage_vector.png')%>" alt="sent message">
+            </div>
+
+            <div class="fsz-16 ff-ssp font-weight-bold mt-4 c-black text-center mb-2">
+                Your booking request has been sent!
+            </div>
+
+            <p class="mb-1 ff-os fsz-13 lh-3\/2 c-light-blue text-center">
+                A booking request summary has been sent to your email.
+            </p>
+
+            <div class="text-center my-4">
+                        <%=link_to "Close",bookings_path,class:"btn btn-success"%>
+            </div>
+       </div>
+    </div>
+</div>

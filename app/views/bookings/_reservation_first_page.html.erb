@@ -1,0 +1,67 @@
+<div class="reservation-top-nav-wrap border-bottom">
+	<div class="reservation-top-nav">
+		<div class="row m-0">
+			<div class="col-auto px-0">
+                <div class="project-progress-circle active"
+                   >
+                </div>
+                <span class="reservation-top-nav-text c-black font-weight-bold">Subject</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line ">
+
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+                <span class="reservation-top-nav-text">Date and Time</span>
+            </div>
+            <div class="col px-0">
+                <div class="project-progress-line">
+                </div>
+            </div>
+            <div class="col-auto px-0">
+                <div class="project-progress-circle">
+                </div>
+                <span class="reservation-top-nav-text">Confirm</span>
+            </div>
+		</div>
+	</div>
+</div>
+<%= form_tag submit_subject_path, remote: true do |f| %>
+<div class="text-center reservation-first-page-wrap">
+	<div class="reservation-avatar mt-5 centerMargin"
+		 style="background-image: url('<%= profile_photo(@profile) %>')"></div>
+	<div class="fsz-15 c-black mt-2"><%= @profile.user.full_name.camelize %></div>
+
+	<div class="form-group custom-from-group mt-3">
+	  <label for="learning-subject" class="text-left font-weight-bold w-100">What do you want to learn?</label>
+	  <select required id="learning-subject" class="custom-select" name="category_id">
+			<%if @categories_list.class.name == "Category" %>
+				<option value="<%=@categories_list.id%>" selected><%=@categories_list.name%></option>
+			<%else%>
+				<option value="" disabled selected>Select a subject</option>
+				<% @categories_list.each do |category| %>
+				<option value="<%= category.id %>"><%= category.name %></option>
+				<%end%>
+			<%end%>
+	  </select>
+	</div>
+	<input type="hidden" name="profile_id" value="<%=request.parameters["profile_id"].nil? ? Guide.find_by_id(request.parameters["guide_id"]).profile_id : request.parameters["profile_id"] %>">
+	<div class="form-group custom-from-group">
+	    <label for="learning-goal" class="text-left font-weight-bold w-100">What is your goal?</label>
+    	<textarea required class="form-control" placeholder="What do you want to achieve in the session?" id="learning-goal" name="goal" rows="6"></textarea>
+	</div>
+
+	<div class="mt-4">
+		<%= submit_tag("Next",:id=>"submit_subject", :class=>'btn btn-success',data: { disable_with: "Submitting..." })%>
+	</div>
+	<div class="mt-2">
+		<a href="/" class="btn btn-link">Cancel</a>
+	</div>
+</div>
+<% end %>
+
+<div class="modal fade" id="bookingCategoryAddDialog" tabindex="-1" role="dialog" aria-hidden="true">
+</div>

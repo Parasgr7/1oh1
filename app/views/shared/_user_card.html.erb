@@ -1,0 +1,47 @@
+<div class="col-12 col-md-6 col-lg-4 mb-4 <%=class_name%>">
+	<% if type=="Explorer" %>
+		<% path = explore_path(user.id)%>
+	<% else %>
+		<% path = guide_path(user.id)%>
+	<% end %>
+	<%= link_to path do %>
+		<div class="user-card shadow text-center" id="user-card" data-id ="<%=user.id%>" data-type="<%=type%>">
+			<div class="user-card-image"
+				 style="background-image: url('<%= user.category.url %>');">
+
+				 	<div class="user-card-avatar"
+				 		 style="background-image: url('<%= profile_photo(user.profile) %>');"></div>
+				 </div>
+
+			<div class="user-card-title">
+				<%= user.profile.user.full_name %>
+			</div>
+			<div class="user-card-description">
+		      	<%= !user.profile.bio .nil? ? user.profile.bio.truncate(90): ''%>
+			</div>
+			<div class="user-card-location">
+				<%= user.profile.state %> , <%= user.profile.country %>
+			</div>
+			<div class="user-card-stars">
+				<div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= average_rating(user,user.category)[:rating] %>"></div>
+			</div>
+			<div class="user-card-footer border-top">
+				<% stats_count = stats_count_user(user, user.category)%>
+				<div class="row mx-0">
+			        <div class="col">
+			          <div class="text-center category-card-footer-number"><%=stats_count[:explore_count]%></div>
+			          <div class="text-center">Explores</div>
+			        </div>
+			        <div class="col">
+			          <div class="text-center category-card-footer-number"><%=stats_count[:guide_count]%></div>
+			          <div class="text-center">Guides</div>
+			        </div>
+			        <div class="col">
+			          <div class="text-center category-card-footer-number"><%=stats_count[:project_count]%></div>
+			          <div class="text-center">Projects</div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	<%end%>
+</div>

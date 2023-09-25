@@ -1,0 +1,26 @@
+<div class="modal fade" id="bookingChangeRequestDialog" tabindex="-1" role="dialog" aria-labelledby="bookingChangeRequestDialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content small-size">
+			<div class="modal-title fsz-25 ff-ssp font-weight-bold c-black text-center">
+				Please note
+			</div>
+			
+			<div class="fsz-16 ff-ssp font-weight-bolder mt-4 c-black">
+				A submission of a change request with less than 3 hours before the scheduled start time will be subjected to a rescheduling fee.
+			</div>
+			<div class="modal-footer align-items-start px-0 border-0 pb-0">
+		      <button type="button"
+		      		  class="btn btn-link rounded-pill border"
+		      		  id="changeSendRequestBackBtn"
+		      		  data-dismiss="modal">
+		      	Cancel
+		      </button>
+				<%= form_tag(booking_path(Booking.first), :method => "put", remote: true) do %>
+					<input type="hidden" name="booking_id" id="change_booking_id">
+					<input type="hidden" name="change_request" value="true">
+					<%= submit_tag 'Continue', class:"btn btn-link rounded-pill border edit-booking",data: { disable_with: "Requesting..." }, id: "changeSendRequestDialogSubmit" %>
+				<%end%>
+		    </div>
+		</div>
+	</div>
+</div>

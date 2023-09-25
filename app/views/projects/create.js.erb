@@ -1,0 +1,13 @@
+$('form#create_project').trigger("reset");
+$("#createProjectsModal").modal('toggle');
+var x = <%= @projects.size %>
+$("#tab3-tab-project").text(x+" Projects")
+<% js = escape_javascript(
+  render(partial: 'profiles/projects', locals: { projects: @projects,view_individual_profile: true })
+) %>
+$("#view_projects").html("<%= js %>");
+
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

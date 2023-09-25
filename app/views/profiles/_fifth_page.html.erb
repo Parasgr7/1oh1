@@ -1,0 +1,153 @@
+<%= form_tag(availabilty_booking_path, :method => "post") do %>
+<div class="mb-5 mt-2 rounded position-relative">
+	  <div class="form-group mb-0">
+	   	<label>Available times</label>
+	  </div>
+	  <div style="display: none;" id="recurring-template-wrap">
+	  	<% Date::DAYNAMES[1,1].each do |day| %>
+				  <div class="form-row mx-0 form-group align-items-center mb-2 recurring-wrap">
+						<div class="col pl-0">
+							<select class="custom-select mr-sm-2">
+								<% Date::DAYNAMES.each do |day2| %>
+									<option value="<%=day2%>" <%=day == day2 ? 'selected' : ''%>><%=day2%></option>
+								<%end%>
+							</select>
+						</div>
+						<div class="col-auto font-weight-bolder">
+							from
+						</div>
+						<%times=["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM","7 AM","8 AM","9 AM","10 AM","11 AM","12 PM","1 PM","2 PM","3 PM","4 PM","5 PM","6 PM","7 PM","8 PM","9 PM","10 PM","11 PM","11:59 PM"]%>
+						<div class="col">
+							<select class="custom-select mr-sm-2">
+								<% times.each do |time| %>
+									<option value="<%= time %>"  <%= time == "9 AM" ? 'selected' : '' %> ><%= time == "9 AM" ? '9 AM' : time %></option>
+								<% end %>
+							</select>
+						</div>
+						<div class="col-auto font-weight-bolder">
+							to
+						</div>
+						<div class="col">
+							<select class="custom-select mr-sm-2">
+								<% times.each do |time| %>
+										<option value="<%= time %>"  <%= time == "5 PM" ? 'selected' : '' %> ><%= time == "5 PM" ? '5 PM' : time %></option>
+								<% end %>
+							</select>
+						</div>
+						<div class="col-auto pr-0">
+							<div class="btn btn-link delete-recurring" style="min-width: 40px;">
+								<i class="material-icons fsz-20">delete_outline</i>
+							</div>
+						</div>
+				  </div>
+			<%end%>
+	  </div>
+	  <div class="recurring-container">
+			<% Date::DAYNAMES.each do |day| %>
+				<% if !@formatted_availabilty[day].compact.empty? && !@formatted_availabilty[day].reject(&:empty?).empty?   %>
+				  <div class="form-row mx-0 form-group align-items-center mb-2 recurring-wrap">
+						<div class="col pl-0">
+							<select class="custom-select mr-sm-2">
+								<% Date::DAYNAMES.each do |day2| %>
+									<option value="<%=day2%>" <%=day == day2 ? 'selected' : ''%>><%=day2%></option>
+								<%end%>
+							</select>
+						</div>
+						<div class="col-auto font-weight-bolder">
+							from
+						</div>
+						<%times=["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM","7 AM","8 AM","9 AM","10 AM","11 AM","12 PM","1 PM","2 PM","3 PM","4 PM","5 PM","6 PM","7 PM","8 PM","9 PM","10 PM","11 PM","11:59 PM"]%>
+						<div class="col">
+							<select class="custom-select mr-sm-2">
+								<% times.each do |time| %>
+									<% if @formatted_availabilty[day].nil? %>
+									<option value="<%= time %>"  <%= time == "9 AM" ? 'selected' : '' %> ><%= time == "9 AM" ? '9 AM' : time %></option>
+									<%else%>
+										<option value="<%=time%>" <%= time ==  @formatted_availabilty[day][0] ? 'selected' : ''%> ><%= time == "11:59 PM" ? "Midnight" : time%></option>
+									<%end%>
+								<% end %>
+							</select>
+						</div>
+						<div class="col-auto font-weight-bolder">
+							to
+						</div>
+						<div class="col">
+							<select class="custom-select mr-sm-2">
+								<% times.each do |time| %>
+									<% if @formatted_availabilty[day].nil? %>
+										<option value="<%= time %>"  <%= time == "5 PM" ? 'selected' : '' %> ><%= time == "5 PM" ? '5 PM' : time %></option>
+									<%else%>
+										<option value="<%=time%>" <%= time == @formatted_availabilty[day][1] ? 'selected' : ''%> ><%= time == "11:59 PM" ? "Midnight" : time%></option>
+									<%end%>
+								<% end %>
+							</select>
+						</div>
+						<div class="col-auto pr-0">
+							<div class="btn btn-link delete-recurring" style="min-width: 40px;">
+								<i class="material-icons fsz-20">delete_outline</i>
+							</div>
+						</div>
+				  </div>
+				<%end%>
+			<%end%>
+	  </div>
+	  <div class="mb-4">
+	  	<button class="btn btn-link pl-0 recurringAddTimePicker">
+	  		<i class="material-icons align-middle fsz-15">add</i>
+	  		<span class="fsz-14 align-middle">add</span>
+	    </button>
+	  </div>
+		<%schedule={"5 minutes"=> 5,"15 minutes" => 15,"30 minutes" => 30,"1 hour"=> 60,"2 hour"=> 120,"3 hour"=> 180,"6 hour"=> 360,"12 hour"=> 720,"24 hour"=> 1440,"36 hour"=>2160}%>
+	  <div class="form-group mb-4">
+	    <label for="sessionScheduledSelect">When can a session be scheduled?</label>
+	    <select class="custom-select mr-sm-2" id="sessionScheduledSelect" name="session_schedule" aria-describedby="sessionScheduledHelp">
+				<%=schedule.each do |key, value|%>
+					<option value="<%=value%>" <%= value.to_i == @personal_setting_schedule_time ? 'selected' : ''%>><%=key %></option>
+				<%end%>
+	    </select>
+
+	    <small id="sessionScheduledHelp" class="form-text text-muted tt-n">Minimum amount of time before a user can submit a booking request.</small>
+	  </div>
+
+	  <div class="form-group mb-4">
+	    <label for="bufferTimeSelect">Buffer time</label>
+			<%buffer={"0" => 0,"5 minutes"=> 5,"10 minutes"=>10,"15 minutes"=>15,"20 minutes"=>20,"30 minutes"=>30,"1 hour"=>60}%>
+	    <select class="custom-select mr-sm-2" id="bufferTimeSelect" name="buffer_time" aria-describedby="bufferTimeHelp">
+				<%=buffer.each do |key,value|%>
+					<option value="<%=value%>" <%= value.to_i == @personal_setting_buffer_time ? 'selected' : ''%>><%= key=="0" ? "no buffer" : key %></option>
+				<%end%>
+	    </select>
+
+	    <small id="bufferTimeHelp" class="form-text text-muted tt-n">Minimum amount of time arround your sessions that you can't be booked for.</small>
+	  </div>
+
+	  <div class="form-group mb-4">
+	    <label for="timeZoneSelect">Time zone</label>
+	    <select class="custom-select mr-sm-2" id="timeZoneSelect" name="timezone" aria-describedby="timeZoneHelp">
+				<% TZInfo::Timezone.all_country_zone_identifiers.each do |timezone| %>
+					<% if current_user.profile.time_zone == timezone%>
+						<option value="<%=timezone%>"selected><%=timezone%></option>
+					<%else%>
+						<option value="<%=timezone%>"><%=timezone%></option>
+					<%end%>
+				<%end%>
+	    </select>
+	  </div>
+
+
+</div>
+	<input type="hidden" name="first" value="<%=locals[:first]%>">
+ <input type="hidden" name="availabilty" id="availabilty">
+ <div class="form-row justify-content-end mb-5" id="action-buttons">
+	 <% if locals[:first].to_s == "0" %>
+	 	<button type="button" class="btn btn-link mr-2" data-dismiss="modal">Cancel</button>
+		<%= submit_tag("Submit",:class=>"btn btn-success",:id=>"availabiltyNextBtn", :data=>{disable_with: "Updating..."}) %>
+
+	 <% else %>
+	   <a class="btn btn-link p-2 mr-3" href="/profile/projects">Back</a>
+		 <%= submit_tag("Next",:class=>"btn btn-success",:id=>"availabiltyNextBtn", :data=>{disable_with: "Updating..."}) %>
+	 <% end %>
+
+  <!-- <a class="btn btn-success p-2" id="availabiltyNextBtn">Next</a> -->
+ </div>
+ <% end %>

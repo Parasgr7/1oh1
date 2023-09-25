@@ -1,0 +1,56 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="container">
+  <h1 class="contact-us-title mt-5 pt-5">
+    Contact Us
+  </h1>
+  <p class="contact-us-description">Get in touch with the right people at 1oh1. Email a member of our <br>
+    customer care team, marketing team, technical team or HR team.</p>
+
+  <div class="row mt-4">
+  	<div class="col">
+  		<div class="contact-card active">
+	        <div class="content">
+	          <img src="<%=image_path('Icons/contacts/customer care.png')%>" alt="">
+	          <div class="title">
+	            Customer Care
+	          </div>
+	          <div class="description">
+	            Could not find a solution in the <a class="fz-14 c-blue" href="/helps">Quick Help</a> guide? That's okay, we're here for you.
+	          </div>
+	        </div>
+	    </div>
+  	</div>
+  	<div class="col">
+      <%= form_tag(contacts_path,remote: :true,id:"contacts") do %>
+    		<div class="form-group custom-from-group">
+  		  <label for="name">Name</label>
+  		  <input type="text" class="form-control" required name="name" id="name">
+  		  </div>
+
+  		<div class="form-group custom-from-group">
+  		  <label for="email">Email</label>
+  		  <input type="email" class="form-control" required name="email" id="email">
+  		</div>
+
+  		<div class="form-group custom-from-group">
+  		  <label for="subject">Subject</label>
+  		  <input type="text" class="form-control" required name="subject" id="subject">
+  		</div>
+      <input type="hidden" name="category" value="customer_care">
+  		<div class="form-group custom-from-group">
+  		    <label for="meassage">Message</label>
+  		    <textarea class="form-control" id="meassage" required name="message" rows="3"></textarea>
+  		</div>
+
+  		<div class="form-group">
+  			<button class="btn btn-success" data-disable-with="Sending...">
+  				Send
+  			</button>
+  		</div>
+      <%end%>
+  	</div>
+  </div>
+</div>

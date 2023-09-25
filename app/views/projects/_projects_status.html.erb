@@ -1,0 +1,13 @@
+<div class="row m-0 project-cards-wrap justify-content-between">
+	<% if @project_status.empty?%>
+		No Projects Available
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "popularCountryProject"} %>
+	<%end%>
+</div>
+
+<div class="text-right cards-show-more my-3">
+	<button class="btn btn-link">
+		Show more
+	</button>
+</div>

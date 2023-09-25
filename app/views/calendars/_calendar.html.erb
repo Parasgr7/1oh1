@@ -1,0 +1,130 @@
+<div class="calendar-page-container h-100 px-5 pt-5 pb-2">
+	<div class="row h-100" >
+	  <div class="col-12 col-lg-auto p-0 h-100 fc-scroller" style="overflow-y: auto;">
+		<h3 class="c-black my-0" style="margin-left: 12px;"><b>Calendar</b></h3>
+
+	  	<div class="very-custom-calendar-wrap bg-white border-bottom-0 row"
+	  		 >
+	  		 <div class="col col-lg-12">
+		  		<div class="row mx-0 align-items-center" style="max-width: 256px;">
+		  			<div class="col px-0">
+			  			<div class="calendar-current-date my-3" style="margin-left: 12px;">
+				  			<span class="month-placeholder fsz-14 c-black"></span>
+			  			</div>
+		  			</div>
+		  			<div class="col-auto px-0">
+		  				<div class="mt-1 ml-3">
+		  					<button type="button" class="btn btn-link" id="calendar-small-calendar-prev-month-btn">
+							    <i class="material-icons">keyboard_arrow_left</i>
+							</button>
+
+							<button type="button" class="btn btn-link" id="calendar-small-calendar-next-month-btn">
+							    <i class="material-icons">keyboard_arrow_right</i>
+							</button>
+		  				</div>
+		  			</div>
+		  		</div>
+				<!-- custom calendar -->
+		  		<div class="personal-very-custom-calendar calendar-page-small-calendar"></div>
+	  		 </div>
+
+	  		<div class="col-auto col-lg-12" style="margin-left: 12px;">
+	  			<h5 class="c-black fsz-15 mt-3">Calendar</h5>
+
+	  			<div>
+	  				<div class="custom-control custom-checkbox explore mr-sm-2">
+				        <input type="checkbox" disabled checked data-type="explore" class="custom-control-input calendar-event-types-checkbox" id="calendar-explore-checkbox">
+				        <label class="custom-control-label fsz-13 c-black font-weight-bolder" for="calendar-explore-checkbox">Explore</label>
+				    </div>
+	  			</div>
+	  			<div>
+	  				<div class="custom-control custom-checkbox guide mr-sm-2">
+				        <input type="checkbox" disabled checked data-type="guide" class="custom-control-input calendar-event-types-checkbox" id="calendar-guide-checkbox">
+				        <label class="custom-control-label fsz-13 c-black font-weight-bolder" for="calendar-guide-checkbox">Guide</label>
+				    </div>
+	  			</div>
+	  			<div>
+	  				<div class="custom-control custom-checkbox pending mr-sm-2">
+				        <input type="checkbox" disabled checked data-type="pending" class="custom-control-input calendar-event-types-checkbox" id="calendar-pending-checkbox">
+				        <label class="custom-control-label fsz-13 c-black font-weight-bolder" for="calendar-pending-checkbox">Pending</label>
+				    </div>
+	  			</div>
+	  			<div>
+	  				<div class="custom-control custom-checkbox unavailable mr-sm-2">
+				        <input type="checkbox" disabled checked data-type="unavailable" class="custom-control-input calendar-event-types-checkbox" id="calendar-unavailable-checkbox">
+				        <label class="custom-control-label fsz-13 c-black font-weight-bolder" for="calendar-unavailable-checkbox">Unavailable</label>
+				    </div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+	  <div class="col-12 col-lg timeline-calendar-wrap bg-white order-2 order-lg-1 h-100">
+	       <div class="" style="padding-left: 98px;">
+		  	<div class="row mx-0 pb-3 align-items-center timeline-calendar-border-bottom border-bottom" style="border-color: #f2f2f2!important">
+		  		<div class="col pl-0">
+		  			<div class="d-inline-block">
+			  			<div class="text-center ml-2 day-and-day-number-wrap"
+			  				 >
+			  				 <div>
+						  		<span class="day-placeholder fsz-11 font-weight-bold c-dark-gray"></span>
+			  				 </div>
+			  				 <div>
+						  		<span class="day-number-placeholder fsz-25 font-weight-bold c-black"></span>
+			  				 </div>
+			  			</div>
+		  			</div>
+		  		</div>
+		  		<div class="col-auto pr-0">
+		  			<a data-turbolinks="false" href="#" class="align-middle mr-3" data-toggle="modal" data-target="#profileCalendarRecurringUnavailableDialogBox">
+	    				<i class="material-icons c-dark-gray mt-2 fsz-20">settings</i>
+	    			</a>
+
+					<select class="custom-select py-0 radius-25 explores-review-filter fsz-14 align-middle"
+							id="calendarViewSelect">
+				        <option value="daily" selected>Day</option>
+				        <option value="weekly">Week</option>
+				        <option value="monthly">Month</option>
+				    </select>
+		  		</div>
+		  	</div>
+		</div>
+		<div class="fc-scroller position-relative" style="height: calc(100% - 78px);overflow-y: auto;">
+	    	<div class="personal-timeline-calendar"></div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+<!-- time conflict dialog dialog -->
+<div id='remote_container'></div>
+<!-- change or cancel dialog box -->
+
+<!-- cancel dialog box -->
+<div class="modal fade" id="chagneOrCancelDialog" tabindex="-1" role="dialog" aria-labelledby="chagneOrCancelDialog" aria-hidden="true">
+</div>
+
+<div class="modal fade" id="cancelSessionDialog" tabindex="-1" role="dialog" aria-labelledby="cancelSessionDialog" aria-hidden="true">
+</div>
+
+
+<!-- error dialog -->
+<%= render 'timeConflictDialogBox' %>
+
+<!-- change send request -->
+<%= render 'changeSendRequestDialogBox' %>
+
+<!-- canceled dialog box -->
+<%= render 'canceledDialogBox' %>
+
+<!-- booking confrim -->
+
+<!-- booking pending confirm -->
+<div class="modal fade" id="bookingConfirmDialogBox" tabindex="-1" role="dialog" aria-labelledby="bookingConfirmDialogBox" aria-hidden="true">
+</div>
+
+<!-- single unavailable booking-->
+<%= render 'profileCalendarUnavailableDialogBox' %>
+
+<!-- recurring available -->
+<%= render 'profileCalendarRecurringUnavailableDialogBox' %>

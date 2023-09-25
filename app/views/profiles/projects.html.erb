@@ -1,0 +1,74 @@
+<% if user_signed_in? && !current_user.builder  %>
+
+   <div class="row profile-builder border-bottom mt-5 pb-5 px-2">
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-1 active">
+        <a href="/profile/about-yourself">
+          <div class="navigation-item rounded-circle d-inline-block">
+            <img src="<%= image_path('Icons/icons8-person-100.png')%>" alt="person">
+          </div>
+        </a>
+     </div>
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-2 active">
+        <a href="/profile/explores">
+       <div class="navigation-item rounded-circle d-inline-block">
+         <img src="<%= image_path('Icons/icons8-telescope-100.png')%>" alt="telescope">
+       </div>
+       </a>
+     </div>
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-3 active">
+        <a href="/profile/guides">
+         <div class="navigation-item rounded-circle d-inline-block">
+         <img src="<%= image_path('Icons/icons8-treasure-map-100.png')%>" alt="treasure-map">
+       </div>
+       </a>
+     </div>
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-4 active">
+        <a href="/profile/projects">
+         <div class="navigation-item rounded-circle d-inline-block">
+         <img src="<%= image_path('Icons/icons8-goal-100.png')%>" alt="goal">
+       </div>
+       </a>
+     </div>
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-5">
+        <a href="/profile/availabilty">
+         <div class="navigation-item rounded-circle d-inline-block">
+         <img src="<%= image_path('Icons/icons8-calendar-25-100.png')%>" alt="calendar">
+       </div>
+       </a>
+     </div>
+     <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-6">
+        <a href="/profile/completed">
+         <div class="navigation-item rounded-circle d-inline-block">
+         <img src="<%= image_path('Icons/icons8-checkmark-100.png')%>" alt="checkmark">
+       </div>
+       </a>
+     </div>
+   </div>
+
+  <div class="container profile-builder mt-5">
+   <div class="position-relative">
+     <div class="page-4">
+       <h1 class="headline">Projects</h1>
+
+       <p class="headline-description mt-4">Add ideas, works-in-progress, or completed projects and connect with other users to take it to the next level.</p>
+
+       <img class="headline-image" src="<%= image_path('Icons/project_page.png')%>" alt="confetti">
+     </div>
+   </div>
+
+   <div class="mt-5 page-4">
+     <%= render 'fourth_page'%>
+   </div>
+
+
+
+   <div class="form-row justify-content-end mb-5" id="action-buttons">
+    <a class="btn btn-link p-2 mr-3" href="/profile/guides">Back</a>
+
+    <a class="btn btn-success p-2" href="/profile/availabilty">Next</a>
+   </div>
+  </div>
+
+<% else %>
+<%=  render template: 'errors/internal_error' %>
+<% end %>

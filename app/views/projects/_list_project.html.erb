@@ -1,0 +1,13 @@
+  <div>
+    <% if @projects.blank? %>
+      <div class="text-center">
+          <span class="titleYetAdd">Nothing added yet</span>
+          <div>
+              <img style="width: 100%" src="<%= image_path('Icons/yet.png') %>" alt="Image" class="imgYet">
+          </div>
+      </div>
+
+    <% else %>
+      <%= render partial: 'shared/list_projects',locals:{projects: @projects,profile_builder: true}%>
+    <%end%>
+  </div>

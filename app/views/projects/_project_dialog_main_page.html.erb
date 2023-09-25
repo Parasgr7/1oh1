@@ -1,0 +1,16 @@
+<!-- Modal -->
+<div class="modal fade" id="projectDialogMainPage" tabindex="-1" role="dialog" aria-labelledby="projectDialogMainPageLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content p-4">
+      <%= form_tag(project_edit_overview_path(project),  :method => :put,remote: true,:id => 'edit_project_main' ) do |f| %>
+        <div class="modal-body">
+          <%= render 'project_page_main' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+          <%= submit_tag("Save",:id=>"submit_dialog_main", :class=>'btn btn-success',data: { disable_with: "Saving..." })%>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<%= simple_form_for @booking, remote: true do |f| %>
+	<div class="modal fade"
+		id="profileCalendarUnavailableDialogBox"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="profileCalendarUnavailableDialogBox"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header px-5">
+			        <h6 class="modal-title">Booking</h6>
+
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			    </div>
+
+				<div class="modal-body px-5 position-relative">
+					<p>
+						You will be unavailable during this time.
+					</p>
+
+					<h6 class="fz-13 mt-4"><b>Details</b></h6>
+					<p class="fz-14 mt-2 mb-0">
+						<i class="material-icons align-middle mr-3">today</i>
+						<%= f.input_field :title, as: :hidden, value: "Unavailable" %>
+						<input type="hidden" name="status" value="3">
+						<%= f.input_field :start, as: :hidden, value: Date.today, class: 'form-control input-sm start_hidden' %>
+						<%= f.input_field :end, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden' %>
+						<span class="today-placeholder align-middle">July 4th</span>
+					</p>
+					<p class="fz-14">
+						<i class="material-icons align-middle mr-3">access_time</i>
+						<span class="start-time-placeholder align-middle">4:30PM</span>
+						<span class="align-middle"> - </span>
+						<span class="end-time-placeholder align-middle">5:30PM</span>
+						<span class="align-middle">PST</span>
+					</p>
+
+					<p class="fz-14">
+						is this a Recurring event? if so, bulk edit your unavailable times <a href="#" id="unavailableDialogBoxRecurrentLink" data-dismiss="modal">here</a> you can change this setting at any time in your calendar.
+					</p>
+				</div>
+
+				<div class="modal-footer border-0 px-5">
+			      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<%= f.button :submit,'Submit',class: 'btn btn-success',data: {disable_with: "Creating..."} %>
+			    </div>
+			</div>
+		</div>
+	</div>
+<%end%>

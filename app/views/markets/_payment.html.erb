@@ -1,0 +1,33 @@
+<section class="guide-coins py-5">
+  <h1 class="text-center c-black">Running low? Add more </h1>
+
+  <div class="coins text-center mt-5">
+    <% @payments.each do |payment| %>
+
+      <% if payment.price == 20 %>
+        <div class="coin d-inline-block shadow mx-3 my-2 rounded active" id="<%= payment.stripe_id%>">
+      <%else%>
+        <div class="coin d-inline-block shadow mx-3 my-2 rounded" id="<%= payment.stripe_id%>">
+      <%end %>
+        <div>
+          <% if payment.price == 20 %>
+            <h6>Recommended</h6>
+          <%else%>
+            <h6>&nbsp</h6>
+          <%end %>
+          <h4><%= payment.name %> <img width="28px" src="<%= image_path('coin.png') %>" alt="coin"></h4>
+          <button type="button"
+                data-amount="<%= payment.name%>"
+                stripe-id="<%= payment.stripe_id%>"
+                data-total="<%= payment.price %>.00"
+                class="btn btn-outline-primary mt-4">$<%= payment.price %>.00 &nbsp;<%= payment.currency %></button>
+          <h5 class="mt-3"><%= payment.offer %></h5>
+        </div>
+      </div>
+    <%end%>
+  </div>
+<!-- 
+  <div class="text-center mt-4">
+    <button type="button" class="btn btn-light more-option-button">More options</button>
+  </div> -->
+</section>

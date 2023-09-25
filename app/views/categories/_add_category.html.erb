@@ -1,0 +1,74 @@
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+      <%= form_tag( { :action => :create, }, { :method => :post }) do %>
+      <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Category</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Category Name :</label>
+                <input type="text" required id="add_category_sample_name_input" class="form-control" name="name" placeholder="Name">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Description :</label>
+                <textarea id="add_category_sample_description_input" required class="form-control" name="description" placeholder="Description" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input categories" id="cat_url">
+                  <label class="custom-file-label pt-2" for="cat_url">Category Image</label>
+                </div>
+                <input type="text" hidden id="url" name="url">
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="category-card shadow" id="add_category_sample_card">
+                <div class="category-card-image position-relative">
+                  <div class="loading centerXY" style="display: none">
+                    <div class="spinner-border"  role="status">
+                    </div>
+                  </div>
+                </div>
+                <div class="category-card-title text-left">
+                </div>
+                <div class="category-card-description text-left">
+                </div>
+
+                <div class="category-card-footer border-top">
+                  <div class="row mx-0">
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">20</div>
+                      <div class="text-center">Explores</div>
+                    </div>
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">22</div>
+                      <div class="text-center">Guides</div>
+                    </div>
+                    <div class="col">
+                      <div class="text-center category-card-footer-number">15</div>
+                      <div class="text-center">Projects</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

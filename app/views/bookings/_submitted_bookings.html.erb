@@ -1,0 +1,28 @@
+<div class="session-table-wrap mt-4" id="submitted_bookings">
+  <table class="table sortable-table">
+    <% if @submitted_bookings.empty? %>
+      No Submitted Bookings
+    <%else%>
+      <thead>
+        <tr>
+          <td scope="col"><%= sortable "start" %></td>
+          <td scope="col"><%= sortable "title" %></td>
+          <td scope="col">Description</td>
+          <td scope="col">With</td>
+          <td scope="col">Role</td>
+          <td scope="col">Status</td>
+        </tr>
+      </thead>
+      <tbody id="mainSubmittedBookings">
+        <%= render partial: 'bookings/list_submitted',collection: @submitted_bookings,as: :booking%>
+      </tbody>
+    <%end%>
+  </table>
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="lessSubmittedBookings">Less</a>
+    <div class="showMoreLessMessage" id="submittedBookingsMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="moreSubmittedBookings">More</a>
+  </div>
+</div>

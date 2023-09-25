@@ -1,0 +1,49 @@
+<%= render 'landing/navbar' %>
+<div class="cell reviewsPage">
+        <div class="background">
+            <div class="imageProfile">
+                <div class="imgProfile"
+                     style="background-image: url('<%= image_path('Section/workshop.jpg') %>')"></div>
+            </div>
+        </div>
+        <div style="padding-left: 305px">
+            <h1 class="c-black"><%= @info.category.name %></h1>
+            <h4 class="c-black">
+                <span class="fz-14">with</span>
+                <span><%= @info.profile.user.full_name %></span>
+            </h4>
+        </div>
+        <div class="categoryCopy cell headerText"><%= @info.category.description %></div>
+        <div class="subtitles border-bottom-0 material-tabs">
+            <div class="cell empty"></div>
+            <a id="tab1-tab" href="#tab1" class="c-black cell subtitle active alignmentTab">Explore Rating</a>
+            <a id="tab2-tab" href="#tab2" class="c-black cell subtitle alignmentBroTab">Guide Rating</a>
+            <span class="green-bar"></span>
+            <div class="cell empty"></div>
+        </div>
+        <div class="cell mt-4">
+            <div  class="grid rating">
+                <div class="cell empty"></div>
+                <div class="grid score1 alignmentScore">
+                    <div id="" class="rateYoCustom d-inline-block p-0" starsSize="normal" rating="<%= average_rating(@info,nil)[:explore_rating]%>"></div>
+                    <div class="cell rateNumber"><%=average_rating(current_user,nil)[:explore_count]%></div>
+                </div>
+                <div class="grid score1 alignmentBroScore">
+                    <div id="" class="rateYoCustom d-inline-block p-0" starsSize="normal" rating="<%= average_rating(@info,nil)[:guide_rating]%>"></div>
+                    <div class="cell rateNumber"><%=average_rating(current_user,nil)[:guide_count]%></div>
+                </div>
+                <div class="cell projectsNumber"></div>
+                <div class="cell empty"></div>
+            </div>
+        </div>
+         <div class="tab-content ">
+            <div id="tab1" class="reviewTab">
+                <%= render 'explore_rating' %>
+            </div>
+            <div id="tab2" class="reviewTab">
+                <%= render 'guide_rating' %>
+            </div>
+            <div id="tab3" class="reviewTab">
+                <%= render 'category_projects' %>
+            </div>
+        </div>

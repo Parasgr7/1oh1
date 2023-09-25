@@ -1,0 +1,16 @@
+.base-chips {
+  background: #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  .base-chips-name {
+    font-size: 14px;
+  }
+  button {
+    margin: 2px 0px 0 5px;
+  }
+
+  &:not(:first-child) {
+    margin-left: 5px
+  }
+}

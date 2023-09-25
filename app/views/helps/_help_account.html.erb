@@ -1,0 +1,57 @@
+<!-- Start: head  -->
+<div class="AccountHead">
+    <div class="text fsz-18 font-weight-bolder c-black">
+        <span>You're the boss.</span>
+    </div>
+    <div class="subtitleContent">
+        <h5 class="c-black">Email</h5>
+    </div>
+    <div class="emailsContainer">
+        <div class="containerDetails c-black font-weight-bolder"><span><%=!current_user.profile.nil? ? current_user.profile.user.email: "Update your profile"%></span> <span class="optionEmail">Primary</span></div>
+        <!-- <div class="containerDetails c-black font-weight-bolder"><span>ashton@1oh1.com</span> <span class="optionEmail">Remove|Primary</span></div>
+        <div class="optionAddEmail">add+</div> -->
+    </div>
+</div>
+<!-- End: head  -->
+
+<!-- Start: body  -->
+<div class="AccountBody">
+    <div class="contentContainer">
+        <div>
+            <h5 class="c-black">Change password</h5>
+        </div>
+          <%= form_tag(change_password_path,  :method => :post,remote: true,:class=>"containerForm") do |f| %>
+            <div class="form-group">
+                <label for="" class="font-weight-bolder">Current password</label>
+                <input type="password" name="current_password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="" class="font-weight-bolder">New password</label>
+                <input type="password" name="new_password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="" class="font-weight-bolder">Re-type new password</label>
+                <input type="password" name="re_type_password" class="form-control">
+            </div>
+            <div class="">
+                <!-- <button class="btn w-100 btnSubmitAccount">Submit</button> -->
+              <%= submit_tag("Submit",:class=>'btn w-100 btnSubmitAccount',data: { disable_with: "Submitting..." })%>
+            </div>
+            <%end%>
+    </div>
+
+
+</div>
+<!-- End: body  -->
+
+<div class="AccountFooter">
+    <div>
+        <h5>Phone</h5>
+        <span>Coming soon</span>
+    </div>
+    <!-- --  -->
+    <div>
+        <h5>Two-step verification</h5>
+        <span>Coming soon</span>
+    </div>
+</div>

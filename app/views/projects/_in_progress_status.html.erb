@@ -1,0 +1,16 @@
+<h3 class="my-5">Status: In-Progress</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainStatusProgress">
+	<% if projects.empty?%>
+		No Projects with status In-Progress
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "progressStatusItem", profile_builder: false} %>
+	<%end%>
+</div>
+
+<div class="progressStatusLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessProgress">Less</a>
+	<div class="showMoreLessMessage" id="progressStatusMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMoreProgress">More</a>
+</div>

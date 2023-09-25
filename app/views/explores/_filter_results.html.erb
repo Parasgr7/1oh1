@@ -1,0 +1,15 @@
+<div id="filter_results_explores">
+  <% if explores.nil? %>
+  <% else %>
+    <%if filter=="popular"%>
+      <%= render partial:'explores/popular_in_region',locals:{popular_incountry: popular_incountry} %>
+      <%= render partial:'explores/popular_in_explores',locals:{world_popular_explore_category: world_popular_explore_category} %>
+    <%elsif filter=="top"%>
+      <%= render partial:'explores/top_explorers', locals:{top_explores: explores} %>
+      <%= render partial:'explores/top_explorers_for', locals:{first_category_explore: top_category,first_category_name_explore: top_name} %>
+    <%else%>
+      <%= render partial:'explores/most_sessions', locals:{top_explores: explores} %>
+    <%end%>
+  <%end%>
+
+</div>

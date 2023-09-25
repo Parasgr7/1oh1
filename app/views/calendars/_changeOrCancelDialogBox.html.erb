@@ -1,0 +1,80 @@
+<% if booking.guide.profile_id == profile_id %>
+	<% @companion = booking.explore %>
+	<%coins = -@booking.coins%>
+<% elsif booking.explore.profile_id == profile_id %>
+	<% @companion = booking.guide %>
+	<%coins = +@booking.coins%>
+<%end%>
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content medium-size">
+		<div>
+			<div class="text-center">
+				<div class="reservation-avatar centerMargin mr-2 d-inline-block"
+             		 style="background-image: url('<%=image_path(profile_photo(@companion.profile))%>')">
+  		        </div>
+			</div>
+			<div class="fsz-15 c-black mt-2 text-center">
+				<%= @companion.profile.user.full_name.camelize %>
+			</div>
+		</div>
+
+		<div>
+			<div class="fsz-16 ff-ssp font-weight-bold mt-4 c-black">
+				<%= booking.title %>
+			</div>
+			<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue">
+				<%= local_time(booking.start,'%I:%M %P')%> - <%= local_time(booking.end,'%I:%M %P')%>, <%= local_time(booking.start,'%B %e, %Y')%>
+			</div>
+			<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue">
+				<%= @companion.profile.time_zone %>
+			</div>
+			<div class="mt-2 ff-os fsz-13 lh-3\/2 c-light-blue">
+				<i><%= booking.description %></i>
+			</div>
+		</div>
+
+
+		<div class="border-bottom">
+			<div class="mt-3 pb-3" style="max-width: 200px">
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Cost:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black reservation-cost"><%=coins.abs%></span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Chest:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="chest-container">
+							<%= balance %>
+						</span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col pl-0 fsz-13 ff-os font-weight-bolder c-black">
+						Remaining:
+					</div>
+					<div class="col-auto pr-0">
+						<span class="align-middle fsz-13 ff-os font-weight-bolder c-black" id="remaining-container"><%= balance + coins %></span>
+						<img class="align-middle" src="<%= image_path('coin.png') %>" width="17" alt="">
+					</div>
+				</div>
+
+				<a href="/markets" class="fsz-14 c-blue font-weight-bold">Buy more coins</a>
+			</div>
+		</div>
+		<div class="modal-footer pb-0">
+					<%= link_to "Cancel",cancel_modal_path(booking.id),method: :post,remote: true,class:"btn btn-link border rounded-pill"%>
+					<% if @companion.class.name == "Guide"%>
+						<%= link_to "Change",booking_schedule_path(guide_id: @companion.id,learning_goal:booking.description,edit:true,id: booking.id),class:"btn btn-link border rounded-pill"%>
+					<%end%>
+					<%= link_to "Message" ,user_chats_path(current_user, :other_user => @companion.profile.user.id), method: :post, class: "btn btn-link border rounded-pill"  %>
+	    </div>
+	</div>
+</div>

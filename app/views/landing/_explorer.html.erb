@@ -1,0 +1,182 @@
+<main class="container">
+  <section class="my-5">
+    <h3 class="my-4">Top Explorers</h3>
+
+    <div class="card-slider owl-carousel">
+      <% if @top_explores.blank? %>
+          <div class="custom-card card-normal mx-auto my-3" >
+            <div class="has-bg" style="background-image: url('<%= image_path('Skills/code-1084923_640.png') %>');">
+              <div class="top-images">
+                <img src="<%= image_path('flags/united-states.png') %>" alt="">
+                <img src="<%= image_path('eng.jpeg') %>" alt="">
+              </div>
+
+            <div class="texts-wrap">
+              <h5 class="text-white">Coding</h5>
+            </div>
+
+            <div class="bottom-image">
+              <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+            </div>
+          </div>
+
+          <h5 class="text-right">Chris Morrie</h5>
+          <div class="text-right">
+            <div class="rateYo d-inline-block p-0"></div>
+
+            <span class="d-inline-block star-counter">453</span>
+          </div>
+        </div>
+
+        <div class="custom-card card-normal my-3" >
+          <div class="has-bg" style="background-image: url('<%= image_path('Skills/code-1084923_640.png') %>');">
+            <div class="top-images">
+              <img src="<%= image_path('flags/united-states.png') %>" alt="">
+              <img src="<%= image_path('eng.jpeg') %>" alt="">
+            </div>
+
+          <div class="texts-wrap">
+            <h5 class="text-white">Coding</h5>
+          </div>
+
+          <div class="bottom-image">
+            <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+          </div>
+        </div>
+
+        <h5 class="text-right">Chris Morrie</h5>
+        <div class="text-right">
+          <div class="rateYo d-inline-block p-0"></div>
+
+          <span class="d-inline-block star-counter">453</span>
+        </div>
+      </div>
+      <%else%>
+        <%@top_explores.each do |explorer|%>
+          <div class="custom-card card-normal my-3" >
+            <%= link_to explore_path(explorer.id),data: { turbolinks: false } do %>
+              <div class="has-bg" style="background-image: url('<%= category_path(explorer.category) %>');">
+                <div class="top-images">
+                  <img src="<%= image_path('flags/united-states.png') %>" alt="">
+                  <img src="<%= image_path('eng.jpeg') %>" alt="">
+                </div>
+
+              <div class="texts-wrap">
+                <h5 class="text-white"><%=explorer.category.name%></h5>
+              </div>
+
+              <div class="bottom-image">
+                <img src="<%= profile_photo(explorer.profile) %>" alt="image">
+              </div>
+            </div>
+          <%end%>
+
+          <h5 class="text-right"><%=explorer.profile.user.full_name%></h5>
+          <div class="text-right">
+            <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= average_rating(explorer,nil)[:explore_rating] %>"></div>
+            <span class="d-inline-block star-counter"><%= average_rating(explorer,nil)[:explore_count] %></span>
+
+          </div>
+          </div>
+      <%end%>
+    <%end%>
+<!--
+    <div class="custom-card card-normal my-3" >
+      <div class="has-bg" style="background-image: url('<%= image_path('Skills/code-1084923_640.png') %>');">
+        <div class="top-images">
+          <img src="<%= image_path('flags/united-states.png') %>" alt="">
+          <img src="<%= image_path('eng.jpeg') %>" alt="">
+        </div>
+
+      <div class="texts-wrap">
+        <h5 class="text-white">Coding</h5>
+      </div>
+
+      <div class="bottom-image">
+        <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+      </div>
+    </div>
+
+    <h5 class="text-right">Chris Morrie</h5>
+    <div class="text-right">
+      <div class="rateYo d-inline-block p-0"></div>
+
+      <span class="d-inline-block star-counter">453</span>
+    </div>
+  </div>
+
+  <div class="custom-card card-normal mx-auto my-3" >
+      <div class="has-bg" style="background-image: url('<%= image_path('Skills/guitar-1836655_640.jpg') %>');">
+        <div class="top-images">
+          <img src="<%= image_path('flags/united-states.png') %>" alt="">
+          <img src="<%= image_path('eng.jpeg') %>" alt="">
+        </div>
+
+      <div class="texts-wrap">
+        <h5 class="text-white">Guitar</h5>
+      </div>
+
+      <div class="bottom-image">
+        <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+      </div>
+    </div>
+
+    <h5 class="text-right">Rafael Keech</h5>
+    <div class="text-right">
+      <div class="rateYo d-inline-block p-0"></div>
+
+      <span class="d-inline-block star-counter">453</span>
+    </div>
+  </div>
+
+      <div class="custom-card card-normal mx-auto my-3" >
+        <div class="has-bg" style="background-image: url('<%= image_path('Skills/retro-4237850_640.jpg') %>');">
+          <div class="top-images">
+            <img src="<%= image_path('flags/united-states.png') %>" alt="">
+            <img src="<%= image_path('eng.jpeg') %>" alt="">
+          </div>
+
+          <div class="texts-wrap">
+            <h5 class="text-white">Retro</h5>
+          </div>
+
+          <div class="bottom-image">
+            <img src="<%= image_path('People/a.jpg') %>" alt="">
+          </div>
+        </div>
+
+        <h5 class="text-right">Ramaeshwar</h5>
+        <div class="text-right">
+          <div class="rateYo d-inline-block p-0"></div>
+
+          <span class="d-inline-block star-counter">453</span>
+        </div>
+      </div>
+
+
+      <div class="custom-card card-normal mx-auto my-3" >
+        <div class="has-bg" style="background-image: url('<%= image_path('Skills/ballet.jpg') %>');">
+          <div class="top-images">
+            <img src="<%= image_path('flags/united-states.png') %>" alt="">
+            <img src="<%= image_path('eng.jpeg') %>" alt="">
+          </div>
+
+          <div class="texts-wrap">
+            <h5 class="text-white">Ballet</h5>
+          </div>
+
+          <div class="bottom-image">
+            <img src="<%= image_path('People/asian-square.jpg') %>" alt="">
+          </div>
+        </div>
+
+        <h5 class="text-right">Raf Abed</h5>
+        <div class="text-right">
+          <div class="rateYo d-inline-block p-0"></div>
+
+          <span class="d-inline-block star-counter">453</span>
+        </div>
+      </div> -->
+    </div>
+  </section>
+</main>

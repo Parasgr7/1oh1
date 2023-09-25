@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>1oh1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- HTML Meta Tags -->
+    <title>1oh1 | Free Online Skill-sharing</title>
+    <meta name="description" content="1oh1 is an online skill-share that lets users learn and teach in real-time for free.">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="1oh1 | Free Online Skill-sharing">
+    <meta itemprop="description" content="1oh1 is an online skill-share that lets users learn and teach in real-time for free.">
+    <meta itemprop="image" content="https://firebasestorage.googleapis.com/v0/b/oh1-b365f.appspot.com/o/logo.png?alt=media&token=35c74300-3edd-48bb-89e9-baa89b45bc5d">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://www.1oh1.org">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="1oh1 | Free Online Skill-sharing">
+    <meta property="og:description" content="1oh1 is an online skill-share that lets users learn and teach in real-time for free.">
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/oh1-b365f.appspot.com/o/logo.png?alt=media&token=35c74300-3edd-48bb-89e9-baa89b45bc5d">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="1oh1 | Free Online Skill-sharing">
+    <meta name="twitter:description" content="1oh1 is an online skill-share that lets users learn and teach in real-time for free.">
+    <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/oh1-b365f.appspot.com/o/logo.png?alt=media&token=35c74300-3edd-48bb-89e9-baa89b45bc5d">
+
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-storage.js"></script>
+    <script src="https://js.stripe.com/v3"></script>
+
+
+    <!-- Fonts and his variations -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Source+Sans+Pro:200,300,400,600,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/google_analytics' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'headscript' %>
+    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type =>  'image/x-icon'  %>
+
+    <%= tag :meta, name: :psj, action: action_name, controller: controller_name %>
+    <%= yield :javascript_includes %>
+    <%= yield :css_includes %>
+  </head>
+  <body>
+    <div id="flash">
+      <% if flash.present? %>
+        <%= render partial: "shared/flash_messages", locals: { flash: flash} %>
+      <% end %>
+    </div>
+
+    <audio id="notification_sound" src="https://firebasestorage.googleapis.com/v0/b/oh1-b365f.appspot.com/o/check.wav?alt=media&token=d214e82d-c59d-4c91-8222-6f8c6e924a8f"></audio>
+
+    <%= yield(:head) %>
+    <%= yield %>
+  </body>
+</html>

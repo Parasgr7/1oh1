@@ -1,0 +1,16 @@
+<h3 class="my-5">Most Recent</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainRecent">
+	<% if projects.empty?%>
+		No Recent Projects
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "recentItem"} %>
+	<%end%>
+</div>
+
+<div class="recentLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessRecent">Less</a>
+	<div class="showMoreLessMessage" id="recentMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMoreRecent">More</a>
+</div>

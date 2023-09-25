@@ -1,0 +1,51 @@
+<div class="explores-review mb-5">
+	<div class="row align-items-center m-0">
+		<% if request.parameters["controller"]=="profiles" || request.parameters["model"]=="profile"%>
+			<div class="col-auto px-0">
+				<%= link_to category_path(rating.category) do%>
+					<div class="profile-card small mr-2"
+				 style="background-image: url('<%= category_photo(rating.category)%>')">
+						<div class="main-text">
+							<%=rating.category.name.camelize%>
+						</div>
+					</div>
+				<%end%>
+			</div>
+		<%end%>
+		<div class="col">
+			<div class="row m-0">
+				<div class="col-auto px-0">
+					<% profile = type == "Explorer" ? rating.guide.profile: rating.explore.profile%>
+					<%= link_to profile_path(profile) do%>
+						<div class="explores-review-avatar d-inline-block"
+						 	style="background-image: url('<%= profile_photo(profile)%>');"></div>
+					<%end%>
+				</div>
+				<div class="col">
+					<%if type=="Explorer"%>
+						<div class="explores-review-title"><%=rating.guide.profile.user.full_name%></div>
+					<%else%>
+						<div class="explores-review-title"><%=rating.explore.profile.user.full_name%></div>
+					<%end%>
+					<div class="explores-review-sub-text">
+						<span><%=by_name%></span>
+						<!-- , 24 sessions -->
+					</div>
+				</div>
+			</div>
+			<div class="row m-0">
+				<div class="col-auto px-0">
+					<div class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%=rating.rating%>"></div>
+				</div>
+				<div class="col">
+					<div class="explores-review-sub-text mt-2">
+						<%=rating.created_at.strftime("%B %d, %Y")%>
+					</div>
+				</div>
+			</div>
+			<div class="explores-review-main-text mt-2">
+				<%=rating.review%>
+			</div>
+			</div>
+	</div>
+</div>

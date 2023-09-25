@@ -1,0 +1,31 @@
+<h3 class="c-black my-0 d-none d-md-block mb-3"><b>Messages</b></h3>
+
+<div class="row chat-wrap">
+  <!-- conversations -->
+  <div class="col-12 col-lg-auto h-100 d-lg-block">
+    <!-- search bar -->
+      <%= form_for_filterrific @filterrific,
+          html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+      <div class="form-group mt-2">
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed form-control',
+          placeholder: 'Search'
+        ) %>
+      </div>
+    <% end %>
+
+    <!-- conversations -->
+    <%= render(
+      partial: 'messages/list',
+      locals: { users: @mychats }
+    ) %>
+  </div>
+  <div class="col pl-0 pr-3 h-100 d-none d-lg-block">
+    <div class="text-center">
+      <img src="<%= image_path('Icons/no_message.png') %>" >
+    </div>
+    <h5 class="text-center mt-3 c-black">You don't have a message selected</h5>
+    <p class="text-center c-black">Choose one from your existing messages</p>
+  </div>
+</div>

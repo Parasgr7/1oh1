@@ -1,0 +1,5 @@
+<% if projects.blank? %>
+  No projects found
+<% else %>
+  <%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "popularCountryProject",profile_builder: profile_builder} %>
+<%end%>

@@ -1,0 +1,29 @@
+<!-- Modal -->
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-4 px-4 pb-2 small-size">
+      <div class="modal-body">
+      	<p class="c-black ff-ssp font-weight-bolder">
+         You must add <b id="bookingCategoryAddDialogSubject">Subject</b> as one of the subjects you want to Explore before continuing.
+        </p>
+      </div>
+      <div class="modal-footer pb-0">
+        <div class="w-100">
+          <div class="text-center">
+            <%= link_to "Add", @url ,class: "btn btn-success-custom rounded-pill"%>
+            <!-- <button type="button"
+                    class="btn btn-success-custom rounded-pill">
+            	Add
+            </button> -->
+          </div>
+
+          <div class="text-center mt-2">
+            <button type="button" class="btn btn-link" data-dismiss="modal">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

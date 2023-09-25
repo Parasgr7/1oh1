@@ -1,0 +1,33 @@
+<div id="upcoming_bookings" class="session-table-wrap mt-4">
+  <table id="bookings-upcomming-btn-content" class="table sortable-table">
+    <% if @upcoming_bookings.empty? %>
+      No Upcoming Bookings
+    <%else%>
+    <thead>
+      <tr>
+        <td scope="col"><%= sortable "start" %></td>
+        <td scope="col"><%= sortable "title" %></td>
+        <td scope="col">Description</td>
+        <td scope="col">Duration</td>
+        <td scope="col">With</td>
+        <td scope="col">Role</td>
+        <td scope="col"></td>
+      </tr>
+    </thead>
+    <tbody id="mainUpcomingBookings">
+      <%= render partial: 'bookings/list_upcoming',collection: @upcoming_bookings,as: :booking%>
+    </tbody>
+  <%end%>
+  </table>
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="lessUpcomingBookings">Less</a>
+    <div class="showMoreLessMessage" id="upcomingBookingsMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="moreUpcomingBookings">More</a>
+  </div>
+</div>
+<div class="modal fade" id="chagneOrCancelDialog" tabindex="-1" role="dialog" aria-labelledby="chagneOrCancelDialog" aria-hidden="true">
+</div>
+<div class="modal fade" id="cancelSessionDialog" tabindex="-1" role="dialog" aria-labelledby="cancelSessionDialog" aria-hidden="true">
+</div>

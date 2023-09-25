@@ -1,0 +1,30 @@
+<div class="modal fade" id="cancelBookingDialog" tabindex="-1" role="dialog" aria-labelledby="declineBookingDialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content p-4">
+			<div class="modal-header">
+		        <h4 class="modal-title">Cancel Booking</h4>
+
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		    </div>
+
+		    <div class="modal-body position-relative">
+				<p>You are about to cancel a booking request, are you sure you would like to continue?</p>
+		    </div>
+
+		    <div class="modal-footer border-0">
+
+		      <button type="button" class="btn btn-link" id="cancel_decline" data-dismiss="modal">
+		      	Cancel
+		      </button>
+		      <%= form_tag(booking_path(Booking.first), :method => "delete", remote: true) do %>
+			    	<div class="w-100">
+							<input type="hidden" name="booking_id" id="cancel_booking_id">
+							<%= submit_tag 'Decline', class:"btn btn-danger", id:"submit_decline",data: { disable_with: "Declining..." } %>
+			    	</div>
+				<%end%>
+		    </div>
+		</div>
+	</div>
+</div>

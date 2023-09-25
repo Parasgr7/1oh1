@@ -1,0 +1,29 @@
+<% if current_user.id != message.user_id %>
+  <div class="row message mx-0 mb-2">
+    <div class="col-auto px-0">
+      <div>
+        <div class="avatar"
+             style="background-image: url('<%= profile_photo(Profile.find_by(:user_id => message.user_id)) %>')">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="message-content">
+        <span class="mr-2 align-middle c-gray fsz-11">
+          <%= local_time(message.created_at,'%l:%M')%>
+        </span>
+        <span class="align-middle">
+          <%=h(message.content).gsub("\n", "<br>").html_safe%>
+        </span>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="message mb-2">
+    <div class="text-right">
+      <div class="message-content active text-left">
+        <%=h(message.content).gsub("\n", "<br>").html_safe%>
+      </div>
+    </div>
+  </div>
+<% end %>

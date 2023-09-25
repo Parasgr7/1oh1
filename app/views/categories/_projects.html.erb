@@ -1,0 +1,12 @@
+<div id="filter_category_results_projects">
+    <h4 class="mt-5 font-weight-bold">Top Projects for <%= @category.name.camelize %></h4>
+    <table class="table table-condensed table-hover table-striped mt-5">
+          <tbody>
+            <% if projects.empty?%>
+          		No Projects available
+          	<%else%>
+              <%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "popularCountryProject"} %>
+          <%end%>
+          </tbody>
+    </table>
+</div>

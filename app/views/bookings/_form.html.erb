@@ -1,0 +1,83 @@
+<%= simple_form_for @booking, remote: true do |f| %>
+  <div class="modal-header">
+    <h5 class="modal-title create-view">New Event</h5>
+
+    <h5 class="modal-title edit-view">Edit Event</h5>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+          <%= f.input :title,input_html: { class: 'form-control fz-14' }, id: 'newEventSubject',placeholder: 'Subject',label: false %>
+        <!-- <input type="text" class="form-control fz-14" id="newEventSubject" placeholder="Subject"> -->
+        <%= f.input_field :start, as: :hidden, value: Date.today, class: 'form-control input-sm start_hidden' %>
+        <%= f.input_field :end, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden' %>
+      </div>
+
+      <div class="new-event-date">
+        <span class="new-event-subtext">
+            <i class="material-icons">today</i>
+        </span>
+
+        <input type="text" class="new-event-date-picker" id="newEventDatePicker"/>
+      </div>
+
+      <div class="new-event-date mb-2">
+        <span class="new-event-subtext">
+            <i class="material-icons">access_time</i>
+        </span>
+        <input type="text" class="new-event-time-picker" id="newEventStartTimepicker"/>
+         to
+        <input type="text" class="new-event-time-picker" id="newEventEndTimepicker"/>
+         PST
+      </div>
+
+      <div class="new-event-price border-top pt-1">
+        <span class="new-event-subtext">Price:</span>
+        <span class="new-event-main-text" id="newEventPriceText">120 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-chest">
+        <span class="new-event-subtext">Chest:</span>
+        <span class="new-event-main-text" id="newEventChestText">360 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-remaining border-bottom pb-1">
+        <span class="new-event-subtext">Remaining:</span>
+        <span class="new-event-main-text" id="newEventRemainingText">240 <img width="25px" src="<%= image_path('coin.png') %>" alt="coin"/></span>
+      </div>
+
+      <div class="new-event-buy-gcoins">
+        <a href="">Buy more G-Coins</a>
+      </div>
+
+      <div class="form-group mt-1 d-none" id="newEventAddDetails">
+        <label class="fz-14" for="newEventAddDetailsTextArea">Add details about the session</label>
+        <textarea class="form-control fz-14" id="newEventAddDetailsTextArea" rows="3"></textarea>
+      </div>
+
+      <div class="new-event-action mt-1" id="newEventAddDetailsBtn">
+        <span class="new-event-action-subtext">
+            <i class="material-icons">menu_open</i>
+        </span>
+        <span class="new-event-action-main-text">Add details about the session</span>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="newEventMoreOptionBtn">More options</button>
+
+    <!-- <button type="button" class="btn btn-primary create-view">Submit Booking Request</button> -->
+    <%= f.button :submit,'Submit Booking Request',class: 'btn btn-primary create-view' %>
+
+    <%= f.button :submit,'Edit Booking Request',class: 'btn btn-primary edit-view' %>
+    <%= link_to 'Delete',
+            booking,
+            method: :delete,
+            class: 'btn btn-danger edit-view',
+            data: { confirm: 'Are you sure?' },
+            remote: true unless @booking.new_record? %>
+    <!-- <button type="button" class="btn btn-primary edit-view">Edit Booking Request</button> -->
+  </div>
+<% end %>

@@ -1,0 +1,270 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.project-cards-wrap {
+	.col {
+		max-width: 305px;
+		padding: 0;
+	}
+}
+.project-card {
+	border: 2px solid rgb(243, 243, 243);
+	border-radius: 10px;
+	display: inline-block;
+	width: 305px;
+	overflow-x: hidden;
+	.image-container {
+		width: 100%;
+		height: 300px;
+		background-size: cover;
+	}
+	.headline-subtitle, .tags, .headline {
+		color: #000;
+	}
+	.headline {
+		font-weight: 600;
+		font-size: 24px;
+	}
+	.headline-subtitle {
+		font-weight: 400;
+	}
+	.headline-subtitle {
+		font-size: 16px;
+	}
+	.tags {
+		font-size: 14px;
+	}
+	.avatars-wrap {
+		margin-left: 10px;
+	}
+	.avatars {
+		display: inline-block;
+		position: relative;
+		left: -10px;
+		.avatar {
+			background-size: cover;
+			width: 25px;
+			height: 25px;
+			display: inline-block;
+			border-radius: 50%;
+		}
+	}
+}
+
+.cards-show-more {
+	button {
+		letter-spacing: 1px;
+		font-size: 22px;
+		text-transform: none;
+		color: rgb(128, 128, 128)!important;
+		font-weight: 300;
+	}
+}
+.projects-container {
+	h3 {
+		color: #000;
+		font-weight: 600;
+	}
+
+	p {
+		color: #000;
+		font-size: 16px;
+		font-weight: 400;
+	}
+}
+
+.project-image {
+	background-size: cover;
+	height: 396px;
+	width: 100%
+}
+.project-arrow-right {
+	display: inline-block;
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    background: white;
+    border-radius: 50%;
+	text-align: center;
+	right: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    i {
+    	font-size: 40px;
+	    position: relative;
+	    top: 7px;
+    }
+}
+.project-avatar {
+	background-size: cover;
+	width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.project-avatars {
+	display: inline-block;
+	position: relative;
+	left: -10px;
+	.project-avatar {
+		background-size: cover;
+		width: 45px;
+		height: 45px;
+		display: inline-block;
+		border-radius: 50%;
+		border: 2px solid white;
+		text-align: center;
+		&.has-more-info {
+			position: relative;
+			span {
+				position: absolute;
+				color: white;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+		}
+	}
+}
+
+.project-help-needed-box {
+	background-color: white;	
+	color: black;
+	padding: 3px 8px 1px 8px;
+	border-radius: 3px;
+}
+.project-offer-help-btn {
+    width: 100%;
+    letter-spacing: 0 !important;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fafafa;
+}
+.project-progress-circle {
+	width: 26px;
+	height: 26px;
+
+	&.small {
+		width: 13px;
+		height: 13px;
+	}
+	border-radius: 50%;
+	background-color: #f3f3f3;
+	display: inline-block;
+	background-size: cover;
+
+	&.active {
+		background-color: #69C90A;		
+	}
+}
+.project-progress-line {
+	height: 4px;
+	position: relative;
+	background-color: #f3f3f3;
+	top: 11px;
+
+	&.active {
+		background-color: #69C90A;		
+	}
+}
+.project-tabs {
+	border-bottom: 0!important;
+	a {
+		text-transform: none!important;
+		color: #000;
+		padding-bottom: 5px!important;
+	}
+	a.active {
+		color: #000!important;
+	}
+	.yellow-bar {
+		height: 2px;
+		background: #BEE895;
+	}
+
+	#project-tab1-tab.active ~ span.yellow-bar {
+		left: -9px;
+		width: 140px;
+	}
+
+	#project-tab2-tab.active ~ span.yellow-bar {
+		left: 156px;
+    	width: 95px;
+	}
+
+	#project-tab3-tab.active ~ span.yellow-bar {
+		left: 272px;
+    	width: 160px;
+	}
+	#project-tab4-tab.active ~ span.yellow-bar {
+		left: 439px;
+    	width: 120px;
+	}
+
+	#project-tools-tab1-tab.active ~ span.yellow-bar {
+		left: -9px;
+		width: 140px;
+	}
+
+	#project-tools-tab2-tab.active ~ span.yellow-bar {
+		left: 156px;
+    	width: 95px;
+	}
+
+	#project-tools-tab3-tab.active ~ span.yellow-bar {
+		left: 272px;
+    	width: 160px;
+	}
+}
+.projects-others {
+	height: 172px;
+	background-size: cover;
+	width: 100%;
+	border-radius: 5px;
+}
+.project-others-wrap {
+	background-color: #EBEBEB;	
+}
+.project-tag {
+	position: relative;
+	text-transform: uppercase;
+	margin-bottom: 7px;
+	span {
+		color: #191919;
+		font-size: 10px;
+		font-weight: bold;
+	}
+	button {
+		display: none;
+		padding: 0!important;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0, 0,0,0.2);
+	    i {
+	    	color: #fff!important;
+	    }
+	}
+	&:hover {
+		background-color: rgba(244, 67, 54, 0.9)!important;
+		button {
+			display: inline-block;
+		}
+	}
+}
+
+#eac-container-projectMainCategory,
+#eac-container-projectMainTags,
+#eac-container-supportNeedHelpWithInput {
+	width: 100%!important;
+	left: 0!important;
+	ul {
+		overflow: auto!important;
+	}
+}
+.easy-autocomplete input {
+	box-shadow: none!important
+}
+.easy-autocomplete {
+	width: 100%!important
+}

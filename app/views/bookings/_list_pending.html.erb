@@ -1,0 +1,50 @@
+<div class="bookingInfo" id="infoBooking-<%= booking.id%>" >
+  <div class="date">
+    <%= local_time(booking.start,'%B %e')%>
+  </div>
+  <div class="start_time">
+    <%= local_time(booking.start,'%l:%M %P')%>
+  </div>
+  <div class="end_time">
+    <%= local_time(booking.end,'%l:%M %P')%>
+  </div>
+</div>
+<% if booking.guide.profile_id == @profile_id %>
+  <% @type= "Guide" %>
+  <% @companion = booking.explore.profile %>
+<% elsif booking.explore.profile_id == @profile_id %>
+  <% @type= "Explorer" %>
+  <% @companion = booking.guide.profile %>
+<%end%>
+<tr class="pendingBookingsItem">
+  <td>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%B %e, %Y')%></p>
+    <p class="whs-nw mb-0"><%= local_time(booking.start,'%l:%M %P') %> - <%=local_time(booking.end,'%l:%M %P')%></p>
+  </td>
+  <th scope="row"><%=booking.title%></th>
+  <td><%=booking.description.nil? || booking.description.empty?  ? "None" : booking.description%></td>
+  <td class="whs-nw">
+    <%= link_to profile_path(@companion) do%>
+      <div class="project-avatar mr-1 d-inline-block align-middle"
+           style="background-image: url('<%= profile_photo(@companion)%>')">
+      </div>
+    <%end%>
+    <span class="whs-nw" id="nameBooking-<%= booking.id%>"><%= @companion.user.full_name %></span>
+  </td>
+  <th>
+    <%= @type.upcase %>
+  </th>
+  <td>
+    <div class="whs-nw">
+      <!--<a id="<%= booking.id%>" class="btn btn-success rounded-pill booking-approve-btn" style="padding: 6px!important;">Approve</a>-->
+      <%=link_to "Approve", approve_modal_path(booking.id),remote: true,class: "btn btn-success rounded-pill", style:"padding: 6px!important;"%>
+      <!-- <button type="button" id="<%= booking.id%>" class="btn rounded-0 btn-primary booking-approve-btn">Approve</button> -->
+
+      <a id="<%= booking.id%>" class="btn btn-link border rounded-pill booking-decline-btn">Decline</a>
+      <!-- <button type="button" id="<%= booking.id%>" class="btn rounded-0 btn-outline-secondary mx-3 booking-decline-btn">Decline</button> -->
+
+      <%= link_to "Message" ,user_chats_path(current_user, :other_user => @companion.user.id), method: :post, class: "btn btn-link border rounded-pill"  %>
+
+    </div>
+  </td>
+</tr>

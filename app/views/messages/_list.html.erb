@@ -1,0 +1,5 @@
+<div id="filterrific_results" class="conversations-wrap position-relative">
+  <div id="messages_contact_list_scroll">
+    <%= render partial: 'chats/user_list', collection: users,as: :user,locals:{other_user: {id:nil}}%>
+  </div>
+</div>

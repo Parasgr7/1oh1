@@ -1,0 +1,130 @@
+$('#declineBookingDialog').modal('hide')
+$('#cancelBookingDialog').modal('hide')
+$('#cancelSessionDialog').modal('hide')
+
+var x = <%= @pending_bookings.nil? ? "0" : @pending_bookings.size %>
+var y = <%= @upcoming_bookings.nil? ? "0" : @upcoming_bookings.size %>
+var z = <%= @submitted_bookings.nil? ? "0" : @submitted_bookings.size %>
+
+$("#tab1-tab").text(x+" Pending Approval")
+$("#tab2-tab").text(z+" Submitted")
+$("#tab3-tab").text(y+" Upcoming")
+
+<% js = escape_javascript(
+  render(partial: 'pending_bookings', locals: { pending_bookings: @pending_bookings, profile_id: @profile_id })
+) %>
+
+$("#pending_bookings").html("<%= js %>");
+
+<% js = escape_javascript(
+  render(partial: 'upcoming_bookings', locals: { upcoming_bookings: @upcoming_bookings, profile_id: @profile_id })
+) %>
+
+$("#upcoming_bookings").html("<%= js %>");
+
+<% js = escape_javascript(
+  render(partial: 'submitted_bookings', locals: { submitted_bookings: @submitted_bookings, profile_id: @profile_id })
+) %>
+$("#submitted_bookings").html("<%= js %>");
+
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');
+
+var action = "<%=@action%>"
+if (action == "session")
+{
+  window.location = '<%= chests_path %>'
+}
+//CODE FOR SHOW MORE AND LESS FEATURE
+if (!showMoreLessInfo) {
+  var showMoreLessInfo = {};
+}
+
+function showMoreAndLess(params) {
+  showMoreLessInfo[params.name] = {};
+  showMoreLessInfo[params.name].totalItems = $(params.idMainDiv + " " + params.classItem).length;
+  showMoreLessInfo[params.name].showItems = 24;
+  $(params.idShowMore).click(function () {
+    var hiddenItems = showMoreLessInfo[params.name].totalItems - showMoreLessInfo[params.name].showItems;
+    if (hiddenItems > 0) {
+      showMoreLessInfo[params.name].showItems = showMoreLessInfo[params.name].showItems + 24;
+    }
+    updateShowItems(params);
+  });
+
+  $(params.idShowLess).click(function () {
+    showMoreLessInfo[params.name].showItems = Math.max(24, showMoreLessInfo[params.name].showItems - 24);
+    updateShowItems(params);
+  });
+  updateShowItems(params);
+  //function to update which items should be shown
+  function updateShowItems(params) {
+    $(params.idMainDiv + " " + params.classItem).each(function (index) {
+      if (index + 1 <= showMoreLessInfo[params.name].showItems) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+    var itemsShow = Math.min(showMoreLessInfo[params.name].showItems, showMoreLessInfo[params.name].totalItems);
+    $(params.idMessage).html("Showing " + itemsShow + " of " + showMoreLessInfo[params.name].totalItems + " items");
+    updateUIMoreLess(params);
+  }
+  function updateUIMoreLess(params) {
+    if (showMoreLessInfo[params.name].totalItems == 0) {
+      $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      $(params.idMessage).css({ opacity: 0, cursor: "default" });
+    } else {
+      $(params.idShowMore).css({ opacity: 1, cursor: "pointer" });
+      $(params.idShowLess).css({ opacity: 1, cursor: "pointer" });
+      $(params.idMessage).css({ opacity: 1, cursor: "pointer" });
+      if (showMoreLessInfo[params.name].showItems <= 24) {
+        $(params.idShowLess).css({ opacity: 0, cursor: "default" });
+      }
+
+      if (showMoreLessInfo[params.name].showItems >= showMoreLessInfo[params.name].totalItems) {
+        $(params.idShowMore).css({ opacity: 0, cursor: "default" });
+      }
+    }
+  }
+}
+
+var paramsUpcomingBookings = {
+  idMainDiv: "#mainUpcomingBookings",
+  idMessage: "#upcomingBookingsMessage",
+  idShowMore:"#moreUpcomingBookings",
+  idShowLess:"#lessUpcomingBookings",
+  classItem:".upcomingBookingsItem",
+  name:"upcomingBookingsList"
+};
+showMoreAndLess(paramsUpcomingBookings);
+var paramsPendingBookings = {
+  idMainDiv: "#mainPendingBookings",
+  idMessage: "#pendingBookingsMessage",
+  idShowMore:"#morePendingBookings",
+  idShowLess:"#lessPendingBookings",
+  classItem:".pendingBookingsItem",
+  name:"pendingBookingsList"
+};
+showMoreAndLess(paramsPendingBookings);
+var paramsPreviousBookings = {
+  idMainDiv: "#mainPreviousBookings",
+  idMessage: "#previousBookingsMessage",
+  idShowMore:"#morePreviousBookings",
+  idShowLess:"#lessPreviousBookings",
+  classItem:".previousBookingsItem",
+  name:"previousBookingsList"
+};
+showMoreAndLess(paramsPreviousBookings);
+var paramsSubmittedBookings = {
+  idMainDiv: "#mainSubmittedBookings",
+  idMessage: "#submittedBookingsMessage",
+  idShowMore:"#moreSubmittedBookings",
+  idShowLess:"#lessSubmittedBookings",
+  classItem:".submittedBookingsItem",
+  name:"submittedBookingsList"
+};
+showMoreAndLess(paramsSubmittedBookings);

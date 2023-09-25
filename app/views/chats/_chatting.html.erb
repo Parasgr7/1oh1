@@ -1,0 +1,46 @@
+<div id="userIdInfo" style="display: none;"><%= current_user.id %></div>
+
+<div id="userImageUrl" style="display: none;"><%= profile_photo(@other_user.profile)  %></div>
+
+<!-- Start: header chat  -->
+<div class="row mx-0 mt-2">
+  <%= link_to profile_path(@other_user.profile) do%>
+    <div class="col-auto px-0">
+      <div class="chat-avatar" style="background-image: url('<%= profile_photo(@other_user.profile) %>')"></div>
+    </div>
+  <% end %>
+  <div class="col">
+    <div class="chat-title">Chat</div>
+    <div class="chat-subtitle">From: <%= @other_user.full_name.camelize %></div>
+  </div>
+
+  <div class="col-auto">
+    <i class="material-icons d-lg-none cursor-p"
+       id="backToConversation">keyboard_backspace</i>
+  </div>
+</div>
+
+<div class="messages-wrap border rounded">
+  <div id="chatScroll" class="messages-scroll p-3 position-relative">
+    <div class="w-100">
+      <% if @chat.messages.any? %>
+        <div id="messages">
+          <%= render partial: 'messages/message', collection: @chat.messages.order(id: :asc)%>
+        </div>
+      <% else %>
+        <div id="messages">
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Start: Footer chat  -->
+  <div>
+      <%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat,other_user: params[:other_user]}%>
+  </div>
+</div>
+<!-- End: Footer chat  -->
+
+<script>
+  createMessageChannel()
+</script>

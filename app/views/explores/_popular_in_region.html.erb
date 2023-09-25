@@ -1,0 +1,19 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Recent Categories in <%= current_user.profile ? current_user.profile.country: "" %></h3>
+
+  <div class="row my-4" id="mainPopularExplore">
+    <%if popular_incountry.blank? %>
+    Update your Country
+    <%else%>
+      <%= render partial: 'shared/category_card.html', collection: popular_incountry, as: :category, locals:{class_name: "popularExploreItem",type:"Explorer"} %>
+    <%end%>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessPopularExplore">Less</a>
+    <div class="showMoreLessMessage" id="popularExploreMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMorePopularExplore">More</a>
+  </div>
+</section>

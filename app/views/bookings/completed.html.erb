@@ -1,0 +1,15 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "reservation" %>
+<% end %>
+
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="reservation-container-wrap">
+	<div class="container reservation-container shadow">
+		<div class="h-100">
+			<%= render 'reservation_fourth_page' %>
+		</div>
+	</div>
+</div>

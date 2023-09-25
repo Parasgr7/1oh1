@@ -1,0 +1,53 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+<div class="reservation-container-wrap">
+	<div class="container reservation-container shadow">
+    <div class="p-4">
+      <div class="reservation-top-nav-wrap border-bottom mb-4">
+        <div class="reservation-top-nav">
+          <div class="row m-0">
+            <div class="col-auto px-0">
+                      <div class="project-progress-circle active"
+                         >
+                      </div>
+                      <span class="reservation-top-nav-text c-black font-weight-bold">Overview</span>
+                  </div>
+                  <div class="col px-0">
+                      <div class="project-progress-line ">
+
+                      </div>
+                  </div>
+                  <div class="col-auto px-0">
+                      <div class="project-progress-circle">
+                      </div>
+                      <span class="reservation-top-nav-text">Collaborators</span>
+                  </div>
+                  <div class="col px-0">
+                      <div class="project-progress-line">
+                      </div>
+                  </div>
+                  <div class="col-auto px-0">
+                      <div class="project-progress-circle">
+                      </div>
+                      <span class="reservation-top-nav-text">Details</span>
+                  </div>
+          </div>
+        </div>
+      </div>
+      <%= form_tag( project_update_overview_path,  :method => :post,remote: true,:id => 'update_project_details' ) do |f| %>
+        <%= render 'project_page_main',isNewProject: true %>
+        <div class="text-center mt-4">
+          <a class="btn btn-link">
+            Cancel
+          </a>
+          <%= submit_tag("Next",:id=>"submit_overview_project", :class=>'btn btn-success',data: { disable_with: "Creating..." })%>
+
+          <!-- <a class="btn btn-success">
+            Next
+          </a> -->
+        </div>
+      <%end%>
+    </div>
+	</div>
+</div>

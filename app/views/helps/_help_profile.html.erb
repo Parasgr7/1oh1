@@ -1,0 +1,89 @@
+<div class="containerHelps">
+        <div class="bodyHelp">
+            <!-- start: head  -->
+            <div class="headerHelp border-bottom">
+                <div class="descriptionContainer">
+                    <div class="titleDescription">
+                        <h3 class="c-black">We're here to help.</h3>
+                    </div>
+                    <div class="contentDescription">
+                        <p class="fz-14 font-weight-bolder c-black">
+                            At 1oh1, we're constantly innovating to bring you the best possible experience. Here you can find important information and solutions to common problems. If you can't find a topic or have a suggestion about how we can make the site better, please email us at <a href="mailto:support@1oh1.org">support@1oh1.org</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end: head  -->
+
+            <!-- start: body  -->
+            <article class="bodyContainer">
+                <div>
+                    <div class="sectionLeft">
+                        <a data-turbolinks="false" href="#" class="optionHelp active-link" id="account">
+                            Account
+                        </a>
+                        <a data-turbolinks="false" href="#" class="optionHelp" id="availabiltySection">
+                          Availability
+                        </a>
+                        <a data-turbolinks="false" href="#!" class="optionHelp c-black cursor-p" id="communication" >Communication</a>
+                        <a data-turbolinks="false" href="#section-how" class="optionHelp" id="how" >How-to...</a>
+                        <a data-turbolinks="false" href="#section-explorer" class="optionHelp" id="explorer" >Explorer Support</a>
+                        <a data-turbolinks="false" href="#section-guide" class="optionHelp" id="guide" >Guide Support</a>
+                        <a data-turbolinks="false" href="#section-legal" class="optionHelp" id="legal" >Legal</a>
+                        <div class="d-none" id="section-legal">
+                            <div class="legalList">
+                                <div>
+                                    <a data-turbolinks="false" href="#section-privacypolicy" class="optionHelp" id="privacypolicy">Privacy Policy</a>
+                                </div>
+                                <div>
+                                    <a data-turbolinks="false" href="#section-privacypolicy" class="optionHelp" id="useragreement">User Agreement</a>
+                                </div>
+                                <div>
+                                    <a data-turbolinks="false" href="#section-privacypolicy" class="optionHelp" id="professionalpolicy">Professional Policy</a>
+                                </div>
+                                <div>
+                                    <a data-turbolinks="false" href="#section-privacypolicy" class="optionHelp" id="cookiespolicy">Cookies Policy</a>
+                                </div>
+                                <div>
+                                    <a data-turbolinks="false" href="#section-privacypolicy" class="optionHelp" id="refundpolicy">Refund Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -  -->
+                <div class="sectionRight">
+                    <div class="sectionAccount" id="section-account">
+                        <%= render 'help_account' %>
+                    </div>
+                    <div class="d-none" id="section-communication">
+                        <%= render 'helpcommunication'%>
+                    </div>
+                    <div class="d-none" id="section-how">How to</div>
+                    <div class="d-none" id="section-explorer">Explorer Support</div>
+                    <div class="d-none" id="section-guide">Guide Support</div>
+                    <div class="d-none" id="section-privacypolicy">
+                        <%= render 'privacypolicy'%>
+                    </div>
+                    <div class="d-none" id="section-availabiltySection">
+                        <%= render 'profiles/fifth_page',locals:{ first: 0} %>
+                    </div>
+
+                    <div class="d-none" id="section-useragreement">
+                        <%= render 'useragreement'%>
+                    </div>
+                    <div class="d-none" id="section-professionalpolicy">
+                        <%= render 'professionalpolicy'%>
+                    </div>
+                    <div class="d-none" id="section-cookiespolicy">
+                        <%= render 'cookiespolicy'%>
+                    </div>
+                    <div class="d-none" id="section-refundpolicy">
+                        <%= render 'refundpolicy'%>
+                    </div>
+                </div>
+            </article>
+            <!-- end: body  -->
+
+        </div>
+    </div>

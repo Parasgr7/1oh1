@@ -1,0 +1,17 @@
+<h3 class="my-5">Status: Completed</h3>
+<div class="row m-0 project-cards-wrap justify-content-between" id="mainStatusCompleted">
+	<% if projects.empty?%>
+		No Projects with status Completed
+	<%else%>
+		<%= render partial: 'shared/project_card.html', collection: projects, as: :project, locals:{class_name: "completedStatusItem", profile_builder: false} %>
+	<%end%>
+
+</div>
+
+<div class="completedStatusLinks gridLinksShow">
+	<a class="gridLessLink" id="showLessCompleted">Less</a>
+	<div class="showMoreLessMessage" id="completedStatusMessage">
+		Showing x of y items
+	</div>
+	<a class="gridMoreLink" id="showMoreCompleted">More</a>
+</div>

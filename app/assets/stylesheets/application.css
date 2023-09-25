@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*= require aos
+*= require magnific-popup
+*= require mediaelementplayer
+*= require perfect-scrollbar
+*= require jquery-ui
+*= require jquery-jvectormap-2.0.5.css
+*= require bootstrap.min
+*= require mdtimepicker
+*= require bootstrap-datepicker
+*= require owl.carousel.min
+*= require owl.theme.default.min
+*= require style
+*= require bootstrap/bootstrap.min
+*= require bootstrap/bootstrap-grid
+*= require bootstrap/bootstrap-reboot
+*= require bootstrap-material-datetimepicker
+*= require daterangepicker
+*= require scss/style
+*= require material_icons
+*= require home
+*= require subscribes
+*= require landing
+*= require modal
+*= require helps
+*= require profiles
+*= require reviews
+*= require sidebar
+*= require explores
+*= require bookings
+*= require pre_sessions
+*= require in_sessions
+*= require projects
+*= require categories
+*= require markets
+*= require loading
+*= require guides
+*= require notifications
+*= require payment
+*= require searchProject
+*= require_self
+*= require jquery.rateyo.min.css
+*= require post_session
+*= require components/form
+*= require components/modal
+*= require components/buttons
+*= require components/chips
+*= require components/links
+*= require components/calendars
+*= require components/scrolls
+*= require components/cards
+*= require components/nav
+*= require components/datepicker
+*= require components/timepicker
+*= require components/tables
+*= require components/autocomplete
+*= require components/dropdown
+*= require utils/layout
+*= require utils/typography
+*= require utils/colors
+*= require utils/utils
+*= require utils/general
+*= require utils/animations
+*= require easy-autocomplete
+*= require easy-autocomplete.themes
+ */

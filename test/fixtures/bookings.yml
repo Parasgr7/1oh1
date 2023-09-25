@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  start: 2019-08-24 00:23:53
+  end: 2019-08-24 00:23:53
+  color: MyString
+  duration: 1
+  booking_date: 2019-08-24 00:23:53
+  cancel_date: 2019-08-24 00:23:53
+  status: false
+
+two:
+  title: MyString
+  start: 2019-08-24 00:23:53
+  end: 2019-08-24 00:23:53
+  color: MyString
+  duration: 1
+  booking_date: 2019-08-24 00:23:53
+  cancel_date: 2019-08-24 00:23:53
+  status: false

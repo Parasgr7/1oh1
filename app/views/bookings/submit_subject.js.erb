@@ -1,0 +1,7 @@
+<% js = escape_javascript(
+  render(partial: 'booking_category_add_dialog', locals: { url: @url })
+) %>
+
+$("#bookingCategoryAddDialog").html("<%= js %>");
+$('#bookingCategoryAddDialog').modal('show')
+$('#bookingCategoryAddDialogSubject').text('<%== escape_javascript @guide.category.name.camelize%>')

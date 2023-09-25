@@ -1,0 +1,39 @@
+// Place all the styles related to the Guides controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.section {
+	.custom-search-input {
+		max-width: 400px;
+	}
+}
+.block-margin-center {
+  margin: 0 auto;
+}
+.card-slider {
+  .owl-nav {
+    position: absolute;
+    width: 100%;
+    top: 38%;
+    transform: translateY(-50%);
+
+    .owl-prev, .owl-next {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: 4px;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    }
+
+    .owl-prev {
+      position: absolute;
+      left: -2px;
+    }
+
+    .owl-next {
+      position: absolute;
+      right: -16px;
+    }
+  }
+}

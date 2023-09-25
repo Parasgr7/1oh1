@@ -1,0 +1,109 @@
+<div class="container" id="project_details_section">
+  <div class="row">
+    <div class="col">
+  	  <div class="project-tabs material-tabs">
+        <a id="project-tab1-tab" class="tab1-tabBooking material-tabs-tab pl-0" href="#tab1" class="active">
+        	About the project
+        </a>
+        <a id="project-tab2-tab" class="tab2-tabBooking material-tabs-tab" href="#tab2">
+        	Challenges
+        </a>
+        <a id="project-tab3-tab" class="tab3-tabBooking material-tabs-tab" href="#tab3">
+        	Tools and Supplies
+        </a>
+        <a id="project-tab4-tab" class="tab4-tabBooking material-tabs-tab" href="#tab4">
+          Comments
+        </a>
+        <span class="yellow-bar"></span>
+      </div>
+    </div>
+    <%if project.profile_id == current_profile.id %>
+      <div class="col-auto">
+        <%= link_to open_edit_project_modal_path(id: project,class: "details"), remote: true, class:"btn btn-link mb-3 mt-4" do%>
+          <i class="material-icons c-gray fsz-18">edit</i>
+        <%end%>
+        <!-- <button class="btn btn-link mb-3 mt-4" id="project_edit_tools_btn">
+          <i class="material-icons c-gray fsz-18">edit</i>
+        </button> -->
+      </div>
+    <%end%>
+  </div>
+
+    <div class="tab-content custom-table">
+      <div id="tab1">
+      	<h1 class="mt-4 fsz-25 c-black">
+      		About the project
+      	</h1>
+      	<p class="fsz-11 c-black mb-1 mt-3 font-weight-bolder">DESCRIPTION</p>
+
+      	<p class="fsz-13 font-weight-bolder c-black" id="project_description"><%=project.description%></p>
+
+      	<p class="fsz-11 c-black mt-4 mb-1 font-weight-bolder" id="completion_date">COMPLETION DATE: <%=project.completion_date.nil? ? "None" : project.completion_date.strftime("%B %d,%Y")%></p>
+      </div>
+      <div id="tab2">
+      	<h1 class="mt-4 fsz-25 c-black">
+      		Challenges
+      	</h1>
+      	<p class="fsz-11 c-black mb-2 font-weight-bolder mt-4">KNOWLEDGE GAPS</p>
+
+      	<p class="fsz-13 font-weight-bolder c-black" id="gaps"><%=project.gaps%></p>
+
+      	<p class="fsz-11 c-black mb-2 font-weight-bolder mt-4">OTHER CHALLENGES</p>
+
+      	<p class="fsz-13 font-weight-bolder c-black" id="challenges"><%=project.challenges%></p>
+      </div>
+      <div id="tab3">
+      	<h1 class="mt-4 fsz-25 c-black">
+      		Tools and Supplies
+      	</h1>
+      	<p class="fsz-11 c-black mb-1 font-weight-bolder mt-3">TOOLS</p>
+        <%if !project.tools.nil? && !project.tools.empty?%>
+          <%project.tools.each do |tool|%>
+            <div class="d-inline-block fsz-14 font-weight-bold mr-5 c-black">
+              <%=tool%>
+            </div>
+          <%end%>
+        <%end%>
+      	<p class="fsz-11 c-black mb-1 font-weight-bolder mt-3">SUPPLIES</p>
+        <%if !project.supplies.nil? && !project.supplies.empty?%>
+          <%project.supplies.each do |supply|%>
+            <div class="d-inline-block fsz-14 font-weight-bold mr-5 c-black">
+              <%=supply%> hI
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+      <div id="tab4">
+        <!-- project comment section -->
+        <div class="mt-5">
+          <div class="row border-bottom pb-4 mx-0">
+            <div class="col-auto pl-0">
+              <div class="project-avatar"
+                       style="background-image: url('<%= profile_photo(current_user.profile) %>')"></div>
+            </div>
+            <div class="col pr-0" style="max-width: 700px">
+              <div class="form-group custom-from-group w-100">
+                 <%= form_tag( create_comment_path,  :method => :post,remote: true ,:id => 'create_project_comment' ) do |f| %>
+                  <input type="hidden" name="id" value="<%=project.id%>">
+                  <textarea class="form-control"
+                            placeholder="What are your thoughts about this project"
+                            name="comment"
+                            required
+                            id="project_comment"
+                            rows="5"></textarea>
+                  <div class="text-right mt-3">
+                    <%= submit_tag("Post a Comment",:id=>"submit_comment_project", :class=>'btn btn-link border radius-25 letter-spacing-0',data: { disable_with: "Commenting..." })%>
+                  </div>
+                  <%end%>
+              </div>
+            </div>
+          </div>
+          <!-- comment -->
+            <div id="project_comments">
+              <%= render partial: 'projects/project_comments', collection: @comments, as: :comment %>
+            </div>
+          <!-- end comment -->
+        </div>
+      </div>
+    </div>
+</div>

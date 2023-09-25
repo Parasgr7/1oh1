@@ -1,0 +1,6 @@
+$("form#report_form").trigger('reset');
+$("#report-dialog").modal('toggle');
+<% flash = escape_javascript(
+  render partial: "shared/flash_messages", locals: { flash: @flashing}
+) %>
+$("#flash").html('<%= flash %>');

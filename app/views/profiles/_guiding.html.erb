@@ -1,0 +1,164 @@
+<% fetch_average_rating = average_rating(@user,nil)%>
+<div class="guideSection">
+    <div class="celprofile" id="score">
+      <div class="cel celrating"><p class="txtrating c-black">Average Rating:</p></div>
+      <div class="cel icons-Starts" id="subgridscore">
+        <div class="cel mt-1">
+          <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= fetch_average_rating[:guide_rating] %>"></div>
+        </div>
+        <span class="cel fz-13 mt-3 fw-600 c-gray"><%= fetch_average_rating[:guide_count] %></span>
+        <div class="grid-RatingsModal">
+                <div class="grid-Pop celpop">
+                        <div class="grid-Starts celpop">
+                          <div class="celp">
+                            <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= fetch_average_rating[:guide_rating] %>"></div>
+                          </div>
+                          <div class="celp txt5 mt-1"><%= fetch_average_rating[:guide_count] %> <span>out of</span> <%= fetch_average_rating[:count] %></div>
+                        </div>
+                        <div class="grid-Rating celpop">
+                            <div class="celp txt-Title"><%= fetch_average_rating[:guide_count] %> ratings</div>
+                        </div>
+                        <div class="grid-Star celpop">
+                            <div class="celp txt-Star top-Starts">5 Star</div>
+                            <div class="celp top-Starts">
+                                <div class="progress bar-Progress">
+                                    <div class="progress-bar bary" role="progressbar" style="width: <%=fetch_average_rating[:pop_up_guide][5]%>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                            </div>
+                            <div class="celp number top-Starts"><%=fetch_average_rating[:pop_up_guide][5]%>%</div>
+                            <div class="celp txt-Star top-Starts">4 Star</div>
+                            <div class="celp top-Starts">
+                                <div class="progress bar-Progress">
+                                    <div class="progress-bar bary" role="progressbar" style="width: <%=fetch_average_rating[:pop_up_guide][4]%>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="celp number top-Starts"><%=fetch_average_rating[:pop_up_guide][4]%>%</div>
+                            <div class="celp txt-Star top-Starts">3 Star</div>
+                            <div class="celp top-Starts">
+                                <div class="progress bar-Progress">
+                                    <div class="progress-bar bary" role="progressbar" style="width: <%=fetch_average_rating[:pop_up_guide][3]%>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="celp number top-Starts"><%=fetch_average_rating[:pop_up_guide][3]%>%</div>
+                            <div class="celp txt-Star top-Starts">2 Star</div>
+                            <div class="celp top-Starts">
+                                <div class="progress bar-Progress">
+                                    <div class="progress-bar bary" role="progressbar" style="width: <%=fetch_average_rating[:pop_up_guide][2]%>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="celp number top-Starts"><%=fetch_average_rating[:pop_up_guide][2]%>%</div>
+                            <div class="celp txt-Star top-Starts">1 Star</div>
+                            <div class="celp top-Starts">
+                                <div class="progress bar-Progress">
+                                    <div class="progress-bar bary" role="progressbar" style="width: <%=fetch_average_rating[:pop_up_guide][1]%>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="celp number top-Starts"><%=fetch_average_rating[:pop_up_guide][1]%>%</div>
+                            <div class="topStart"></div>
+                        </div>
+                    </div>
+
+                    <div class="cel"></div>
+        </div>
+      </div>
+      <div class="cel"></div>
+    </div>
+    <div class="interestsHeader mt-3">
+        <div class="interestsTitle c-black">Subjects</div>
+        <div class="interestsIcon">
+            <% if !view_individual_profile.nil? %>
+              <a href="#" data-toggle="modal" data-target="#editGuideModal">
+                  <i class="material-icons c-dark-gray">edit</i>
+              </a>
+            <%end%>
+        </div>
+    </div>
+
+    <div class="interestsContent mb-3">
+        <div class="interestsImages" id="profileGuideMain">
+            <% if @guides.blank? %>
+            <div class="gridGuidingActivity">
+                    <button data-toggle="modal" data-target="#editGuideModal" class="btnAddActivity">add</button>
+                <div class="titleactivityProfile toptitleActivity">
+                  <span class="titleYetAdd">Nothing added yet</span>
+                </div>
+                <div class="gridImgActivity">
+                    <div class=""></div>
+                    <div class="">
+                        <img src="<%= image_path('Icons/yet.png') %>" alt="Image" class="imgYet">
+                    </div>
+                    <div class=""></div>
+                </div>
+            </div>
+            <% else %>
+                <% @guides.each do|guide| %>
+                  <div class="interestsImage">
+                     <img class="imagesInterests" src="<%= guide.url %>">
+                  </div>
+               <% end %>
+            <% end %>
+        </div>
+        <div class="interestsMoreLink">
+          <a class="gridLessLink" id="lessProfileGuides">Less</a>
+          <div class="showMoreLessMessage" id="profileGuideMessage">
+            Showing x of y items
+          </div>
+          <a class="gridMoreLink" id="moreProfileGuides">More</a>
+        </div>
+    </div>
+    <div class="reviewsTitle">
+        <div id="forReviewsTitle" class="c-black">Reviews</div>
+    </div>
+    <div class="exploration-reviews mt-2">
+      <% if @guide_ratings.blank? %>
+        <div class="text-center no-result-text">
+          No Guide Ratings Available
+        </div>
+      <% else %>
+      <% @guide_ratings.each do |category,guide_rating| %>
+        <div class="exploration-review row mt-4">
+          <div class="col-auto">
+            <div class="card-skill small border">
+              <div class="cover"
+                   style="background-image: url('<%= category.url %>');">
+              </div>
+              <h5 class="font-weight-bold">
+                <%= category.name %>
+              </h5>
+            </div>
+          </div>
+          <div class="col">
+            <!-- rate -->
+            <div class="row">
+              <div class="col">
+                <div id="" class="rateYoCustom d-inline-block p-0" starsSize="small" rating="<%= average_rating(@user,category)[:guide_rating] %>"></div>
+                <span class="fz-13 fw-600 c-gray"><%= average_rating(@user,category)[:guide_count]%></span>
+              </div>
+
+              <div class="col-auto">
+                <a class="navigation-link">View All Reviews</a>
+              </div>
+            </div>
+
+            <!-- comment -->
+            <% guide_rating.each do |content| %>
+              <%= link_to profile_path(content.explore.profile_id) do %>
+                <div class="exploration-review-comment mt-2">
+                  <!-- avatar -->
+
+                  <!-- comment -->
+                  <span class="fw-500 c-black"><%= content.review %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="moreLink">
+         <div id="forMoreLink">
+             <a id="moreLink" href="#">More</a>
+         </div>
+    </div>
+</div>

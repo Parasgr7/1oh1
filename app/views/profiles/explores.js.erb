@@ -1,0 +1,74 @@
+<% js = escape_javascript(
+  render(partial: 'list', locals: { categories: @categories })
+) %>
+$("#filterrific_results").html("<%= js %>");
+
+console.log("this is the explore code");
+/*why is this code never running?*/
+
+var exploreCategories = window.sessionStorage.getItem('exploreCategories');
+
+if (exploreCategories){
+	exploreCategories = JSON.parse(exploreCategories);
+} else {
+	exploreCategories = { exp_categories: [] };
+}
+
+exploreCategories["exp_categories"].forEach(cat => {
+	$("#" + cat).addClass('active')
+})
+
+setExploreCategories()
+
+$('.explore-item-status-button-add').click(function () {
+	var parent = $(this).parent().parent()
+	console.log(parent)
+	var id = Number(parent.attr('id').split('-')[1])
+
+	parent.toggleClass('active')
+
+	if (parent.hasClass('active')) addCategory(id)
+	else deleteCategory(id)
+
+	setExploreCategories()
+})
+
+function addCategory (category) {
+	var array = window.sessionStorage.getItem('exploreCategories')
+	if(array) {
+		array = JSON.parse(array)
+	} else {
+		array = { exp_categories: [] }
+	}
+	array.exp_categories.push(category)
+
+	window.sessionStorage.setItem('exploreCategories', JSON.stringify(array))
+}
+
+function deleteCategory (category) {
+	var array = window.sessionStorage.getItem('exploreCategories');
+	if (array) {
+		array = JSON.parse(array);
+	} else{
+		array = { exp_categories: [] };
+	}
+
+	array.exp_categories = array.exp_categories.filter(cat => cat !== category)
+
+	window.sessionStorage.setItem('exploreCategories', JSON.stringify(array))
+}
+
+function setExploreCategories () {
+	/*this function keeps updating the value of the hidden tag
+	to use it anytime in the backend*/
+	var array = window.sessionStorage.getItem('exploreCategories');
+	if(array){
+		array = JSON.parse(array);
+	}else{
+		array = {exp_categories:[]};
+	}
+	var input = document.getElementById("exploreCategories");
+  if (input){
+  	input.value = JSON.stringify(array);
+  }
+}

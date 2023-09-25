@@ -1,0 +1,121 @@
+<div class="tab-content" style="padding-right: 70px;">
+  <div id="tab1" style="overflow-x: visible;">
+    <h5 class="c-black mt-5">
+      Exploring
+      <%if current_user.profile.id == @profile.id %>
+        <a href="#" data-turbolinks="false" id="memberExplorersEditExploreButton" class="ml-2">
+          <i class="material-icons c-dark-gray align-bottom">edit</i>
+        </a>
+      <%end%>
+    </h5>
+    <div class="position-relative mx-4">
+      <div class="profile-arrow-right-btn border">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </div>
+      <div class="position-relative profile-x-scroll no-user-select" style="overflow-x: hidden;">
+        <div class="row mx-0 pb-4 border-bottom mt-4 width-max-content">
+          <%@explores.each do |category|%>
+            <%= link_to category_path(category) do%>
+              <div class="profile-card mr-2"
+                   style="background-image: url('<%= category_photo(category) %>')">
+                <div class="main-text">
+                  <%=category.name%>
+                </div>
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+      <div class="profile-arrow-left-btn border">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </div>
+    </div>
+
+    <h5 class="c-black mt-4 mb-3">Explore rating</h5>
+    <%= render partial:'shared/rating.html',locals:{
+      rating: average_rating(@profile.user,nil)[:explore_rating],
+      count: average_rating(@profile.user,nil)[:explore_count],
+      group_rating: average_rating(@profile.user,nil)[:pop_up_explore]
+    } %>
+    <%if !@current_explore_rating.nil? %>
+      <h5 class="c-black mt-4">Your rating</h5>
+
+      <div class="mt-4 pb-5 border-bottom">
+        <%= form_tag(edit_reviews_path(@current_explore_rating), :method => "put", remote: true,id:"edit_explorer_rating") do %>
+          <div class="explores-review mb-5">
+              <div class="row align-items-center m-0">
+                <div class="col-auto px-0">
+                  <div class="profile-card small mr-2"
+                 style="background-image: url('<%= category_photo(@current_explore_rating.category)%>')">
+                    <div class="main-text">
+                      <%=@current_explore_rating.category.name%>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="explore_rating" value=true>
+                <div class="col">
+                  <div class="row m-0">
+                    <div class="col-auto px-0">
+                      <div class="explores-review-avatar d-inline-block"
+                         style="background-image: url('<%= profile_photo(current_profile) %>')"></div>
+                    </div>
+                    <div class="col">
+                        <div class="explores-review-title">
+                          <%=current_user.full_name%>
+                        </div>
+                      <div class="explores-review-sub-text">
+                        <span>Guide</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-0">
+                    <div class="col-auto px-0">
+                      <div class="rateYoMemberExplorers d-inline-block p-0" starsSize="small" rating="<%=@current_explore_rating.rating%>" data-rateyo-full-star="true"></div>
+
+                      <input type="text" hidden id="rateYoMemberExplorerInput" value="<%=@current_explore_rating.rating%>" name="rating">
+                    </div>
+                    <div class="col">
+                      <div class="explores-review-sub-text mt-2">
+                        	<%=@current_explore_rating.created_at.strftime("%B %d, %Y")%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <textarea id="member_explorers_edit_textarea" class="form-control mt-2" name="review" disabled rows="3"><%=@current_explore_rating.review%></textarea>
+                <!-- edit -->
+                <%if current_user.profile.id != @profile.id %>
+                  <button class="btn btn-link float-right border mt-2 radius-25"
+                          id="member_explorers_edit_btn" style="width: 100px">
+                    Edit
+                  </button>
+
+                  <%= button_tag 'Save', class:"btn btn-link float-right border mt-2 radius-25 d-none",data: { disable_with: "Editing..." },style:"width: 100px", id:"member_explorers_save_btn" %>
+                <%end%>
+              </div>
+            </div>
+          <%end%>
+      </div>
+    <%end%>
+    <h5 class="c-black mt-4">Recent Reviews</h5>
+    <!-- filters -->
+
+    <div class="text-right">
+      <select class="custom-select radius-25 explores-review-filter fsz-14 mt-3">
+        <option value="recent" data-model="profile" data-id="<%=request.parameters["id"]%>" data-tab="explore">Recent</option>
+        <option value="highest" data-model="profile" data-id="<%=request.parameters["id"]%>" data-tab="explore">Highest</option>
+        <option value="lowest" data-model="profile" data-id="<%=request.parameters["id"]%>" data-tab="explore">Lowest</option>
+       </select>
+    </div>
+
+    <div class="mt-5" id="filter_results_explorer_profile">
+    </div>
+
+    <div class="mt-5" id="explorers_tab_profile">
+      <%= render partial:'shared/list_reviews',locals:{ratings: @explore_ratings}%>
+    </div>
+
+  </div>
+</div>

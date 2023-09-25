@@ -1,0 +1,66 @@
+<% if user_signed_in? && !current_user.builder %>
+ <div class="row profile-builder border-bottom mt-5 pb-5 px-2">
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-1 active">
+      <a href="/profile/about-yourself">
+        <div class="navigation-item rounded-circle d-inline-block">
+          <img src="<%= image_path('Icons/icons8-person-100.png')%>" alt="person">
+        </div>
+      </a>
+   </div>
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-2 active">
+      <a href="/profile/explores">
+     <div class="navigation-item rounded-circle d-inline-block">
+       <img src="<%= image_path('Icons/icons8-telescope-100.png')%>" alt="telescope">
+     </div>
+     </a>
+   </div>
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-3 active">
+      <a href="/profile/guides">
+       <div class="navigation-item rounded-circle d-inline-block">
+       <img src="<%= image_path('Icons/icons8-treasure-map-100.png')%>" alt="treasure-map">
+     </div>
+     </a>
+   </div>
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-4 active">
+      <a href="/profile/projects">
+       <div class="navigation-item rounded-circle d-inline-block">
+       <img src="<%= image_path('Icons/icons8-goal-100.png')%>" alt="goal">
+     </div>
+     </a>
+   </div>
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-5 active">
+      <a href="/profile/availabilty">
+       <div class="navigation-item rounded-circle d-inline-block">
+       <img src="<%= image_path('Icons/icons8-calendar-25-100.png')%>" alt="calendar">
+     </div>
+     </a>
+   </div>
+   <div class="col text-center p-0 navigation-item-wrap navigation-item-wrap-6">
+      <a href="/profile/completed">
+       <div class="navigation-item rounded-circle d-inline-block">
+       <img src="<%= image_path('Icons/icons8-checkmark-100.png')%>" alt="checkmark">
+     </div>
+     </a>
+   </div>
+ </div>
+
+ <!-- user_signed_in? && !current_user.builder -->
+  <div class="container profile-builder  mt-5">
+   <div class="position-relative">
+     <div class="page-5">
+       <h1 class="headline">Availability</h1>
+
+       <p class="headline-description mt-4">Choose times that you'll are available to help.</p>
+
+       <img class="headline-image" width="150" src="<%= image_path('Icons/schedule.png')%>" alt="schedule">
+     </div>
+   </div>
+
+   <div class="mt-5 page-5">
+     <%= render 'fifth_page',:locals => {:first => 1}%>
+   </div>
+  </div>
+
+<% else %>
+<%=  render template: 'errors/internal_error' %>
+<% end %>

@@ -1,0 +1,140 @@
+<% js = escape_javascript(
+  render(partial: 'list', locals: { categories: @categories })
+) %>
+$("#filterrific_results").html("<%= js %>");
+
+<% jsg = escape_javascript(
+  render(partial: 'listg', locals: { categories: @categories })
+) %>
+$("#filterrific_resultsG").html("<%= jsg %>");
+
+var guideCategories = window.sessionStorage.getItem('guideCategories');
+ if(guideCategories){
+  guideCategories = JSON.parse(guideCategories);
+ }else{
+  guideCategories = {guid_categories:[]};
+ }
+ guideCategories.guid_categories.forEach(cat => {
+   id = "guideCat-"+cat
+  $("#" + id).addClass('active')
+ })
+ setGuideCategories()
+
+  $('.guide-item-status-button-add').click(function () {
+    var parent = $(this).parent().parent()
+
+    var id = Number(parent.attr('id').split('-')[1])
+
+    parent.toggleClass('active')
+
+    if (parent.hasClass('active')) addCategoryG(id)
+    else deleteCategoryG(id)
+
+    setGuideCategories()
+  })
+
+ function addCategoryG(category){
+  var array = window.sessionStorage.getItem('guideCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {guid_categories:[]};
+  }
+  array.guid_categories.push(category);
+  window.sessionStorage.setItem('guideCategories', JSON.stringify(array));
+ }
+ function deleteCategoryG(category){
+  var array = window.sessionStorage.getItem('guideCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {guid_categories:[]};
+  }
+
+  array.guid_categories = array.guid_categories.filter(cat=>{
+   return cat!=category;
+  });
+  window.sessionStorage.setItem('guideCategories', JSON.stringify(array));
+ }
+
+ function setGuideCategories(){
+  /*this function keeps updating the value of the hidden tag
+  to use it anytime in the backend*/
+  var array = window.sessionStorage.getItem('guideCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {guid_categories:[]};
+  }
+  var input = document.getElementById("guideCategories");
+  if (input){
+  	input.value = JSON.stringify(array);
+  }
+
+ }
+
+
+ var exploreCategories = window.sessionStorage.getItem('exploreCategories');
+ if(exploreCategories){
+  exploreCategories = JSON.parse(exploreCategories);
+ }else{
+  exploreCategories = {exp_categories:[]};
+ }
+ exploreCategories.exp_categories.forEach(cat=>{
+   id = "exploreCat-"+cat
+  $("#" + id).addClass('active')
+ })
+ setExploreCategories();
+
+ $('.explore-item-status-button-add').click(function () {
+  var parent = $(this).parent().parent()
+  var id = Number(parent.attr('id').split('-')[1])
+
+  parent.toggleClass('active')
+
+  if (parent.hasClass('active')) addCategory(id)
+  else deleteCategory(id)
+
+  setExploreCategories()
+})
+
+ function addCategory(category){
+  var array = window.sessionStorage.getItem('exploreCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {exp_categories:[]};
+  }
+  array.exp_categories.push(category);
+  window.sessionStorage.setItem('exploreCategories', JSON.stringify(array));
+ }
+
+ function deleteCategory(category){
+  var array = window.sessionStorage.getItem('exploreCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {exp_categories:[]};
+  }
+
+  array.exp_categories = array.exp_categories.filter(cat=>{
+   return cat!=category;
+  });
+  window.sessionStorage.setItem('exploreCategories', JSON.stringify(array));
+ }
+
+ function setExploreCategories(){
+  /*this function keeps updating the value of the hidden tag
+  to use it anytime in the backend*/
+  var array = window.sessionStorage.getItem('exploreCategories');
+  if(array){
+   array = JSON.parse(array);
+  }else{
+   array = {exp_categories:[]};
+  }
+  var input = document.getElementById("exploreCategories");
+  if (input){
+  	input.value = JSON.stringify(array);
+  }
+
+ }

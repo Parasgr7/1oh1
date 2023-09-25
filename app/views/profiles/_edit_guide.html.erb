@@ -1,0 +1,93 @@
+<div class="modal fade" id="editGuideModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content large-size">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Subjects</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modalCategories redcel">
+          <div class="addInterests redcel">
+            <div class="redcel">
+            </div>
+              <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+                <div class="form-group">
+                  <label for="">Search in categories</label>
+                  <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed form-control',
+                    placeholder: 'ex. oil painting'
+                  ) %>
+                </div>
+
+                <%= render_filterrific_spinner %>
+              <% end %>
+            <div>
+              <span class="fz-14 fw-400 c-black">Can't find a category?</span>
+              <span data-dismiss="modal" data-toggle="modal" data-target="#newCategoryModal" class="c-blue fz-14 fw-400 cursor-p"> Create a new category.</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs  pt-4" id="GuideTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="addCategory-tab" data-toggle="tab" href="#addCategoryGuide" role="tab" aria-controls="home" aria-selected="true">Add Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="yourInterest-tab" data-toggle="tab" href="#yourInterestGuide" role="tab" aria-controls="profile" aria-selected="false">Your Subjects</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="GuideTabContent">
+          <div class="tab-pane fade show active" id="addCategoryGuide" role="tabpanel" aria-labelledby="home-tab">
+            <div class="p-3 border position-relative auxiliar-container" id="explore-item-containerP">
+              <%= render(
+                partial: 'listg',
+                locals: { categories: @categories }
+              ) %>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="yourInterestGuide" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="categoriesGrid redcel border rounded">
+                <% if @guides.blank? %>
+                  <div class="gridGuidingActivity">
+                      <div class="titleactivityProfile toptitleActivity">
+                        <span class="titleYetAdd">Nothing added yet</span>
+                      </div>
+                      <div class="gridImgActivity">
+                          <div class=""></div>
+                          <div class="">
+                              <img src="<%= image_path('Icons/yet.png') %>" alt="Image" class="imgYet">
+                          </div>
+                          <div class=""></div>
+                      </div>
+                  </div>
+                <% else %>
+                    <% @guides.each do|guide| %>
+                      <%=link_to category_path(guide) do%>
+                        <div class="interestsImage py-2">
+                           <img class="imagesInterests" src="<%= guide.url %>">
+                        </div>
+                      <%end%>
+                   <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                data-dismiss="modal">Cancel</button>
+        <%= form_tag( {:controller=>"guides", :action => :create }, { :method => :post,:id => 'update_guide' }) do %>
+          <input type="hidden" id="guideCategories" name="guideCategories">
+          <%= submit_tag("Save", :class=>'btn btn-success', data: { disable_with: "Updating..."})%>
+        <%end%>
+
+      </div>
+    </div>
+  </div>
+</div>

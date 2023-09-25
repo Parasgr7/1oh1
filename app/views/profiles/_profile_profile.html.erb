@@ -1,0 +1,92 @@
+<div class="celprofile">
+  <a id="toggle-sidebar">
+    <div class="memberView shadow">
+      <div class="profileView">
+        Profile
+      </div>
+    </div>
+  </a>
+  <div class="exit">
+    <button type="button" class="btnExit btn btn-success" id="toggle-exit">Exit View</button>
+  </div>
+  <div class="fondo"><img class="imgfondo" src="<%= banner_photo(@profile)  %>"></div>
+  <div class="celprofile" id="description">
+    <div class="cel pname">
+      <img id="img-Profile" class="imgView" src="<%= profile_photo(@profile)%>">
+
+      <div class="edit-profile-btn-wrap d-xl-none">
+        <i data-toggle="modal" data-target="#profileModal" class="material-icons icons create">
+          create
+        </i>
+      </div>
+
+      <p class="names"><%= current_user.full_name%></p>
+    </div>
+
+    <div class="cel d-none d-xl-inline-block">
+      <i data-toggle="modal" data-target="#profileModal" class="material-icons icons create">
+        create
+      </i>
+    </div>
+    <div class="cel pcity mediacity">
+      <p class="city">
+        <% if @profile.state.nil? && @profile.country.nil? %>
+        Location : None
+        <% else %>
+        <%= @profile.state%>,<%= @profile.country%>
+        <% end %>
+      </p>
+    </div>
+    <div class="celd"></div>
+    <div class="cel buttonCalendar"><button type="button" class="btnCalendar">Calendar</button></div>
+    <div class="pLanguages medialanguages">
+      <p class="languages">
+        <% if @profile.languages.empty? %>
+          None
+        <% else %>
+          <% @profile.languages.each do |language| %>
+            <div class="base-chips d-inline-block">
+              <span class="base-chips-name"> <%= LanguageList::LanguageInfo.find(language).name %> </span>
+            </div>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+    <div></div>
+    <div class="pDescription mediadescription">
+      <p class="description">
+        <%if @profile.bio.nil? %>
+        Bio not updated
+        <% else %>
+        <%= @profile.bio%>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="cel"></div>
+  </div>
+  <div class="celprofile tabOptions row" id="grid-menu">
+    <header class="profile-tab">
+      <div class="border-0 material-tabs">
+          <a id="tab1-tab-project" href="#tab1" class="tab1-tabProfile active"><%= @explores.size%><br> Explore</a>
+          <a id="tab2-tab-project" class="tab2-tabProfile" href="#tab2"><%= @guides.size%> <br> Guide</a>
+          <a id="tab3-tab-project" class="tab3-tabProfile" href="#tab3"> <%= @projects.size%> <br> Projects</a>
+          <span class="yellow-bar"></span>
+
+      </div>
+    </header>
+  </div>
+  <div class="tab-content custom-table">
+    <div id="tab1">
+      <%= render partial: 'exploration',:locals => { :view_individual_profile => "false"}  %>
+    </div>
+    <div id="tab2">
+      <%= render partial: 'guiding',:locals => { :view_individual_profile => "false"}  %>
+    </div>
+    <div id="tab3">
+      <%= render partial: 'projects',:locals => { :view_individual_profile => "false"}  %>
+    </div>
+  </div>
+
+  <%= render 'profile_pic_ui' %>
+</div>

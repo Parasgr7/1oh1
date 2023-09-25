@@ -1,0 +1,17 @@
+<div id="project_comments">
+  <div class="row my-4 mx-0">
+    <div class="col-auto pl-0">
+      <div class="project-avatar"
+             style="background-image: url('<%= profile_photo(comment.profile) %>')"></div>
+    </div>
+    <div class="col pr-0">
+      <div>
+        <span class="fsz-15 font-weight-bold c-black"><%= comment.profile.user.full_name %></span>
+        <span class="fsz-10 font-weight-bolder c-gray"><%= time_ago_in_words(comment.created_at,include_seconds: true) + ' ago'%></span>
+      </div>
+      <div class="fsz-13 font-weight-bolder c-black">
+        <%= comment.comment%>
+      </div>
+    </div>
+  </div>
+</div>

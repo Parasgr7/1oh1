@@ -1,0 +1,56 @@
+<div class="navbar-without-banner">
+    <%= render 'landing/navbar' %>
+</div>
+
+<div class="container">
+  <h1 class="contact-us-title mt-5 pt-5">
+    Contact Us
+  </h1>
+  <p class="contact-us-description">Get in touch with the right people at 1oh1. Email a member of our <br>
+    customer care team, marketing team, technical team or HR team.</p>
+
+  <div class="row mt-4">
+  	<div class="col">
+  		<div class="contact-card active">
+	        <div class="content">
+	          <img src="<%=image_path('Icons/contacts/technical.png')%>" alt="">
+	          <div class="title">
+	            Technical Issues
+	          </div>
+	          <div class="description">
+	            Bugs are cool, we just don't want any in our website.
+	          </div>
+	        </div>
+        </div>
+  	</div>
+  	<div class="col">
+      <%= form_tag(contacts_path,remote: :true,id:"contacts") do %>
+    		<div class="form-group custom-from-group">
+    		  <label for="name">Name</label>
+    		  <input type="text" class="form-control" name="name" required id="name">
+  		  </div>
+
+    		<div class="form-group custom-from-group">
+    		  <label for="email">Email</label>
+    		  <input type="email" class="form-control" name="email" required id="email">
+    		</div>
+
+    		<div class="form-group custom-from-group">
+    		  <label for="subject">Problem Overview</label>
+    		  <input type="text" class="form-control" name="subject" required id="subject">
+    		</div>
+        <input type="hidden" name="category" value="technical">
+    		<div class="form-group custom-from-group">
+    		    <label for="meassage">Describe the problem</label>
+    		    <textarea class="form-control" id="meassage" name="message" required rows="3"></textarea>
+    		</div>
+
+    		<div class="form-group">
+    			<button class="btn btn-success" data-disable-with="Sending...">
+    				Send
+    			</button>
+    		</div>
+      <%end%>
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<section class="my-5">
+  <h3 class="my-5 c-black">Top Explores for <%= first_category_name_explore%></h3>
+  <div class="row my-4" id="mainCategoryExplore">
+    <% if first_category_explore.empty? %>
+      <h6 class="my-7 c-black">No Guides Available</h6>
+    <% else %>
+      <%= render partial: 'shared/user_card.html', collection: first_category_explore, as: :user,locals:{ class_name: "categoryExploreItem",type:"Explorer"} %>
+    <%end%>
+  </div>
+
+  <div class="upcomingBookingsLinks gridLinksShow">
+    <a class="gridLessLink" id="showLessCategoryExplore">Less</a>
+    <div class="showMoreLessMessage" id="categoryExploreMessage">
+      Showing x of y items
+    </div>
+    <a class="gridMoreLink" id="showMoreCategoryExplore">More</a>
+  </div>
+</section>

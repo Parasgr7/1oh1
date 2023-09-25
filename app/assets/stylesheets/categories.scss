@@ -1,0 +1,159 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.table-responsive .pagination * {
+	margin-right: 30px;
+}
+.category-calendar {
+	position: relative;
+	top: -154px;
+	border-radius: 15px;
+}
+.britechart.sparkline {
+	.line {
+		stroke-width: 3px;
+		fill: none;
+	}
+}
+#sparklinedash3 {
+	.sparkline-circle {
+		fill: #251927;
+	}
+}
+#sparklinedash4 {
+	.sparkline-circle {
+		fill: #8CC63F;
+	}
+}
+#sparklinedash {
+	.sparkline-circle {
+		fill: #00679F;
+	}
+}
+#sparklinedash2 {
+	.sparkline-circle {
+		fill: #858899;
+	}
+}
+.category-tabs {
+	padding-right: 20px;
+}
+
+#category-tab1-tab.active ~ span.yellow-bar {
+	left: 0;
+	width: 121px;
+}
+
+#category-tab2-tab.active ~ span.yellow-bar {
+	left: 125px;
+    width: 96px;
+}
+
+#category-tab3-tab.active ~ span.yellow-bar {
+	left: 225px;
+    width: 110px;
+}
+.see-more {
+	font-size: 13px!important;
+	text-decoration: underline!important;
+	color: #4d4d4d !important;
+}
+
+@media (max-width: 993px) {
+	.category-calendar {
+		top: 0;
+	}
+}
+.category-tab-content {
+	.btn-primary {
+		border-radius: 15px;
+	}
+}
+.add-category-btn-icon {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 3;
+	i {
+		position: relative;
+    	top: 3px;
+	}
+}
+.categories-search-wrap {
+    width: 100%;
+    background: white;
+    .categories-search-buttons {
+    	padding-top: 3px;
+    }
+}
+
+.categories-search-form-group {
+	.form-control {
+    	height: 36px!important;
+		font-size: 14px!important;
+		border-radius: 25px!important;
+		padding-left: 40px;
+		min-width: 250px;
+    }
+	.search-icon {
+		left: 12px!important;
+	    top: 8px!important;
+	    font-size: 22px!important;
+	    position: absolute;
+	}
+}
+
+.category-trend-wrap {
+	max-width: 110px;
+	overflow-x: hidden;
+	.has-canvas {
+		width: 130px;
+		canvas {
+			position: relative;
+			right: 25px;
+		}
+	}
+}
+
+.category-big-padding-left {
+	padding-left: 18px!important;
+}
+
+.categories-search-container {
+	position: relative;
+	z-index: 10;
+}
+.category-filters-right-padding {
+	padding-right: 28px;
+}
+
+#categoryAddDropdownBtn {
+	border-radius: 50%!important;
+    min-width: 37px;
+
+	// span {
+	// 	display: none;
+	// }
+	@media (min-width: 992px) {
+		// min-width: 80px;
+		// border-radius: 50rem!important;
+		// span {
+		// 	display: inline-block;
+		// }
+		// i {
+		// 	display: none!important;
+		// }
+	}
+}
+
+#categoryAddDropdownBtnWrap {
+	z-index: 20;
+	right: 55px;
+	bottom: auto;	
+	top: 2px;
+	@media (min-width: 992px) {
+		right: 15px;
+		bottom: 20px;
+		top: auto;	
+	}
+}

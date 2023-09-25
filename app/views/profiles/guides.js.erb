@@ -1,0 +1,74 @@
+<% js = escape_javascript(
+  render(partial: 'listg', locals: { categories: @categories })
+) %>
+$("#filterrific_resultsG").html("<%= js %>");
+
+
+console.log("this is the guide code");
+/*why is this code never running?*/
+
+var guideCategories = window.sessionStorage.getItem('guideCategories');
+	if(guideCategories){
+		guideCategories = JSON.parse(guideCategories);
+	}else{
+		guideCategories = {guid_categories:[]};
+	}
+	guideCategories["guid_categories"].forEach(cat => {
+		$("#" + cat).addClass('active')
+	});
+
+	setGuideCategories();
+
+
+	$('.guide-item-status-button-add').click(function () {
+		var parent = $(this).parent().parent()
+
+		var id = Number(parent.attr('id').split('-')[1])
+
+		parent.toggleClass('active')
+
+		if (parent.hasClass('active')) addCategoryG(id)
+		else deleteCategoryG(id)
+
+		setGuideCategories()
+	})
+
+	function addCategoryG(category){
+		var array = window.sessionStorage.getItem('guideCategories');
+		if(array){
+			array = JSON.parse(array);
+		}else{
+			array = {guid_categories:[]};
+		}
+		array.guid_categories.push(category);
+		window.sessionStorage.setItem('guideCategories', JSON.stringify(array));
+	}
+	function deleteCategoryG(category){
+		var array = window.sessionStorage.getItem('guideCategories');
+		if(array){
+			array = JSON.parse(array);
+		}else{
+			array = {guid_categories:[]};
+		}
+
+		array.categories = array.guid_categories.filter(cat=>{
+			return cat!=category;
+		});
+		window.sessionStorage.setItem('guideCategories', JSON.stringify(array));
+	}
+
+	function setGuideCategories(){
+		/*this function keeps updating the value of the hidden tag
+		to use it anytime in the backend*/
+		var array = window.sessionStorage.getItem('guideCategories');
+		if(array){
+			array = JSON.parse(array);
+		}else{
+			array = {guid_categories:[]};
+		}
+		console.log(array);
+      	var input = document.getElementById("guideCategories");
+		  if (input){
+		  	input.value = JSON.stringify(array);
+		  }
+	}

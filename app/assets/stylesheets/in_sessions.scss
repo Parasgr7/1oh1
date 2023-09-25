@@ -1,0 +1,529 @@
+
+/*SECTION
+hangouts-like layout*/
+
+
+@media (min-width: 10px){
+    .video-background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+    }
+    .sessionIconsScreenSharingCont {
+        cursor: pointer;
+        i {
+            color: white;
+        }
+        i:last-child {
+            display: none;
+        }
+        &.active {
+            i:first-child {
+                display: none;
+            }
+            i:last-child {
+                display: inline-block;
+            }
+        }
+    }
+    .noteCancellationLabel{
+        align-self: end;
+    }
+
+    .noteCancellationTxtArea{
+        border: 1px solid #aeaeae;
+        border-radius: 5px;
+        padding: 1%;
+    }
+
+    .noteCancellationSubmit{
+        align-self: end;
+        width: 15%;
+        background-color: #B22F41;
+        color: #ffffff;
+        border: 1px solid #000;
+        padding: 2% 1%;
+        font-size: .8rem;
+    }
+
+    .btnCloseCancellation{
+        grid-row: 4/5;
+        background-color: #7C95BB;
+        color: #ffffff;
+        border: 1px solid #000;
+        padding: 1%;
+        font-size: .7rem;
+    }
+
+    .detailsCancellationText{
+        font-weight: bolder;
+    }
+
+    .isHide {
+        height: auto;
+        width: 100%;
+        color: #000;
+        background: #ffffff;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+
+    .sessionHide {
+        height: auto;
+        width: 100%;
+        color: #000;
+        background: #ffffff;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+        z-index: 1900;
+    }
+
+    .roomBG {
+        display: grid;
+        align-items: end;
+        position: relative;
+        width: 100%;
+        height: 110vh;
+        background: #767676;
+    }
+
+    .inSession {
+        display: grid;
+        align-items: end;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: #000000;
+    }
+    #opponent_disabled_video {
+        .opponent-image-container {
+            width: 230px;
+            height: 230px;
+            background-size: cover;
+        }
+    }
+    .partnerName {
+        display: grid;
+        align-items: center;
+        grid-column: 1/9;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 16px;
+        margin-top: 32px;
+        margin-left: 28px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .timeRemaining {
+        font-weight: 400;
+        font-size: 16px;
+
+        & #demo{
+            display: inline-block;
+        }
+
+        .description{
+            display: inline-block;
+            margin: 0;
+            font-style: normal;
+            margin-left: 24px;
+            color: #fff;
+            white-space: nowrap;
+            font-size: 16px
+        }
+    }
+
+    .partnerWindow {
+        right: 85px;
+        top: 33px;
+    }
+
+    .partnerWindowView {
+        height: 80px;
+        border-radius: 20px;
+    }
+
+    .transparent1oh1 {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-row: 3/4;
+        grid-column: 1/3;
+    }
+
+    .sessionIconsMenuCont {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-column: 1/3;
+    }
+    .sessionIconsMenu {
+        height: 30px;
+        width: auto;
+        cursor: pointer;
+    }
+
+    .transparent1oh1Icon {
+        cursor: pointer;
+        height: 85px;
+        width: auto;
+    }
+    
+    .session_header_text {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 28px 28px 0 28px;
+    }
+    .session_footer_icons {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .sessionIconsNoVideo {
+        cursor: pointer;
+        height: 35px;
+        width: auto;
+    }
+    .session_icon_button {
+        min-width: inherit;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        margin: 16px 8px 40px 8px;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        background-color: transparent;
+        position: relative;
+
+        i, img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .sessionIconsNoVideoCont {
+        cursor: pointer;
+        i {
+            color: white;
+        }
+        i:last-child {
+            display: none;
+        }
+
+        &.active {
+            i:first-child {
+                display: none;
+            }
+            i:last-child {
+                display: inline-block;
+            }
+        }
+    }
+
+    .sessionIconsMute {
+        cursor: pointer;
+        height: 35px;
+        width: auto;
+    }
+    .sessionIconsMuteCont {
+        cursor: pointer;
+        i {
+            color: white;
+        }
+        i:last-child {
+            display: none;
+        }
+        &.active {
+            i:first-child {
+                display: none;
+            }
+            i:last-child {
+                display: inline-block;
+            }
+        }
+    }
+    .sessionIconsEndCall {
+        cursor: pointer;
+        height: 24px;
+        width: auto;
+    }
+    .sessionIconsEndCallCont {
+        height: 56px;
+        width: 56px;
+        border-radius: 50%;
+        background: #a0161b;
+    }
+
+    .sessionIconsScreenSharing {
+        width: 40px;
+        height: auto;
+        cursor: pointer;
+    }
+    
+
+    .sessionIconsExpand {
+        cursor: pointer;
+        height: 18px;
+        width: auto;
+    }
+    .sessionIconsSwitchCamera {
+        i {
+            color: white;
+        }
+    }
+
+
+    .roomBar {
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+        position: relative;
+        background: #ffffff;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: 140px auto 30%;
+        grid-template-rows: auto auto auto auto;
+    }
+
+    .showRoomBar {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .showSessionBar {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .roomContent {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+
+        & video{
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+        }
+    }
+
+    .toolsIconsSession {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(25, 1fr);
+        grid-template-rows: 70px auto 90px;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        background: none;
+    }
+}
+
+@media (min-width: 10px){
+    .gridFiveMinutes {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 20%;
+        background: #f2f2f2;
+        row-gap: 13px;
+        border-radius: 7px;
+    }
+    .gridBtnFiveMinutes {
+        display: grid;
+        grid-template-columns: 50fr 50fr;
+    }
+    .spanFiveMinutes{
+        text-align: center;
+        padding-top: 15px;
+    }
+    .titleFiveMinutes{
+        font-size: 23px;
+        font-family: 'Open Sans';
+        font-weight: 500;
+        color: #766767;
+    }
+    .spanRequestTime{
+        text-align: center;
+        font-family: 'Open Sans';
+        font-weight:600;
+    }
+    .titleRequestTime {
+        font-size:14px;
+
+    }
+    .btnYesTime{
+        text-align: center;
+        padding: 15px;
+    }
+    .btnNoTime {
+        text-align: center;
+        padding: 15px;
+    }
+    .celYesTime{
+        border-top:1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+        border-left: none;
+        border-bottom: none;
+    }
+    .aYesTime {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #000000;
+        text-decoration: none;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 13px;
+
+    }
+    .celNoTime{
+        border-right: none;
+        border-top: 1px solid #d7d7d7;
+        border-left: 1px solid #d7d7d7;
+    }
+    .aNoTime {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #000000;
+        text-decoration: none;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 10px){
+    .more_time_conflict {
+        position: absolute;
+        /*4 px */
+        left: -330px;
+        top: 115px;
+    }
+    .gridTimeConflict {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 325px;
+        background: #f2f2f2;
+        row-gap: 11px;
+        border-radius: 7px;
+    }
+    .gridBtnConflict{
+        display: grid;
+        grid-template-columns: 50fr 50fr;
+
+    }
+    .spanTimeConflict{
+        padding-left: 20px;
+        padding-top: 16px;
+    }
+    .titleTimeConflict {
+        font-size: 22px;
+        font-family: 'Open Sans';
+        font-weight: 500;
+        color: #766767;
+    }
+    .paragraphConflict {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .paragraphConflict .txtConflict {
+        display: grid;
+        margin-block-start: 7px;
+    }
+    .bntBackConflict {
+        text-align: center;
+        padding: 15px;
+        border-top:1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+        border-left: none;
+        border-bottom: none;
+    }
+    .linkConflictBack {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #000000;
+        text-decoration: none;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .bntCloseConflict {
+        border-top: 1px solid #d7d7d7;
+        border-left: none;
+        text-align: center;
+        padding: 15px;
+    }
+    .linkConflictClose {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #000000;
+        text-decoration: none;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+}
+
+@media (min-width: 10px){
+    .gridExtraTime {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 20%;
+        background: #f2f2f2;
+        border: solid #9b0404;
+        row-gap: 8px;
+        border-radius: 7px;
+
+    }
+    .spanExtraTime {
+        padding-left: 20px;
+    }
+    .titleExtraTime{
+        font-size: 21px;
+        font-family: 'Open Sans';
+        font-weight: 500;
+        color: #766767;
+    }
+    .spanRequestExtra {
+        font-weight: 600;
+        padding-left: 20px;
+    }
+    .titleRequestExtra {
+
+        font-size: 14px;
+    }
+}
+
+// time{
+//     display: none;
+// }
+
+#sessionEnd{
+
+    & .modal-dialog{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        & .modal-content{
+            align-self: center;
+        }
+    }
+}

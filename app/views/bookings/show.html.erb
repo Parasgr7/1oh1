@@ -1,0 +1,316 @@
+<% javascript 'signaling-server' %>
+<%= render 'end_session_confirm_dialog' %>
+<%= render 'other_user_ended_session' %>
+
+<span hidden><%= local_time(@end,'%B %e, %Y %l:%M %P') %></span>
+<span id="current-user" hidden><%= params[:profile_id] %></span>
+<span id="session_id" hidden><%= params[:id] %></span>
+<span id="peer-user" hidden><%= params[:peer_id] %></span>
+<div class='inSession'>
+  <div class="toolsIconsSession wrapCardPre">
+    <div class="hideIcons"></div>
+    <div class="center card-pre">
+      <%= render 'pre_session' %>
+    </div>
+  </div>
+  <div class="centerXY" id="loading" style="display: none;">
+    <div class="gooey" style="background-color: transparent;filter: none">
+      <span class="dot bgc-white" style="filter: blur(1px)"></span>
+      <div class="dots">
+        <span class="bgc-white" style="filter: blur(1px)"></span>
+        <span class="bgc-white" style="filter: blur(1px)"></span>
+        <span class="bgc-white" style="filter: blur(1px)"></span>
+      </div>
+
+      <p style="margin-top: 35px;" class="ml-3 c-white fsz-16">Connecting...</p>
+    </div>
+  </div>
+  <!--DIV TO CAM TOP-END-->
+  <div class="partnerWindow" id="local-video-up">
+    <video class="partnerWindowView"
+          id="local-video-right" autoplay muted></video>
+    <div class="video-background-overlay"
+         style="background-image: url('<%= image_path(profile_photo(current_user.profile))%>');display: none;">
+    </div>
+  </div>
+  <!--DIV TO CAM TOP-END-->
+  <div class="roomContent" id="remote-video-container"><!--Content--></div>
+
+  <div class="toolsIconsSession sessionHide">
+    <div class="session_header_text mx-0" style="display: none;">
+      <div class="row mx-0">
+        <div class="col pl-0">
+          <h5 class="c-white"><%= Profile.find(params[:peer_id]).user.full_name %></h5>
+          <div>
+            <div id="demo" class="d-inline-block  fsz-16 c-white ff-ssp">
+            </div>
+            <div class="fsz-16 c-white ff-ssp d-inline-block c-white">
+              Remaining
+            </div>
+          </div>
+        </div>
+
+        <div class="col pr-0 text-right">
+          <div class="dropdown d-inline-block">
+            <button class="btn btn-link dropdown-toggle mt-0 position-relative" type="button" data-toggle="dropdown"
+              style="top: -2px">
+              <i class="material-icons c-white">more_vert</i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <button class="btn btn-link td-n" onclick="handleOpenFullscreen()">
+                  <span class="fsz-14 align-middle">
+                    <i class="material-icons c-dark-gray align-middle mr-2">fullscreen</i>
+                    full screen
+                  </span>
+                </button>
+              </li>
+
+              <li>
+                <button class="btn btn-link sessionIconsScreenSharingCont td-n"
+                      onclick="handleToggleScreenShare()"
+                      id="toggle-screen-btn">
+                      <span>
+                        <i class="material-icons c-dark-gray align-middle mr-2">screen_share</i>
+                        <i class="material-icons c-dark-gray align-middle mr-2">stop_screen_share</i>
+                        share screen
+                      </span>
+                </button>
+              </li>
+              <li class="dropdown-submenu">
+                <button class="sessionIconsSwitchCamera cursor-p pre-session-switch-camera btn btn-link td-n test"
+                    data-toggle="dropdown">
+                  <span class="align-middle">
+                    <i class="material-icons c-dark-gray align-middle mr-2">switch_camera</i>
+                    switch camera
+                  </span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" id="videoDevicesList">
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+<!--
+
+          <div class="dropdown ">
+            <button class="c-white cursor-p btn"
+                  data-toggle="dropdown">
+
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="dropdownMenuButton">
+                  <div class="btn-group dropright">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropright
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="session_footer_icons row mx-0">
+      <div class="col" style="padding-left: 9px">
+        <img src="<%= image_path('iconT.png')  %>" class="transparent1oh1Icon">
+      </div>
+      <div class="col-auto">
+        <button class="sessionIconsNoVideoCont btn session_icon_button"
+         id="toggle-video-btn"
+         onclick="handleToggleVideo(['pre-session-toggle-video-btn', 'toggle-video-btn'])">
+          <i class="material-icons">videocam</i>
+          <i class="material-icons">videocam_off</i>
+        </button>
+
+        <button class="sessionIconsEndCallCont btn session_icon_button" onclick="onLeaveSessionClick()">
+          <img src="<%= image_path('Icons/endCallW.png')  %>" class="sessionIconsEndCall">
+        </button>
+
+        <button class="sessionIconsMuteCont btn session_icon_button"
+         id="toggle-audio-btn"
+         onclick="handleToggleAudio(['pre-session-toggle-audio-btn', 'toggle-audio-btn'])">
+          <i class="material-icons">mic</i>
+          <i class="material-icons">mic_off</i>
+        </button>
+      </div>
+      <div class="col text-right">
+      </div>
+    </div>
+  </div>
+  <div id="opponent_disabled_video" class="position-absolute centerXY" style="display: none">
+    <div class="opponent-image-container rounded-circle"
+         style="background-image: url('<%= profile_photo(@companion.profile)%>')">
+
+    </div>
+  </div>
+
+  <div class="more_time_question"></div>
+  <div class="more_time_approve"></div>
+  <div class="more_time_sent"></div>
+  <div class="more_time_options"></div>
+  <div class="more_time_conflict">
+    <div class="gridTimeConflict">
+            <div class="spanTimeConflict">
+                <span class="titleTimeConflict">Time Conflict</span>
+            </div>
+            <div class="paragraphConflict">
+                <p class="txtConflict">The extra time request cannot be processed as it conflicts with other appointments in either yours or the other user's schedule.</p>
+            </div>
+            <div class="gridBtnConflict">
+                <div class="bntBackConflict">
+                    <a href="#" class="linkConflictBack">Back</a>
+                </div>
+                <div class="bntCloseConflict">
+                    <a href="#" class="linkConflictClose">Close</a>
+                </div>
+            </div>
+        </div>
+  </div>
+  <!--Fiveminutes-->
+  <div class="more_time_conflict_5minutes modal-float">
+  <div class="gridTimeConflict">
+          <div class="spanTimeConflict text-center">
+              <span class="titleTimeConflict">Five Minutes Remaining</span>
+          </div>
+          <div class="paragraphConflict text-center semi-bold">
+              <p class="txtConflict">Request more time?</p>
+          </div>
+          <div class="gridBtnConflict">
+              <div class="bntBackConflict">
+                  <a href="#" class="linkConflictBack">Yes</a>
+              </div>
+              <div class="bntCloseConflict">
+                  <a href="#" class="linkConflictClose">No</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--Remaining-->
+  <div class="more_time_conflict_remaining modal-float">
+  <div class="grid-withoutgap">
+          <div class="spanTimeConflict text-center">
+              <span class="titleTimeConflict">4:25 remaining!</span><br>
+              <small class="semi-bold">Request more time?</small>
+          </div>
+          <div class="paragraphConflict coin p-10 semi-bold border-grey">
+              <p class="txtConflict d-inline">Your Chest:160<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values text-center semi-bold border-grey">
+            <p class="txtConflict">+5 Minutes</p>
+            <p class="txtConflict d-inline">10<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values text-center semi-bold border-grey">
+            <p class="txtConflict">+10 Minutes</p>
+            <p class="txtConflict d-inline">20<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values text-center semi-bold border-grey">
+            <p class="txtConflict">+15 Minutes</p>
+            <p class="txtConflict d-inline">30<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values text-center semi-bold border-grey">
+            <p class="txtConflict">+20 Minutes</p>
+            <p class="txtConflict d-inline">40<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values-one text-center semi-bold border-grey">
+            <p class="txtConflict d-inline">New Balance: 140 <%=  image_tag('coin.png')%></p>
+            <p class="txtConflict"></p>
+          </div>
+          <div class="gridBtnConflict">
+              <div class="bntBackConflict">
+                  <a href="#" class="linkConflictBack">Cancel</a>
+              </div>
+              <div class="bntCloseConflict">
+                  <a href="#" class="linkConflictClose">Send Request</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--END-->
+  <!--Fiveminutes-->
+  <div class="more_time_conflict_request modal-float">
+  <div class="gridTimeConflict">
+          <div class="spanIconpaper text-center">
+            <%=  image_tag('icons8-email-send-100.png')%>
+          </div>
+          <div class="paragraphConflict text-center semi-bold">
+              <p class="txtConflict">Request Send</p>
+          </div>
+      </div>
+  </div>
+  <!--ENd-->
+  <!--Extra time request-->
+  <div class="more_time_conflict_extra_request modal-float">
+  <div class="gridTimeConflict">
+          <div class="spanTimeConflict text-center">
+              <span class="titleTimeConflict">Extra Time Request</span>
+          </div>
+          <div class="paragraphConflict mb-0 semi-bold">
+              <p class="txtConflict mb-0">Request for:</p>
+          </div>
+          <div class="paragraphConflict coin p-5 grid-values text-center semi-bold">
+            <p class="txtConflict">+20 Minutes</p>
+            <p class="txtConflict d-inline">+20<%=  image_tag('coin.png')%></p>
+          </div>
+          <div class="gridBtnConflict">
+              <div class="bntBackConflict">
+                  <a href="#" class="linkConflictBack">Approve</a>
+              </div>
+              <div class="bntCloseConflict">
+                  <a href="#" class="linkConflictClose">Decline</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	var timedelay = 1;
+	var _delay = setInterval(delayCheck, 500);
+
+	$('.inSession').on('mousemove', showAllEvent);
+
+	function delayCheck() {
+	  if (timedelay == 5) {
+	    $('.sessionHide').removeClass('showSessionBar');
+	    timedelay = 1;
+	  }
+	  timedelay = timedelay + 1;
+	}
+
+	function showAllEvent() {
+	  $('.sessionHide').addClass('showSessionBar');
+	  timedelay = 1;
+	  clearInterval(_delay);
+	  _delay = setInterval(delayCheck, 500);
+	}
+</script>
+
+<div class="modal fade" id="sessionEnd" tabindex="-1" role="dialog" aria-labelledby="sessionEnd" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-sm">
+      <div class="modal-body">
+        <span> Session finished</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'times_up' %>
+<%= render 'report_problem' %>
+<%= render 'problem_reported' %>
+<%= render 'waiting' %>
+<%= render 'closed' %>
+<%= render 'pre_running_late' %>
+<%= render 'pre_5min' %>
+<%= render 'pre_running_late_sent' %>
+<%= render 'pre_cancellation_warning' %>
+<div class="modal fade" id="cancelSessionDialog" tabindex="-1" role="dialog" aria-labelledby="cancelSessionDialog" aria-hidden="true">
+</div>

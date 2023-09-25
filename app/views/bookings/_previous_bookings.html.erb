@@ -1,0 +1,28 @@
+<div class="session-table-wrap mt-4">
+  <table id="bookings-previous-btn-content" class="table sortable-table">
+      <% if @completed_bookings.empty? %>
+        No Completed Bookings
+      <%else%>
+        <thead>
+          <tr>
+            <td scope="col"><%= sortable "start" %></td>
+            <td scope="col"><%= sortable "title" %></td>
+            <td scope="col">Description</td>
+            <td scope="col">With</td>
+            <td scope="col">Role</td>
+            <td scope="col"></td>
+          </tr>
+        </thead>
+        <tbody id="mainPreviousBookings">
+          <%= render partial: 'bookings/list_completed',collection: @completed_bookings,as: :booking%>
+        </tbody>
+      <%end%>
+    </table>
+    <div class="upcomingBookingsLinks gridLinksShow">
+      <a class="gridLessLink" id="lessPreviousBookings">Less</a>
+      <div class="showMoreLessMessage" id="previousBookingsMessage">
+        Showing x of y items
+      </div>
+      <a class="gridMoreLink" id="morePreviousBookings">More</a>
+    </div>
+</div>

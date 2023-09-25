@@ -1,0 +1,13 @@
+// Place all the styles related to the payment controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.stripe-button-el { display: none }
+
+.credit-card-big-icon {
+	width: 60px;
+	height: 60px;
+	opacity: 0.6;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
